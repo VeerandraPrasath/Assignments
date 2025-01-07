@@ -9,11 +9,12 @@ public class UserInteraction : IuserInteraction
         }
         else
         {
+            List<ContactInformation> Sortedlist = contacts.OrderBy(a=>a.Name).ToList();
             Console.WriteLine("The Contact names are listed :");
 
-            for (int i = 0; i < contacts.Count(); i++)
+            for (int i = 0; i < Sortedlist.Count(); i++)
             {
-                Console.WriteLine($"{i + 1}.{contacts.ElementAt(i).ToString()}");
+                Console.WriteLine($"{i + 1}.{Sortedlist.ElementAt(i).ToString()}");
             }
         }
     }

@@ -17,7 +17,7 @@ public class RepositoryInteraction : IrepositoryInteraction
         var email = Console.ReadLine();
         Console.WriteLine("Ph no:");
         var phoneNo = Console.ReadLine();
-        Console.WriteLine("Address :");
+        Console.WriteLine("Notes :");
         var address = Console.ReadLine();
         return new ContactInformation(name!, email!, phoneNo!, address!);
     }
@@ -68,8 +68,8 @@ public class RepositoryInteraction : IrepositoryInteraction
                 case "a":
                 case "A":
                     {
-                        Console.WriteLine("Enter new Address :");
-                        contact.Address = Console.ReadLine()!;
+                        Console.WriteLine("Enter new Notes :");
+                        contact.Notes = Console.ReadLine()!;
                         break;
                     }
                 default:
@@ -95,7 +95,7 @@ public class RepositoryInteraction : IrepositoryInteraction
     public List<ContactInformation> FilterContacts(string anyInfo, List<ContactInformation> contacts)
     {
 
-        return contacts.Where(contact => contact.Name.Contains(anyInfo) || contact.Email.Contains(anyInfo) || contact.Phone.Contains(anyInfo) || contact.Address.Contains(anyInfo)).ToList();
+        return contacts.Where(contact => contact.Name.Contains(anyInfo) || contact.Email.Contains(anyInfo) || contact.Phone.Contains(anyInfo) || contact.Notes.Contains(anyInfo)).OrderBy(a=>a.Name).ToList();
 
 
     }
@@ -114,7 +114,7 @@ public class RepositoryInteraction : IrepositoryInteraction
             Console.WriteLine("Select the valid index of the required contact:");
             isNumber = int.TryParse(Console.ReadLine(), out index);
             if (isNumber)
-                isValidIndex = index < filteredList.Count() ? true : false;
+                isValidIndex = index <= filteredList.Count() ? true : false;
 
 
         } while (!isNumber || !isValidIndex);
