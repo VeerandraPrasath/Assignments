@@ -1,8 +1,16 @@
 ﻿
+try
+{
+
 var userInteraction = new UserInteraction();
 var contactManager = new ContactManager(userInteraction, new RepositoryInteraction(userInteraction));
 contactManager.run();
 Console.ReadKey();
+}
+catch(Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
 
 
 public class ContactManager
