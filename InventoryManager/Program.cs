@@ -1,10 +1,12 @@
 ﻿
+using System.Globalization;
+
 internal class Program
 {
     private static void Main(string[] args)
     {
-        UserInteraction userInteraction = new UserInteraction();
         ProductRepository productRepository = new ProductRepository();
+        UserInteraction userInteraction = new UserInteraction(productRepository);
         InventoryManager inventoryManager = new InventoryManager(productRepository, userInteraction);
         App app = new App(inventoryManager, userInteraction, productRepository);
         app.run();
@@ -41,6 +43,11 @@ public class App
             case "a":
                 _inventoryManager.addNewProduct();
                 break;
+                case "D":
+                case "d":
+                 _inventoryManager.deleteExistingProduct();
+                  break;
+           
             case "C":
             case "c":
                  Console.Clear();
@@ -48,22 +55,16 @@ public class App
              case "EX":
              case "ex":
                     isExit = true;
-                     break;
-             
-
-                 
+                     break;         
         }
 
         }
     }
-
-
-
 }
 public interface IInventoryManager
 {
    public  void addNewProduct();
-    
+    public void deleteExistingProduct();
 
 }
 class InventoryManager:IInventoryManager
@@ -83,6 +84,15 @@ class InventoryManager:IInventoryManager
         Console.WriteLine("Product added successfully !!!");
         
     }
+    public void deleteExistingProduct()
+    {
+       
+          int id=_userInteraction.getAndValidateID();
+          string message = _productRepository.deleteProduct(id) == true ? "Deleted successfully" : "Product not found";
+           Console.WriteLine(message);
+        
+    }
+   
 
     
    
@@ -91,7 +101,10 @@ public interface IProductRepository
 {
     public List<Product> getAllProducts();
     public bool addProduct(Product newProduct);
-    public bool removeProduct(Product existingProduct);
+    //public bool removeProduct(Product existingProduct);
+    public bool checkId(int id);
+    public bool deleteProduct(int id);
+    public Product findById(int id);
 }
 public class ProductRepository:IProductRepository
 {
@@ -111,10 +124,35 @@ public class ProductRepository:IProductRepository
         return allProducts;
     }
 
-    public bool removeProduct(Product existingProduct)
+    public bool checkId(int id)
     {
-        allProducts.Remove(existingProduct);
-        return true;
+        foreach (Product product in allProducts)
+        {
+            if(product.Id == id) return true;
+        }
+        return false;
+    }
+   
+    public bool deleteProduct(int id)
+    {
+        Product productToDelete=findById(id);
+        if (productToDelete != null)
+        {
+            allProducts.Remove(findById(id));
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public Product findById(int id)
+    {
+        foreach(Product product in allProducts)
+        {
+            if(product.Id == id) return product;
+        }
+        return null;
     }
 }
 public interface IUserInteraction
@@ -123,10 +161,16 @@ public interface IUserInteraction
     public void displayEditOptions();
     public void displayAllProducts(List<Product> allProducts);
     public Product getNewProductDetail();
+    public int getAndValidateID();
 
 }
 public class UserInteraction : IUserInteraction
 {
+    private readonly IProductRepository _productRepository;
+    public UserInteraction(IProductRepository productRepository)
+    {
+        _productRepository = productRepository;
+    }
     public void displayAllProducts(List<Product> allProducts)
     {
         if (allProducts == null)
@@ -136,7 +180,7 @@ public class UserInteraction : IUserInteraction
         }
         for (int i = 0; i < allProducts.Count; i++)
         {
-            Console.WriteLine($"{i} . {allProducts[i].ToString()}");
+            Console.WriteLine($"{i+1} . {allProducts[i].ToString()}");
         }
          
     }
@@ -153,13 +197,19 @@ public class UserInteraction : IUserInteraction
 
     public Product getNewProductDetail()
     {
-        Console.WriteLine("Enter the below details :\nValid ID :");
+        Console.WriteLine("Enter the below details :");
         int id;
         bool isValidDigit = false;
+        bool isValidId = true;
         do
         {
+            Console.WriteLine("\nEnter Valid new ID :");
             isValidDigit = int.TryParse(Console.ReadLine(), out id);
-        } while (!isValidDigit);
+            if (isValidDigit)
+            {
+               isValidId= _productRepository.checkId(id);
+            }
+        } while (!isValidDigit || isValidId);
         Console.WriteLine("Name :");
         string  productName=Console.ReadLine();
         Console.WriteLine("Quantity :");
@@ -180,6 +230,24 @@ public class UserInteraction : IUserInteraction
 
         return new Product(id,productName,quantity,price); 
     }
+
+    public int getAndValidateID()
+    {
+        int id;
+        bool isValidDigit = false;
+        bool isValidId = false;
+        do
+        {
+            Console.WriteLine("\nEnter Valid  ID :");
+            isValidDigit = int.TryParse(Console.ReadLine(), out id);
+            if (isValidDigit)
+            {
+                isValidId = _productRepository.checkId(id);
+            }
+        } while (!isValidDigit || !isValidId);
+        return id;
+
+    }
 }
 
 public class Product
@@ -199,6 +267,7 @@ public class Product
     }
     public override string ToString()
     {
-        return $"ID :{Id+1}  Name : {Name} Quantity : {Quantity} Price : {Price} ";
+        return $"ID :{Id}  Name : {Name} Quantity : {Quantity} Price : {Price} ";
     }
 }
+
