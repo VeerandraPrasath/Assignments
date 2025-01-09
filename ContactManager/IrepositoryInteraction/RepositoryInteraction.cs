@@ -62,7 +62,7 @@ public class RepositoryInteraction : IrepositoryInteraction
             {
                 Console.WriteLine("Phone number should not be null !!!");
             }
-           else  if (phoneNo.Length != 10 || phoneNo.All(char.IsDigit))
+           else  if (phoneNo.Length != 10 || !phoneNo.All(char.IsDigit))
             {
                 Console.WriteLine("Invalid phone number !");
             }
@@ -95,7 +95,7 @@ public class RepositoryInteraction : IrepositoryInteraction
         while (isContinue)
         {
 
-            var displayEditOption = "Select which info need to change \n [N]name \n [E]mail \n [P]hone no \n[A]ddess \nEnter option:";
+            var displayEditOption = "Select which info need to change \n [N]name \n [E]mail \n [P]hone no \n[NO]tes \nEnter option:";
             _IuserInteraction.displayMessage(displayEditOption);
 
             var userOption = Console.ReadLine();
@@ -122,8 +122,8 @@ public class RepositoryInteraction : IrepositoryInteraction
                         contact.Phone = Console.ReadLine()!;
                         break;
                     }
-                case "a":
-                case "A":
+                case "NO":
+                case "no":
                     {
                         Console.WriteLine("Enter new Notes :");
                         contact.Notes = Console.ReadLine()!;

@@ -27,7 +27,7 @@ public class UserInteraction : IuserInteraction
     public void displayOption()
     {
         Console.Write("\nSelect the bleow  option to perform the  operation");
-        Console.WriteLine("\n [V]iew \n [A]dd \n [E]dit \n [D]elete \n [S]earch \n [C]lose \nSelect your option:");
+        Console.WriteLine("\n [V]iew \n [A]dd \n [E]dit \n [D]elete \n [S]earch \n[CL]ear\n [C]lose \nSelect your option:");
     }
 
 

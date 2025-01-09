@@ -79,6 +79,10 @@ public class ContactManager
                         getAnyContactInfoAndReturnFilteredResults();
                         break;
                     }
+                case "CL":
+                case "cl":
+                    Console.Clear();
+                    break;
                 case "C":
                 case "c":
                     {
