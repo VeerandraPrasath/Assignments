@@ -1,15 +1,24 @@
 ﻿
 using System.Reflection;
 using System.Text.RegularExpressions;
+using userinteraction;
 
+/// <summary>
+/// implements the IrepositoryInteraction to define the method definitions
+/// </summary>
 public class RepositoryInteraction : IrepositoryInteraction
 {
     
     private readonly IuserInteraction _IuserInteraction;
+
     public RepositoryInteraction(IuserInteraction IuserInteraction)
     {
         _IuserInteraction = IuserInteraction;
     }
+    /// <summary>
+    /// get contact details from user and add as new contact
+    /// </summary>
+    /// <returns></returns>
     public ContactInformation addNewContact()
     {
         Console.WriteLine("Provide the below details:");
@@ -78,6 +87,11 @@ public class RepositoryInteraction : IrepositoryInteraction
         var address = Console.ReadLine();
         return new ContactInformation(name!, email!, phoneNo!, address!);
     }
+    /// <summary>
+    ///  delete the already existing contact from the contact list
+    /// </summary>
+    /// <param name="contact"></param>
+    /// <param name="contacts"></param>
 
     public void deleteExisitingContact(ContactInformation contact, List<ContactInformation> contacts)
     {
@@ -88,7 +102,10 @@ public class RepositoryInteraction : IrepositoryInteraction
 
 
     }
-
+    /// <summary>
+    /// edit the name,email,phone no and notes of the exisiting contact  
+    /// </summary>
+    /// <param name="contact"></param>
     public void editExisitingContact(ContactInformation contact)
     {
         bool isContinue = true;
@@ -148,7 +165,12 @@ public class RepositoryInteraction : IrepositoryInteraction
 
     }
 
-
+    /// <summary>
+    /// filters the contacts which matches the given information
+    /// </summary>
+    /// <param name="anyInfo"></param>
+    /// <param name="contacts"></param>
+    /// <returns></returns>
     public List<ContactInformation> FilterContacts(string anyInfo, List<ContactInformation> contacts)
     {
 
@@ -157,6 +179,11 @@ public class RepositoryInteraction : IrepositoryInteraction
 
     }
 
+    /// <summary>
+    /// select the specific contact based on the index of the contact
+    /// </summary>
+    /// <param name="filteredList"></param>
+    /// <returns></returns>
     public ContactInformation SelectContactBasedOnIndex(List<ContactInformation> filteredList)
     {
         int index;

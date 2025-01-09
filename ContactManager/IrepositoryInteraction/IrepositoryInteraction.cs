@@ -1,4 +1,6 @@
-﻿
+﻿/// <summary>
+///  Used for the interaction with the contact list
+/// </summary>
 public interface IrepositoryInteraction
 {
     public ContactInformation addNewContact();

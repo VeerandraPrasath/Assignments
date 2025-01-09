@@ -1,4 +1,8 @@
 
+
+using userinteraction;
+
+
 try
 {
 
@@ -12,13 +16,16 @@ catch(Exception ex)
     Console.WriteLine(ex.Message);
 }
 
-
+/// <summary>
+/// Used to define the main flow of the app 
+/// </summary>
 public class ContactManager
 {
     List<ContactInformation> contacts;
     private bool isExit = false;
     private readonly IuserInteraction _IuserInteraction;
     private readonly IrepositoryInteraction _IrepositoryInteraction;
+
     public ContactManager(IuserInteraction iuserInteraction, IrepositoryInteraction irepositoryInteraction)
     {
         _IuserInteraction = iuserInteraction;
@@ -27,6 +34,9 @@ public class ContactManager
 
 
     }
+    /// <summary>
+    ///  start the main flow 
+    /// </summary>
     public void run()
     {
         while (!isExit)
@@ -97,6 +107,10 @@ public class ContactManager
             }
         }
     }
+    /// <summary>
+    /// get any information of the contact and provide the matching results
+    /// </summary>
+    /// <returns></returns>
     private List<ContactInformation> getAnyContactInfoAndReturnFilteredResults()
     {
         Console.WriteLine("Enter any detail of the contact detail to search");

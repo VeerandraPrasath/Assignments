@@ -1,4 +1,6 @@
-﻿
+﻿/// <summary>
+/// Bind the information of the contact into single unit
+/// </summary>
 public class ContactInformation
 {
     public string Name { get; set; }
