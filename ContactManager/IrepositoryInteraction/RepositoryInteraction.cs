@@ -1,8 +1,10 @@
 ﻿
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 public class RepositoryInteraction : IrepositoryInteraction
 {
+    
     private readonly IuserInteraction _IuserInteraction;
     public RepositoryInteraction(IuserInteraction IuserInteraction)
     {
@@ -11,12 +13,67 @@ public class RepositoryInteraction : IrepositoryInteraction
     public ContactInformation addNewContact()
     {
         Console.WriteLine("Provide the below details:");
-        Console.WriteLine("Name :");
-        var name = Console.ReadLine();
-        Console.WriteLine("Email :");
-        var email = Console.ReadLine();
-        Console.WriteLine("Ph no:");
-        var phoneNo = Console.ReadLine();
+       
+        String name;
+        do
+        {
+            Console.WriteLine("Enter Name :");
+            name = Console.ReadLine();
+         if(name is null || name.Equals(""))
+            {
+                Console.WriteLine("Name should not be null !!!");
+            }
+
+        }while(name.Equals(""));
+
+
+        bool isValidEmail = false;
+        string email;
+        do
+        {
+            Console.WriteLine("Enter valid Email :");
+            email = Console.ReadLine();
+            if (email.Equals(""))
+            {
+                Console.WriteLine("Email should not be null !!!");
+                continue;
+            }
+            if(!Regex.IsMatch(email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+             {
+                     Console.WriteLine("Invalid Email !!");
+
+            }
+            else
+            {
+                isValidEmail = true;
+            }
+
+        } while (email.Equals("") || !isValidEmail);
+
+        
+       
+        String phoneNo;
+        bool isValidPhNo = false;
+        do
+        {
+            Console.WriteLine("Enter Ph no :");
+            phoneNo = Console.ReadLine();
+            if (phoneNo is null || phoneNo.Equals(""))
+            {
+                Console.WriteLine("Phone number should not be null !!!");
+            }
+           else  if (phoneNo.Length != 10 || phoneNo.All(char.IsDigit))
+            {
+                Console.WriteLine("Invalid phone number !");
+            }
+            else
+            {
+                isValidPhNo = true;
+            }
+
+
+        } while (phoneNo.Equals("") || !isValidPhNo);
+
         Console.WriteLine("Notes :");
         var address = Console.ReadLine();
         return new ContactInformation(name!, email!, phoneNo!, address!);
