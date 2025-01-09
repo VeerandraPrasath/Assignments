@@ -1,9 +1,15 @@
 ﻿
-UserInteraction userInteraction = new UserInteraction();
-ProductRepository productRepository = new ProductRepository();
-InventoryManager inventoryManager=new InventoryManager(productRepository,userInteraction);
-App app=new App(inventoryManager,userInteraction,productRepository);
-app.run();
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        UserInteraction userInteraction = new UserInteraction();
+        ProductRepository productRepository = new ProductRepository();
+        InventoryManager inventoryManager = new InventoryManager(productRepository, userInteraction);
+        App app = new App(inventoryManager, userInteraction, productRepository);
+        app.run();
+    }
+}
 
 public class App
 {
