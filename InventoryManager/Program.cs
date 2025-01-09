@@ -25,6 +25,10 @@ public class App
 
     public void run()
     {
+        bool isExit=false;
+        while (!isExit)
+        {
+
         _userInteraction.displayOptions();
          String userOption=Console.ReadLine();
         switch (userOption)
@@ -37,10 +41,20 @@ public class App
             case "a":
                 _inventoryManager.addNewProduct();
                 break;
+            case "C":
+            case "c":
+                 Console.Clear();
+                  break;
+             case "EX":
+             case "ex":
+                    isExit = true;
+                     break;
+             
 
                  
         }
 
+        }
     }
 
 
@@ -115,6 +129,11 @@ public class UserInteraction : IUserInteraction
 {
     public void displayAllProducts(List<Product> allProducts)
     {
+        if (allProducts == null)
+        {
+            Console.WriteLine("No products available !!");
+            return;
+        }
         for (int i = 0; i < allProducts.Count; i++)
         {
             Console.WriteLine($"{i} . {allProducts[i].ToString()}");
@@ -129,7 +148,7 @@ public class UserInteraction : IUserInteraction
 
     public void displayOptions()
     {
-        Console.WriteLine("\n[V]iew \n [A]dd \n [E]dit \n [D]elete \n[S]earch \n Enter your choice :");
+        Console.WriteLine("\n[V]iew \n [A]dd \n [E]dit \n [D]elete \n[S]earch \n[C]lear \n [EX]it \nEnter your choice :");
     }
 
     public Product getNewProductDetail()
@@ -180,6 +199,6 @@ public class Product
     }
     public override string ToString()
     {
-        return $"ID :{Id}  Name : {Name} Quantity : {Quantity} Price : {Price} ";
+        return $"ID :{Id+1}  Name : {Name} Quantity : {Quantity} Price : {Price} ";
     }
 }
