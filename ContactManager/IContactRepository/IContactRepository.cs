@@ -1,7 +1,7 @@
 ﻿/// <summary>
 ///  Used for the interaction with the contact list
 /// </summary>
-public interface IrepositoryInteraction
+public interface IContactRepository
 {
     public ContactInformation addNewContact();
     public void editExisitingContact(ContactInformation contact);

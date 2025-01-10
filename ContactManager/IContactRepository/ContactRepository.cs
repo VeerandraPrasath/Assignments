@@ -4,14 +4,14 @@ using System.Text.RegularExpressions;
 using userinteraction;
 
 /// <summary>
-/// implements the IrepositoryInteraction to define the method definitions
+/// implements the IContactRepository to define the method definitions
 /// </summary>
-public class RepositoryInteraction : IrepositoryInteraction
+public class ContactRepository : IContactRepository
 {
     
     private readonly IuserInteraction _IuserInteraction;
 
-    public RepositoryInteraction(IuserInteraction IuserInteraction)
+    public ContactRepository(IuserInteraction IuserInteraction)
     {
         _IuserInteraction = IuserInteraction;
     }

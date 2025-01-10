@@ -8,6 +8,13 @@ public class ContactInformation
     public string Phone { get; set; }
     public string Notes { get; set; }
 
+    /// <summary>
+    /// initialize all the information
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="email"></param>
+    /// <param name="phone"></param>
+    /// <param name="notes"></param>
     public ContactInformation(string name, string email, string phone, string notes)
     {
         Name = name;
@@ -16,12 +23,13 @@ public class ContactInformation
         Notes = notes;
 
     }
+
+    /// <summary>
+    /// override string method to get all the details of the contact 
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return $"Name :{Name} , Email :{Email} ,Phone :{Phone} ,Notes :{Notes}";
     }
-
-
-
-
 }

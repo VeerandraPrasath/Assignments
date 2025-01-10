@@ -7,7 +7,7 @@ try
 {
 
 var userInteraction = new UserInteraction();
-var contactManager = new ContactManager(userInteraction, new RepositoryInteraction(userInteraction));
+var contactManager = new ContactManager(userInteraction, new ContactRepository(userInteraction));
 contactManager.run();
 Console.ReadKey();
 }
@@ -24,9 +24,9 @@ public class ContactManager
     List<ContactInformation> contacts;
     private bool isExit = false;
     private readonly IuserInteraction _IuserInteraction;
-    private readonly IrepositoryInteraction _IrepositoryInteraction;
+    private readonly IContactRepository _IrepositoryInteraction;
 
-    public ContactManager(IuserInteraction iuserInteraction, IrepositoryInteraction irepositoryInteraction)
+    public ContactManager(IuserInteraction iuserInteraction, IContactRepository irepositoryInteraction)
     {
         _IuserInteraction = iuserInteraction;
         _IrepositoryInteraction = irepositoryInteraction;
