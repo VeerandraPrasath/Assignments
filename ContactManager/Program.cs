@@ -113,7 +113,7 @@ public class ContactManager
     /// <returns></returns>
     private List<ContactInformation> getAnyContactInfoAndReturnFilteredResults()
     {
-        Console.WriteLine("Enter any detail of the contact detail to search");
+        Console.WriteLine("Enter any one detail of the contact to search :");
         var anyInfoOfContact = Console.ReadLine();
         var filteredContacts = _IrepositoryInteraction.FilterContacts(anyInfoOfContact!, contacts);
         _IuserInteraction.displayContacts(filteredContacts);
