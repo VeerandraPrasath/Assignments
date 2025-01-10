@@ -3,6 +3,10 @@ using System.Globalization;
 
 internal class Program
 {
+    /// <summary>
+    /// Main function
+    /// </summary>
+    /// <param name="args"></param>
     private static void Main(string[] args)
     {
         ProductRepository productRepository = new ProductRepository();

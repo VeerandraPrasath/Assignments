@@ -1,4 +1,7 @@
-﻿public interface IUserInteraction
+﻿/// <summary>
+/// UserInteraction
+/// </summary>
+public interface IUserInteraction
 {
     public void displayOptions();
     public void displayEditOptions();

@@ -54,7 +54,7 @@
    
     public string GetAndValidateStringInput(string message)
     {
-        string userInput;
+        string? userInput;
         
         
         do
