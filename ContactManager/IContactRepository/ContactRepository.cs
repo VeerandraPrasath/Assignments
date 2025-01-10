@@ -61,13 +61,19 @@ public class ContactRepository : IContactRepository
 
         
        
-        string phoneNo;
+        string inputPhoneNo;
+        string phoneNo="";
         bool isValidPhNo = false;
         do
         {
             Console.WriteLine("Enter Ph no :");
-            phoneNo = Console.ReadLine();
-            if (phoneNo is null || phoneNo.Equals(""))
+            inputPhoneNo = Console.ReadLine();
+            if (inputPhoneNo.StartsWith("+91"))
+            {
+                 phoneNo = inputPhoneNo.Remove(0, 3);
+               
+            }
+            if (phoneNo.Equals(""))
             {
                 Console.WriteLine("Phone number should not be null !!!");
             }
