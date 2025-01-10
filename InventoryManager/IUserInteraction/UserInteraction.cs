@@ -7,7 +7,7 @@
     }
     public void displayAllProducts(List<Product> allProducts)
     {
-        if (allProducts == null)
+        if (allProducts == null || allProducts.Count==0)
         {
             Console.WriteLine("No products available !!");
             return;
@@ -21,66 +21,68 @@
 
     public void displayEditOptions()
     {
-        Console.WriteLine("\n[P]rice \n [Q]uantity \n Enter your operation :");
+        Console.WriteLine("\n[N]ame \n [Q]uantity \n [P]rice");
     }
 
     public void displayOptions()
     {
-        Console.WriteLine("\n[V]iew \n [A]dd \n [E]dit \n [D]elete \n[S]earch \n[C]lear \n [EX]it \nEnter your choice :");
+        Console.WriteLine("\n[V]iew \n [A]dd \n [E]dit \n [D]elete \n[S]earch \n[C]lear \n [EX]it");
     }
 
     public Product getNewProductDetail()
     {
         Console.WriteLine("Enter the below details :");
-        int id;
-        bool isValidDigit = false;
-        bool isValidId = true;
-        do
-        {
-            Console.WriteLine("\nEnter Valid new ID :");
-            isValidDigit = int.TryParse(Console.ReadLine(), out id);
-            if (isValidDigit)
-            {
-               isValidId= _productRepository.checkId(id);
-            }
-        } while (!isValidDigit || isValidId);
-        Console.WriteLine("Name :");
-        string  productName=Console.ReadLine();
-        Console.WriteLine("Quantity :");
-        int quantity;
-        isValidDigit = false;
-        do
-        {
-            isValidDigit = int.TryParse(Console.ReadLine(), out quantity);
-        } while (!isValidDigit);
-        Console.WriteLine("Price ");
 
-        int price;
-        isValidDigit = false;
+        int id;
         do
         {
-            isValidDigit= int.TryParse(Console.ReadLine(), out price);
-        } while (!isValidDigit);
+
+        id=GetAndValidateIntInput("new Id");
+        if (_productRepository.checkId(id))
+        {
+                Console.WriteLine("ID already exists !");
+        }
+        }while(_productRepository.checkId(id));
+
+       string productName= GetAndValidateStringInput("Name");
+        int quantity = GetAndValidateIntInput("quantity ");
+        int price = GetAndValidateIntInput("price");
 
         return new Product(id,productName,quantity,price); 
     }
 
-    public int getAndValidateID()
+   
+    public string GetAndValidateStringInput(string message)
     {
-        int id;
-        bool isValidDigit = false;
-        bool isValidId = false;
+        string userInput;
+        
+        
         do
         {
-            Console.WriteLine("\nEnter Valid  ID :");
-            isValidDigit = int.TryParse(Console.ReadLine(), out id);
-            if (isValidDigit)
+            Console.WriteLine($"Enter {message}");
+            userInput = Console.ReadLine();
+            if(userInput == "" || userInput is null)
             {
-                isValidId = _productRepository.checkId(id);
+                Console.WriteLine("******Input should not be null ****");
             }
-        } while (!isValidDigit || !isValidId);
-        return id;
-
+        } while (userInput=="" || userInput is null);
+        return userInput;
+    }
+    public int GetAndValidateIntInput(string message)
+    {
+        bool isValidDigit = false;
+        int intValue;
+        do
+        {
+            
+            isValidDigit = int.TryParse(GetAndValidateStringInput(message), out intValue);
+            if (!isValidDigit)
+            {
+                Console.WriteLine("***Input should be number***");
+            }
+        } while (!isValidDigit);
+        return intValue;
     }
 }
+    
 

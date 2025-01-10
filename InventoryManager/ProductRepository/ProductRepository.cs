@@ -28,9 +28,9 @@
     public bool deleteProduct(int id)
     {
         Product productToDelete=findById(id);
-        if (productToDelete != null)
+        if (productToDelete != null )
         {
-            allProducts.Remove(findById(id));
+            allProducts.Remove(productToDelete);
             return true;
         }
         else
@@ -43,6 +43,14 @@
         foreach(Product product in allProducts)
         {
             if(product.Id == id) return product;
+        }
+        return null;
+    }
+    public Product getByName(string name)
+    {
+        foreach(Product product in allProducts)
+        {
+            if(product.Name.Equals(name)) return product;
         }
         return null;
     }

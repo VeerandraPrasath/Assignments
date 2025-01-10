@@ -17,7 +17,7 @@
         {
 
         _userInteraction.displayOptions();
-         String userOption=Console.ReadLine();
+         string userOption=_userInteraction.GetAndValidateStringInput("option");
         switch (userOption)
         {
             case "V":
@@ -31,8 +31,15 @@
                 case "D":
                 case "d":
                  _inventoryManager.deleteExistingProduct();
-                  break;
-           
+                    break;
+                case "e":
+                case "E":
+                    _inventoryManager.editExistingProduct();
+                    break;
+                case "S":
+                case "s":
+                    _inventoryManager.searchProduct();
+                    break;
             case "C":
             case "c":
                  Console.Clear();
@@ -40,7 +47,11 @@
              case "EX":
              case "ex":
                     isExit = true;
-                     break;         
+                     break;
+              default:
+                    Console.WriteLine("***Invalid Input***");
+                    break;
+
         }
 
         }

@@ -4,7 +4,9 @@
     public void displayEditOptions();
     public void displayAllProducts(List<Product> allProducts);
     public Product getNewProductDetail();
-    public int getAndValidateID();
+    
+    public string GetAndValidateStringInput(string message);
+    public int GetAndValidateIntInput(string message);
 
 }
 
