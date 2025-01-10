@@ -1,8 +1,8 @@
 ﻿public abstract  class Employee
   {
     public int BonusPercentage { get; init; }
-    public string Name { get; set; }
-    public decimal Salary { get; set; }
+    protected string Name { get; set; }
+    protected decimal Salary { get; set; }
     protected Employee(string name ,decimal salary)
     {
        

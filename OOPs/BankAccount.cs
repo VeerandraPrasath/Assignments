@@ -1,7 +1,7 @@
 ﻿
 public abstract class BankAccount
     {
-        public string AccountNumber { get; set; }
+        protected string AccountNumber { get; set; }
         protected decimal Balance { get; set; } = 0;
     protected BankAccount(string accountNumber,decimal balance)
     {

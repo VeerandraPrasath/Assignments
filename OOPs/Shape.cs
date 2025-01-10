@@ -8,7 +8,7 @@ namespace OOPs
 {
     public abstract class Shape
     {
-         public string Color { get; set; }
+         protected string Color { get; set; }
          public float Area { get; set; }
          public abstract void  CalculateArea();
          public abstract void    PrintDetails();

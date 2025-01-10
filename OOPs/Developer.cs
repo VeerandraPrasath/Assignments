@@ -3,7 +3,7 @@
     
     public Developer(string name, decimal salary) : base(name, salary)
     {
-        BonusPercentage = 30;
+        BonusPercentage = 50;
     }
     public override decimal calculateBonus()
     {
