@@ -1,4 +1,7 @@
-﻿public class Product
+﻿/// <summary>
+/// Used to stored the details of the product 
+/// </summary>
+public class Product
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -13,6 +16,10 @@
 
         Price = price;
     }
+    /// <summary>
+    /// Gives string with all the Product information
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return $"ID :{Id}  Name : {Name} Quantity : {Quantity} Price : {Price} ";

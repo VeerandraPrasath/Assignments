@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// UserInteraction
+/// UserInteraction interface handle all the user interaction
 /// </summary>
 public interface IUserInteraction
 {

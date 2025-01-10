@@ -1,10 +1,17 @@
-﻿public class UserInteraction : IUserInteraction
+﻿/// <summary>
+/// UserInteraction class implements the IUserInteraction interface to implements all the declared functions
+/// </summary>
+public class UserInteraction : IUserInteraction
 {
     private readonly IProductRepository _productRepository;
     public UserInteraction(IProductRepository productRepository)
     {
         _productRepository = productRepository;
     }
+    /// <summary>
+    /// display all the available products
+    /// </summary>
+    /// <param name="allProducts"></param>
     public void displayAllProducts(List<Product> allProducts)
     {
         if (allProducts == null || allProducts.Count==0)
@@ -19,16 +26,24 @@
          
     }
 
+    /// <summary>
+    /// display edit options
+    /// </summary>
     public void displayEditOptions()
     {
         Console.WriteLine("\n[N]ame \n [Q]uantity \n [P]rice");
     }
-
+    /// <summary>
+    /// display all the available features
+    /// </summary>
     public void displayOptions()
     {
         Console.WriteLine("\n[V]iew \n [A]dd \n [E]dit \n [D]elete \n[S]earch \n[C]lear \n [EX]it");
     }
-
+    /// <summary>
+    /// gets the details of the new product
+    /// </summary>
+    /// <returns></returns>
     public Product getNewProductDetail()
     {
         Console.WriteLine("Enter the below details :");
