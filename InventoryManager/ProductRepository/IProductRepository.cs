@@ -1,7 +1,4 @@
-﻿/// <summary>
-/// IProductRepository interface handle with the product database
-/// </summary>
-public interface IProductRepository
+﻿public interface IProductRepository
 {
     public List<Product> getAllProducts();
     public bool addProduct(Product newProduct);
