@@ -31,6 +31,7 @@ public interface IContactRepository
     /// <param name="anyInfo"></param>
     /// <param name="contacts"></param>
     /// <returns></returns>
+    
     public List<ContactInformation> FilterContacts(string anyInfo, List<ContactInformation> contacts);
 
 }

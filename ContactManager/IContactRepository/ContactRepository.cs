@@ -15,6 +15,7 @@ public class ContactRepository : IContactRepository
     {
         _IuserInteraction = IuserInteraction;
     }
+
     /// <summary>
     /// Get contact details from user and add as new contact
     /// </summary>
@@ -34,7 +35,6 @@ public class ContactRepository : IContactRepository
             }
 
         }while(name.Equals(""));
-
 
         bool isValidEmail = false;
         string email;
@@ -99,6 +99,7 @@ public class ContactRepository : IContactRepository
     /// <param name="contact"></param>
     /// <param name="contacts"></param>
 
+
     public void deleteExisitingContact(ContactInformation contact, List<ContactInformation> contacts)
     {
 
@@ -108,6 +109,8 @@ public class ContactRepository : IContactRepository
 
 
     }
+
+
     /// <summary>
     /// Edit the name,email,phone no and notes of the exisiting contact  
     /// </summary>
@@ -170,6 +173,7 @@ public class ContactRepository : IContactRepository
 
 
     }
+
 
     /// <summary>
     /// Filters the contacts which matches the given information

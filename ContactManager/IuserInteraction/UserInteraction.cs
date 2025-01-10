@@ -6,6 +6,7 @@
     /// </summary>
     public class UserInteraction : IuserInteraction
     {
+
         /// <summary>
         ///    Used to display all the existing contact
         /// </summary>
@@ -27,6 +28,8 @@
                 }
             }
         }
+
+
         /// <summary>
         /// Prints the message to console
         /// </summary>
@@ -35,6 +38,8 @@
         {
             Console.WriteLine(message);
         }
+
+
         /// <summary>
         /// Display the available options to perform
         /// </summary>
@@ -43,7 +48,5 @@
             Console.Write("\nSelect the bleow  option to perform the  operation");
             Console.WriteLine("\n [V]iew \n [A]dd \n [E]dit \n [D]elete \n [S]earch \n[CL]ear\n [C]lose \nSelect your option:");
         }
-
-
     }
 }

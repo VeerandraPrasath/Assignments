@@ -34,6 +34,8 @@ public class ContactManager
 
 
     }
+
+
     /// <summary>
     ///  Start the main flow 
     /// </summary>
@@ -107,6 +109,8 @@ public class ContactManager
             }
         }
     }
+
+
     /// <summary>
     /// Get any information of the contact and provide the matching results
     /// </summary>
