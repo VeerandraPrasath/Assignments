@@ -7,7 +7,7 @@
     public class UserInteraction : IuserInteraction
     {
         /// <summary>
-        ///    used to display all the existing contact
+        ///    Used to display all the existing contact
         /// </summary>
         /// <param name="contacts"></param>
         public void displayContacts(IEnumerable<ContactInformation> contacts)
@@ -28,7 +28,7 @@
             }
         }
         /// <summary>
-        /// prints the message to console
+        /// Prints the message to console
         /// </summary>
         /// <param name="message"></param>
         public void displayMessage(string message)

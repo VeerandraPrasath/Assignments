@@ -35,7 +35,7 @@ public class ContactManager
 
     }
     /// <summary>
-    ///  start the main flow 
+    ///  Start the main flow 
     /// </summary>
     public void run()
     {
@@ -108,7 +108,7 @@ public class ContactManager
         }
     }
     /// <summary>
-    /// get any information of the contact and provide the matching results
+    /// Get any information of the contact and provide the matching results
     /// </summary>
     /// <returns></returns>
     private List<ContactInformation> getAnyContactInfoAndReturnFilteredResults()

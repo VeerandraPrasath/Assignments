@@ -9,7 +9,7 @@ public class ContactInformation
     public string Notes { get; set; }
 
     /// <summary>
-    /// initialize all the information
+    /// Initialize all the information
     /// </summary>
     /// <param name="name"></param>
     /// <param name="email"></param>
@@ -25,7 +25,7 @@ public class ContactInformation
     }
 
     /// <summary>
-    /// override string method to get all the details of the contact 
+    /// Override string method to get all the details of the contact 
     /// </summary>
     /// <returns></returns>
     public override string ToString()

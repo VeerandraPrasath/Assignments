@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using userinteraction;
 
 /// <summary>
-/// implements the IContactRepository to define the method definitions
+/// Implements the IContactRepository to define the method definitions
 /// </summary>
 public class ContactRepository : IContactRepository
 {
@@ -16,7 +16,7 @@ public class ContactRepository : IContactRepository
         _IuserInteraction = IuserInteraction;
     }
     /// <summary>
-    /// get contact details from user and add as new contact
+    /// Get contact details from user and add as new contact
     /// </summary>
     /// <returns></returns>
     public ContactInformation addNewContact()
@@ -61,7 +61,7 @@ public class ContactRepository : IContactRepository
 
         
        
-        String phoneNo;
+        string phoneNo;
         bool isValidPhNo = false;
         do
         {
@@ -88,7 +88,7 @@ public class ContactRepository : IContactRepository
         return new ContactInformation(name!, email!, phoneNo!, address!);
     }
     /// <summary>
-    ///  delete the already existing contact from the contact list
+    ///  Delete the already existing contact from the contact list
     /// </summary>
     /// <param name="contact"></param>
     /// <param name="contacts"></param>
@@ -103,7 +103,7 @@ public class ContactRepository : IContactRepository
 
     }
     /// <summary>
-    /// edit the name,email,phone no and notes of the exisiting contact  
+    /// Edit the name,email,phone no and notes of the exisiting contact  
     /// </summary>
     /// <param name="contact"></param>
     public void editExisitingContact(ContactInformation contact)
@@ -166,7 +166,7 @@ public class ContactRepository : IContactRepository
     }
 
     /// <summary>
-    /// filters the contacts which matches the given information
+    /// Filters the contacts which matches the given information
     /// </summary>
     /// <param name="anyInfo"></param>
     /// <param name="contacts"></param>
@@ -180,7 +180,7 @@ public class ContactRepository : IContactRepository
     }
 
     /// <summary>
-    /// select the specific contact based on the index of the contact
+    /// Select the specific contact based on the index of the contact
     /// </summary>
     /// <param name="filteredList"></param>
     /// <returns></returns>
