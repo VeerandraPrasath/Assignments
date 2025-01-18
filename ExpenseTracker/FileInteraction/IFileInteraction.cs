@@ -1,18 +1,25 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Text.Json;
+using System.Xml;
+
 public interface IFileInteraction
 {
-    List<User> readAlldata();
-    bool writeData();
+    public List<User> readAlldata(string filePath);
+     public void writeData(string filePath, List<User> users);
 }
 public class FileInteraction : IFileInteraction
 {
-    public List<User> readAlldata()
+    public List<User> readAlldata(string filePath)
     {
-       return new List<User>();
+       var fileContents=File.ReadAllText(filePath);
+        return JsonSerializer.Deserialize<List<User>>(fileContents);
     }
 
-    public bool writeData()
+    public void writeData(string filePath,List<User> users)
     {
-        return true;
+        //File.WriteAllText(filePath,JsonSerializer.Serialize(users));
+
+        string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(filePath, json);
     }
 }

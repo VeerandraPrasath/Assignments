@@ -3,6 +3,7 @@ public class ManagerTracker : IManageTracker
 {
     public User _user;
     
+    
     private readonly IUserInteraction _userInteraction;
     private readonly IRepositoryInteraction _repositoryInteraction;
    
@@ -49,17 +50,22 @@ public class ManagerTracker : IManageTracker
                 case "i":
                 case "I":
                     addIncomeRecord();
+                    _repositoryInteraction.writeToFile();
                     break;
                 case "E":
                 case "e":
                     addExpenseRecord();
+                    _repositoryInteraction.writeToFile();
                     break;
                 case "M":
                 case "m":
+                    editRecord();
+                    _repositoryInteraction.writeToFile();
                     break;
                 case "D":
                 case "d":
                     deleteRecordBasedOnDate();
+                    _repositoryInteraction.writeToFile();
                     break;
                     
                 case "F":
@@ -254,6 +260,41 @@ public class ManagerTracker : IManageTracker
         _userInteraction.displayMessage("********************************************");
 
     }
+    void editRecord()
+    {
+        DateTime userInputDate = _userInteraction.dateAsInput("to add edit record");
+        Date editDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
+        if (editDate is not null)
+        {
+
+            _userInteraction.displayRecordsOnSpecificDate(editDate);
+            int userOption = _userInteraction.intAsInput("Index of Record to edit");
+            if (userOption <= editDate.records.Count && userOption > 0)
+            {
+                IRecord record = editDate.records[userOption - 1];
+                IRecord updateRecord;
+                if(record is Income)
+                {
+                    updateRecord = _userInteraction.getIncomeDetails(_user);
+
+                }
+                else
+                {
+                    updateRecord = _userInteraction.getExpenseDetails(_user);
+                }
+                _repositoryInteraction.updateRecord(updateRecord, record,_user);
+                _userInteraction.displayMessage("Record edited Sucessfully !");
+
+            }
+            else
+            {
+                _userInteraction.displayMessage("Invalid Transaction ID");
+            }
+        }
+
+
+    }
 
 }
+
 

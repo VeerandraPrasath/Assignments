@@ -6,6 +6,10 @@ public class User
     public int TotalIncome { get; set; }
     public int TotalExpense { get; set; }
     public List<Date> Dates { get; set; }
+    public User()
+    {
+        
+    }
     public User(string name)
     {
             Name = name;

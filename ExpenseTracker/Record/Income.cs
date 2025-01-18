@@ -4,7 +4,11 @@ public class Income :IRecord
 
     public int Amount { get; set; }
     public string Category { get; set; }
-    
+
+    public Income()
+    {
+            
+    }
     public Income(User user,int amount,string category)
     {
         Amount = amount;    

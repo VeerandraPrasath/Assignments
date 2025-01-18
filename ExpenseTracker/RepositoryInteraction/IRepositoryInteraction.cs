@@ -7,6 +7,8 @@ public interface IRepositoryInteraction
     public Date isDatePresent(DateTime date,User user);
     public bool deleteRecord(List<IRecord> records, int index,User user);
     void addRecord(IRecord record,Date date);
+    void updateRecord(IRecord newRecord,IRecord oldRecord,User user);
+    public void writeToFile();
 
 }
 

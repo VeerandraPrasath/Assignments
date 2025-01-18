@@ -3,6 +3,10 @@ public class Date
 {
     public DateTime CurrentDate;
     public List<IRecord> records;
+    public Date()
+    {
+            
+    }
     public Date(DateTime date)
     {
         CurrentDate = date;

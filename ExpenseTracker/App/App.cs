@@ -14,7 +14,7 @@ public class App
         _repositoryInteraction = repositoryInteraction;
            
     }
-    public  void run(string[] args)
+    public  void run()
     {
         _repositoryInteraction.loadAllData();
         _userInteraction.displayMessage("***Welcome to the Expense Tracker Application***");
@@ -27,6 +27,7 @@ public class App
                 case "n":
                 case "N":
                     _repositoryInteraction.CreateNewUser();
+                    _repositoryInteraction.writeToFile();
                     break;
                 case "e":
                 case "E":

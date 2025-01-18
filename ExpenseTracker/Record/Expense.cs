@@ -3,7 +3,11 @@ public class Expense :IRecord
 {
     public int Amount { get; set; }
     public string Category { get; set; }
-    
+
+    public Expense()
+    {
+        
+    }
     public Expense(User user, int amount, string category)
     {
         Amount = amount;
