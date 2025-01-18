@@ -48,5 +48,20 @@ public class RepositoryInteraction :IRepositoryInteraction
         return null;
         
     }
+    public bool deleteRecord(List<IRecord> records, int index,User user)
+    {
+        IRecord record = records[index];
+        user.CurrentBalance=record is Income?user.CurrentBalance-record.Amount:user.CurrentBalance+record.Amount;
+        records.Remove(record);
+        return true ;
+        
+    }
+      public void addRecord(IRecord record, Date date)
+    {
+        
+        date.records.Add(record);
+
+    }
+
 }
 

@@ -74,6 +74,7 @@ public class UserInteraction : IUserInteraction
     }
     public void displayAllRecords(List<Date> dates)
     {
+        int count = 1;
         if (dates.Count == 0)
         {
             Console.WriteLine("No Transactions !!!");
@@ -83,20 +84,24 @@ public class UserInteraction : IUserInteraction
         {
             foreach(IRecord record in date.records)
             {
-                Console.WriteLine($"{date.CurrentDate.ToString()} { record}");
+                Console.WriteLine($"{count}.{date.CurrentDate.ToString()} { record}");
+                count++;
             }
         }
     }
     public void displayRecordsOnSpecificDate(Date date)
     {
+        int count = 1;
         if (date.records.Count == 0)
         {
             Console.WriteLine("No Transactions !!!");
             return;
         }
+        Console.WriteLine($"Transactions on {date.CurrentDate.ToString()}");
         foreach (IRecord record in date.records )
         {
-            Console.WriteLine($"{date.CurrentDate.ToString()} {record}");
+            Console.WriteLine($"{count}.{date.CurrentDate.ToString()} {record}");
+            count++;
         }
     }
 }

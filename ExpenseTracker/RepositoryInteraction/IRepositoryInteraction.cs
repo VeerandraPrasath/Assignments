@@ -5,6 +5,8 @@ public interface IRepositoryInteraction
     public bool CreateNewUser();
     public void loadAllData();
     public Date isDatePresent(DateTime date,User user);
+    public bool deleteRecord(List<IRecord> records, int index,User user);
+    void addRecord(IRecord record,Date date);
 
 }
 

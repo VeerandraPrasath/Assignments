@@ -59,9 +59,12 @@ public class ManagerTracker : IManageTracker
                     break;
                 case "D":
                 case "d":
+                    deleteRecordBasedOnDate();
                     break;
+                    
                 case "F":
                 case "f":
+                    financialSummary();
                     break;
                 case "l":
                 case "L":
@@ -123,37 +126,132 @@ public class ManagerTracker : IManageTracker
         DateTime userInputDate = _userInteraction.dateAsInput("to add Income record");
         Date IncomeDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
 
-        if (IncomeDate is not null)
+        if (IncomeDate is  null)
         {
-            IncomeDate.records.Add(_userInteraction.getIncomeDetails(_user));
-        }
-        else
-        {
-            var newDate = new Date(userInputDate);
-            newDate.records.Add(_userInteraction.getIncomeDetails(_user));
-            _user.Dates.Add(newDate);
+           IncomeDate=new Date(userInputDate);
+            _user.Dates.Add(IncomeDate);
 
         }
-        _userInteraction.displayMessage("Record added successfully !!!!!!");
+            
+           IRecord record=_userInteraction.getIncomeDetails(_user);
+
+            _repositoryInteraction.addRecord(record,IncomeDate);
+
+          _userInteraction.displayMessage("Record added successfully !!!!!!");
     }
     void addExpenseRecord()
     {
-       DateTime userInputDate = _userInteraction.dateAsInput("to add Expense record");
-        Date expenseDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
+        DateTime userInputDate = _userInteraction.dateAsInput("to add Expense record");
+        Date ExpenseDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
 
-        if (expenseDate is not null)
+        if (ExpenseDate is null)
         {
-            expenseDate.records.Add(_userInteraction.getExpenseDetails(_user));
+            ExpenseDate = new Date(userInputDate);
+            _user.Dates.Add(ExpenseDate);
+
+        }
+
+        IRecord record = _userInteraction.getExpenseDetails(_user);
+
+        _repositoryInteraction.addRecord(record, ExpenseDate);
+
+        _userInteraction.displayMessage("Record added successfully !!!!!!");
+
+
+    }
+    void deleteRecordBasedOnDate()
+    {
+        DateTime userInputDate = _userInteraction.dateAsInput("to add Income record");
+        Date IncomeDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
+        if (IncomeDate is not null)
+        {
+
+            _userInteraction.displayRecordsOnSpecificDate(IncomeDate);
+            int userOption = _userInteraction.intAsInput("Index of Record to delete");
+            if(userOption <= IncomeDate.records.Count && userOption > 0)
+            {
+
+            _repositoryInteraction.deleteRecord(IncomeDate.records,userOption-1,_user);
+                _userInteraction.displayMessage("Record Deleted Sucessfully !");
+
+            }
+            else
+            {
+                _userInteraction.displayMessage("Invalid Transaction ID");
+            }
         }
         else
         {
-            var newDate = new Date(userInputDate);
-            newDate.records.Add(_userInteraction.getExpenseDetails(_user));
-            _user.Dates.Add(newDate);
+            _userInteraction.displayMessage($"No Transactions on date {userInputDate.ToString()}");
+        }
+    }
+    void financialSummary()
+    {
+        bool Exit = false;
+        while (!Exit)
+        {
+            _userInteraction.displayMessage("[O]verAll Summary\n[S]pecific Summary\n[E]xit");
+            string userOption = _userInteraction.stringAsInput("option");
+            switch (userOption)
+            {
+                case "o":
+                case "O":
+                    _userInteraction.displayMessage($"***OverAll Summary of {_user.Name}***");
+                    _userInteraction.displayMessage($"Balance : {_user.CurrentBalance}");
+                    _userInteraction.displayMessage($"Total income :{_user.TotalIncome}");
+                    _userInteraction.displayMessage($"Total expense :{_user.TotalExpense}");
+                   
+                    break;
+                case "S":
+                case "s":
+                    DateTime userInputDate = _userInteraction.dateAsInput("to view Summary");
+                    Date Date = _repositoryInteraction.isDatePresent(userInputDate, _user);
+
+                    if (Date is not null)
+                    {
+                        calculateSummaryOnSpecificDate(Date);
+                    }
+                    else
+                    {
+                        _userInteraction.displayMessage($"No Transactions on date {userInputDate.ToString()}");
+
+                    }
+                    break;
+                case "e":
+                case "E":
+                    Exit = true;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Option !");
+                    break;
+
+
+            }
 
         }
-        _userInteraction.displayMessage("Record added successfully !!!!!!");
+    }
+    void calculateSummaryOnSpecificDate(Date date)
+    {
+        
+        int TotalIncome=0;
+        int TotalExpense=0;
+        foreach (IRecord record in date.records)
+        {
+            if(record is Income)
+            {
+                TotalIncome+=record.Amount;
+            }
+            else
+            {
+                TotalExpense+=record.Amount;
+            }
 
+        }
+        _userInteraction.displayMessage($"****Summary on {date.CurrentDate}***");
+        _userInteraction.displayMessage($"Net Balance : {TotalIncome-TotalExpense}");
+        _userInteraction.displayMessage($"TotalIncome : {TotalIncome}");
+        _userInteraction.displayMessage($"TotalExpense : {TotalExpense}");
+        _userInteraction.displayMessage("********************************************");
 
     }
 
