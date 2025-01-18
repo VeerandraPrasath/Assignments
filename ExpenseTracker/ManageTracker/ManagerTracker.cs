@@ -34,7 +34,7 @@ public class ManagerTracker : IManageTracker
 
      public  void login()
     {
-        DateTime userInputDate;
+       
         bool Exit = false;
         while (!Exit)
         {
@@ -48,39 +48,11 @@ public class ManagerTracker : IManageTracker
                     break;
                 case "i":
                 case "I":
-                   userInputDate=_userInteraction.dateAsInput("to add Income record");
-                    Date IncomeDate=_repositoryInteraction.isDatePresent(userInputDate, _user);
-
-                    if (IncomeDate is not null)
-                    {
-                        IncomeDate.records.Add(_userInteraction.getIncomeDetails(_user));
-                    }
-                    else
-                    {
-                        var newDate = new Date(userInputDate);
-                        newDate.records.Add(_userInteraction.getIncomeDetails(_user));
-                        _user.Dates.Add(newDate);
-
-                    }
-                    _userInteraction.displayMessage("Record added successfully !!!!!!");
+                    addIncomeRecord();
                     break;
                 case "E":
                 case "e":
-                    userInputDate = _userInteraction.dateAsInput("to add Expense record");
-                    Date expenseDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
-
-                    if (expenseDate is not null)
-                    {
-                        expenseDate.records.Add(_userInteraction.getExpenseDetails(_user));
-                    }
-                    else
-                    {
-                        var newDate = new Date(userInputDate);
-                        newDate.records.Add(_userInteraction.getExpenseDetails(_user));
-                        _user.Dates.Add(newDate);
-
-                    }
-                    _userInteraction.displayMessage("Record added successfully !!!!!!");
+                    addExpenseRecord();
                     break;
                 case "M":
                 case "m":
@@ -144,6 +116,44 @@ public class ManagerTracker : IManageTracker
             }
 
         }
+
+    }
+    void addIncomeRecord()
+    {
+        DateTime userInputDate = _userInteraction.dateAsInput("to add Income record");
+        Date IncomeDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
+
+        if (IncomeDate is not null)
+        {
+            IncomeDate.records.Add(_userInteraction.getIncomeDetails(_user));
+        }
+        else
+        {
+            var newDate = new Date(userInputDate);
+            newDate.records.Add(_userInteraction.getIncomeDetails(_user));
+            _user.Dates.Add(newDate);
+
+        }
+        _userInteraction.displayMessage("Record added successfully !!!!!!");
+    }
+    void addExpenseRecord()
+    {
+       DateTime userInputDate = _userInteraction.dateAsInput("to add Expense record");
+        Date expenseDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
+
+        if (expenseDate is not null)
+        {
+            expenseDate.records.Add(_userInteraction.getExpenseDetails(_user));
+        }
+        else
+        {
+            var newDate = new Date(userInputDate);
+            newDate.records.Add(_userInteraction.getExpenseDetails(_user));
+            _user.Dates.Add(newDate);
+
+        }
+        _userInteraction.displayMessage("Record added successfully !!!!!!");
+
 
     }
 
