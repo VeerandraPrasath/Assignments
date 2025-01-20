@@ -1,25 +1,44 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
 using System.Text.Json;
-using System.Xml;
 
+/// <summary>
+/// <see cref="IFileInteraction"/> handles the file read and write
+/// </summary>
 public interface IFileInteraction
 {
+
+    /// <summary>
+    /// <see cref="readAlldata(string)"/> reads the content from file
+    /// </summary>
+    /// <param name="filePath">Location of the file</param>
+    /// <returns>List of <see cref="User"/>/></returns>
     public List<User> readAlldata(string filePath);
-     public void writeData(string filePath, List<User> users);
+
+    /// <summary>
+    /// <see cref="writeData(string, List{User})"/> write the content to file
+    /// </summary>
+    /// <param name="filePath">Location of the file</param>
+    /// <param name="users">Content to be written to the file</param>
+    public void writeData(string filePath, List<User> users);
 }
+
+/// <summary>
+/// <see cref="FileInteraction"/> implements <see cref="IFileInteraction"/>
+/// </summary>
 public class FileInteraction : IFileInteraction
 {
     public List<User> readAlldata(string filePath)
     {
-       var fileContents=File.ReadAllText(filePath);
+        var fileContents = File.ReadAllText(filePath);
         return JsonSerializer.Deserialize<List<User>>(fileContents);
     }
 
-    public void writeData(string filePath,List<User> users)
+    public void writeData(string filePath, List<User> users)
     {
-        //File.WriteAllText(filePath,JsonSerializer.Serialize(users));
 
-        string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+
+        string json = JsonSerializer.Serialize(users[2].Dates[0], new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(filePath, json);
+
     }
 }

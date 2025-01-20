@@ -1,19 +1,27 @@
-﻿// See https://aka.ms/new-console-template for more information
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-public class RepositoryInteraction :IRepositoryInteraction
+﻿/// <summary>
+/// <see cref="RepositoryInteraction"/> implements <see cref="IRepositoryInteraction"/>
+/// </summary>
+public class RepositoryInteraction : IRepositoryInteraction
 {
     string FilePath { get; set; }
     private List<User> _users;
     private readonly IFileInteraction _fileInteraction;
     private readonly IUserInteraction _userInteraction;
-    public RepositoryInteraction(IUserInteraction userInteraction,IFileInteraction fileInteraction,string filePath)
+
+    /// <summary>
+    /// <see cref="RepositoryInteraction"/> injects <see cref="IUserInteraction"/>,<see cref="IFileInteraction"/> and the filepath
+    /// </summary>
+    /// <param name="userInteraction"></param>
+    /// <param name="fileInteraction"></param>
+    /// <param name="filePath"></param>
+    public RepositoryInteraction(IUserInteraction userInteraction, IFileInteraction fileInteraction, string filePath)
     {
         _fileInteraction = fileInteraction;
         _userInteraction = userInteraction;
         _users = new List<User>();
         FilePath = filePath;
     }
+
     public User isUserPresent(string username)
     {
         foreach (User user in _users)
@@ -22,6 +30,7 @@ public class RepositoryInteraction :IRepositoryInteraction
         }
         return null;
     }
+
     public bool CreateNewUser()
     {
         string newUser = _userInteraction.stringAsInput("New Username");
@@ -30,13 +39,15 @@ public class RepositoryInteraction :IRepositoryInteraction
         return true;
 
     }
+
     public void loadAllData()
     {
         _users = _fileInteraction.readAlldata(FilePath);
     }
-    public Date isDatePresent(DateTime Checkdate,User user)
+
+    public Date isDatePresent(DateTime Checkdate, User user)
     {
-        foreach(Date Date in user.Dates)
+        foreach (Date Date in user.Dates)
         {
 
             if (Date.CurrentDate.Date == Checkdate.Date)
@@ -45,38 +56,42 @@ public class RepositoryInteraction :IRepositoryInteraction
             }
         }
         return null;
-        
+
     }
-    public bool deleteRecord(List<IRecord> records, int index,User user)
+
+    public bool deleteRecord(List<IRecord> records, int index, User user)
     {
         IRecord record = records[index];
-        user.CurrentBalance=record is Income?user.CurrentBalance-record.Amount:user.CurrentBalance+record.Amount;
+        user.CurrentBalance = record is Income ? user.CurrentBalance - record.Amount : user.CurrentBalance + record.Amount;
         records.Remove(record);
-        return true ;
-        
+        return true;
+
     }
-      public void addRecord(IRecord record, Date date)
+
+    public void addRecord(IRecord record, Date date)
     {
-        
+
         date.records.Add(record);
 
     }
-    public void updateRecord(IRecord newRecord, IRecord oldRecord,User user)
+
+    public void updateRecord(IRecord newRecord, IRecord oldRecord, User user)
     {
         if (oldRecord is Income)
         {
-            user.CurrentBalance-=oldRecord.Amount;
-            user.TotalIncome-=oldRecord.Amount;
+            user.CurrentBalance -= oldRecord.Amount;
+            user.TotalIncome -= oldRecord.Amount;
         }
         else
         {
-            user.CurrentBalance+=oldRecord.Amount;
+            user.CurrentBalance += oldRecord.Amount;
             user.CurrentBalance += oldRecord.Amount;
         }
         oldRecord.Category = newRecord.Category;
-        oldRecord.Amount= newRecord.Amount;
+        oldRecord.Amount = newRecord.Amount;
 
     }
+
     public void writeToFile()
     {
         _fileInteraction.writeData(FilePath, _users);

@@ -1,46 +1,53 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿/// <summary>
+/// <see cref="ManagerTracker"/> handles all the functionalities 
+/// </summary>
 public class ManagerTracker : IManageTracker
 {
     public User _user;
-    
-    
+
+
     private readonly IUserInteraction _userInteraction;
     private readonly IRepositoryInteraction _repositoryInteraction;
-   
+
+    /// <summary>
+    /// <see cref="ManagerTracker"/> injects <see cref="IUserInteraction"/> <see cref="IRepositoryInteraction"/>
+    /// </summary>
+    /// <param name="userInteraction"></param>
+    /// <param name="repositoryInteraction"></param>
     public ManagerTracker(IUserInteraction userInteraction, IRepositoryInteraction repositoryInteraction)
     {
-       
+
         _userInteraction = userInteraction;
         _user = null;
         _repositoryInteraction = repositoryInteraction;
     }
-  
 
-   
+
+
     public void CheckExisitingUser()
     {
         string userName = _userInteraction.stringAsInput("Username");
-        _user=_repositoryInteraction.isUserPresent(userName);
-        string message= _user != null ? $"Logged into {userName}  !" : "Invalid User !";
+        _user = _repositoryInteraction.isUserPresent(userName);
+        string message = _user != null ? $"Logged into {userName}  !" : "Invalid User !";
         _userInteraction.displayMessage(message);
         if (_user != null)
         {
 
             login();
-            
+
         }
 
 
     }
 
-     public  void login()
+    public void login()
     {
-       
+
         bool Exit = false;
         while (!Exit)
         {
             _userInteraction.displayFeatures();
-           string userChoice= _userInteraction.stringAsInput("Option ");
+            string userChoice = _userInteraction.stringAsInput("Option ");
             switch (userChoice)
             {
                 case "v":
@@ -67,14 +74,14 @@ public class ManagerTracker : IManageTracker
                     deleteRecordBasedOnDate();
                     _repositoryInteraction.writeToFile();
                     break;
-                    
+
                 case "F":
                 case "f":
                     financialSummary();
                     break;
                 case "l":
                 case "L":
-                    Exit=true;
+                    Exit = true;
                     break;
                 default:
                     Console.WriteLine("Invalid Option !");
@@ -84,6 +91,9 @@ public class ManagerTracker : IManageTracker
         }
     }
 
+    /// <summary>
+    /// <see cref="viewRecords"/> display all the records
+    /// </summary>
     void viewRecords()
     {
         bool Exit = false;
@@ -100,12 +110,12 @@ public class ManagerTracker : IManageTracker
                     break;
                 case "s":
                 case "S":
-                   DateTime userInputDate = _userInteraction.dateAsInput("to view Transactions");
-                   Date Date = _repositoryInteraction.isDatePresent(userInputDate, _user);
+                    DateTime userInputDate = _userInteraction.dateAsInput("to view Transactions");
+                    Date Date = _repositoryInteraction.isDatePresent(userInputDate, _user);
 
                     if (Date is not null)
                     {
-                        _userInteraction.displayRecordsOnSpecificDate(Date);    
+                        _userInteraction.displayRecordsOnSpecificDate(Date);
                     }
                     else
                     {
@@ -115,7 +125,7 @@ public class ManagerTracker : IManageTracker
                     break;
                 case "e":
                 case "E":
-                    Exit=true;
+                    Exit = true;
                     break;
                 default:
                     Console.WriteLine("Invalid Option !");
@@ -127,24 +137,33 @@ public class ManagerTracker : IManageTracker
         }
 
     }
+
+    /// <summary>
+    /// <see cref="addIncomeRecord"/> adds the income record details
+    /// </summary>
     void addIncomeRecord()
     {
         DateTime userInputDate = _userInteraction.dateAsInput("to add Income record");
         Date IncomeDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
 
-        if (IncomeDate is  null)
+        if (IncomeDate is null)
         {
-           IncomeDate=new Date(userInputDate);
+            IncomeDate = new Date(userInputDate);
             _user.Dates.Add(IncomeDate);
 
         }
-            
-           IRecord record=_userInteraction.getIncomeDetails(_user);
 
-            _repositoryInteraction.addRecord(record,IncomeDate);
+        IRecord record = _userInteraction.getIncomeDetails(_user);
 
-          _userInteraction.displayMessage("Record added successfully !!!!!!");
+        _repositoryInteraction.addRecord(record, IncomeDate);
+
+        _userInteraction.displayMessage("Record added successfully !!!!!!");
     }
+
+
+    /// <summary>
+    /// <see cref="addExpenseRecord"/> adds the expense record details
+    /// </summary>
     void addExpenseRecord()
     {
         DateTime userInputDate = _userInteraction.dateAsInput("to add Expense record");
@@ -165,6 +184,10 @@ public class ManagerTracker : IManageTracker
 
 
     }
+
+    /// <summary>
+    /// <see cref="deleteRecordBasedOnDate"/> deletes the record based on given date
+    /// </summary>
     void deleteRecordBasedOnDate()
     {
         DateTime userInputDate = _userInteraction.dateAsInput("to add Income record");
@@ -174,10 +197,10 @@ public class ManagerTracker : IManageTracker
 
             _userInteraction.displayRecordsOnSpecificDate(IncomeDate);
             int userOption = _userInteraction.intAsInput("Index of Record to delete");
-            if(userOption <= IncomeDate.records.Count && userOption > 0)
+            if (userOption <= IncomeDate.records.Count && userOption > 0)
             {
 
-            _repositoryInteraction.deleteRecord(IncomeDate.records,userOption-1,_user);
+                _repositoryInteraction.deleteRecord(IncomeDate.records, userOption - 1, _user);
                 _userInteraction.displayMessage("Record Deleted Sucessfully !");
 
             }
@@ -191,6 +214,10 @@ public class ManagerTracker : IManageTracker
             _userInteraction.displayMessage($"No Transactions on date {userInputDate.ToString()}");
         }
     }
+
+    /// <summary>
+    /// <see cref="financialSummary"/> displays the summary of the <see cref="User"/>
+    /// </summary>
     void financialSummary()
     {
         bool Exit = false;
@@ -206,7 +233,7 @@ public class ManagerTracker : IManageTracker
                     _userInteraction.displayMessage($"Balance : {_user.CurrentBalance}");
                     _userInteraction.displayMessage($"Total income :{_user.TotalIncome}");
                     _userInteraction.displayMessage($"Total expense :{_user.TotalExpense}");
-                   
+
                     break;
                 case "S":
                 case "s":
@@ -236,30 +263,39 @@ public class ManagerTracker : IManageTracker
 
         }
     }
+
+    /// <summary>
+    /// <see cref="calculateSummaryOnSpecificDate(Date)"/> calculate the summary for specific <see cref="Date.CurrentDate"/>
+    /// </summary>
+    /// <param name="date"></param>
     void calculateSummaryOnSpecificDate(Date date)
     {
-        
-        int TotalIncome=0;
-        int TotalExpense=0;
+
+        int TotalIncome = 0;
+        int TotalExpense = 0;
         foreach (IRecord record in date.records)
         {
-            if(record is Income)
+            if (record is Income)
             {
-                TotalIncome+=record.Amount;
+                TotalIncome += record.Amount;
             }
             else
             {
-                TotalExpense+=record.Amount;
+                TotalExpense += record.Amount;
             }
 
         }
         _userInteraction.displayMessage($"****Summary on {date.CurrentDate}***");
-        _userInteraction.displayMessage($"Net Balance : {TotalIncome-TotalExpense}");
+        _userInteraction.displayMessage($"Net Balance : {TotalIncome - TotalExpense}");
         _userInteraction.displayMessage($"TotalIncome : {TotalIncome}");
         _userInteraction.displayMessage($"TotalExpense : {TotalExpense}");
         _userInteraction.displayMessage("********************************************");
 
     }
+
+    /// <summary>
+    /// <see cref="editRecord"/> modify the details of the existing record
+    /// </summary>
     void editRecord()
     {
         DateTime userInputDate = _userInteraction.dateAsInput("to add edit record");
@@ -273,7 +309,7 @@ public class ManagerTracker : IManageTracker
             {
                 IRecord record = editDate.records[userOption - 1];
                 IRecord updateRecord;
-                if(record is Income)
+                if (record is Income)
                 {
                     updateRecord = _userInteraction.getIncomeDetails(_user);
 
@@ -282,7 +318,7 @@ public class ManagerTracker : IManageTracker
                 {
                     updateRecord = _userInteraction.getExpenseDetails(_user);
                 }
-                _repositoryInteraction.updateRecord(updateRecord, record,_user);
+                _repositoryInteraction.updateRecord(updateRecord, record, _user);
                 _userInteraction.displayMessage("Record edited Sucessfully !");
 
             }

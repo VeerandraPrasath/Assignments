@@ -1,12 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Diagnostics.Contracts;
-using System.Globalization;
-
-var userInteraction=new UserInteraction();
-var fileInteraction=new FileInteraction();  
-var repositoryInteraction=new RepositoryInteraction(userInteraction,fileInteraction, "UsersData.json");
-var manageTracker=new ManagerTracker(userInteraction,repositoryInteraction); 
-App app=new App(userInteraction,manageTracker,repositoryInteraction);
-app.run();  
+﻿
+var userInteraction = new UserInteraction();
+var fileInteraction = new FileInteraction();
+var repositoryInteraction = new RepositoryInteraction(userInteraction, fileInteraction, "UsersData.json");
+var manageTracker = new ManagerTracker(userInteraction, repositoryInteraction);
+App app = new App(userInteraction, manageTracker, repositoryInteraction);
+app.run();
 
 
