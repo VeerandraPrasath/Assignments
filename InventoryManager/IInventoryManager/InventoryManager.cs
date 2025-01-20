@@ -1,41 +1,43 @@
 ﻿/// <summary>
-/// InventoryManager class implements the IInventoryManager interface to implement all the functions
+/// <see cref="InventoryManager"/> implements the <see cref="IInventoryManager"/> interface 
 /// </summary>
-class InventoryManager :IInventoryManager
+class InventoryManager : IInventoryManager
 {
     private readonly IProductRepository _productRepository;
-    private readonly IUserInteraction _userInteraction; 
-    public InventoryManager(IProductRepository productRepository, IUserInteraction userInteraction)
-    {
-          _productRepository = productRepository;
-        _userInteraction= userInteraction;
-    }
+    private readonly IUserInteraction _userInteraction;
 
     /// <summary>
-    /// get the details for new product and add to the product list
+    /// Constructor that injects the required Interfaces <see cref="IProductRepository"/> <see cref="IUserInteraction"/>
     /// </summary>
+    /// <param name="productRepository"></param>
+    /// <param name="userInteraction"></param>
+    public InventoryManager(IProductRepository productRepository, IUserInteraction userInteraction)
+    {
+        _productRepository = productRepository;
+        _userInteraction = userInteraction;
+    }
+
+
     public void addNewProduct()
     {
-        Product newProduct=_userInteraction.getNewProductDetail();
+        Product newProduct = _userInteraction.getNewProductDetail();
         _productRepository.addProduct(newProduct);
         Console.WriteLine("Product added successfully !!!");
-        
+
     }
-    /// <summary>
-    /// get the id and delete the product with that id
-    /// </summary>
+
+
     public void deleteExistingProduct()
     {
-       
-          int id=_userInteraction.GetAndValidateIntInput("id");
-          string message = _productRepository.deleteProduct(id) == true ? "Deleted successfully" : "Product not found";
-           Console.WriteLine(message);
-        
+
+        int id = _userInteraction.GetAndValidateIntInput("id");
+        string message = _productRepository.deleteProduct(id) == true ? "Deleted successfully" : "Product not found";
+        Console.WriteLine(message);
+
     }
-    /// <summary>
-    /// get option and edit value and update the value
-    /// </summary>
-   public void editExistingProduct()
+
+
+    public void editExistingProduct()
     {
         int id = _userInteraction.GetAndValidateIntInput("id");
         Product product = _productRepository.findById(id);
@@ -80,10 +82,8 @@ class InventoryManager :IInventoryManager
 
     }
 
-   /// <summary>
-   /// search product with id or name
-   /// </summary>
-   public void searchProduct()
+
+    public void searchProduct()
     {
         bool isExit = false;
         do
@@ -131,10 +131,10 @@ class InventoryManager :IInventoryManager
 
 
             }
-        }while (!isExit);
+        } while (!isExit);
     }
 
-    
-   
+
+
 }
 

@@ -1,22 +1,31 @@
-﻿public class UserInteraction : IUserInteraction
+﻿/// <summary>
+/// <see cref="UserInteraction"/> implements the features of <see cref="IUserInteraction"/> Interface
+/// </summary>
+public class UserInteraction : IUserInteraction
 {
     private readonly IProductRepository _productRepository;
+
+    /// <summary>
+    /// <see cref="UserInteraction"/> Constructor injects <see cref="IProductRepository"/>
+    /// </summary>
+    /// <param name="productRepository"></param>
     public UserInteraction(IProductRepository productRepository)
     {
         _productRepository = productRepository;
     }
+
     public void displayAllProducts(List<Product> allProducts)
     {
-        if (allProducts == null || allProducts.Count==0)
+        if (allProducts == null || allProducts.Count == 0)
         {
             Console.WriteLine("No products available !!");
             return;
         }
         for (int i = 0; i < allProducts.Count; i++)
         {
-            Console.WriteLine($"{i+1} . {allProducts[i].ToString()}");
+            Console.WriteLine($"{i + 1} . {allProducts[i].ToString()}");
         }
-         
+
     }
 
     public void displayEditOptions()
@@ -37,44 +46,44 @@
         do
         {
 
-        id=GetAndValidateIntInput("new Id");
-        if (_productRepository.checkId(id))
-        {
+            id = GetAndValidateIntInput("new Id");
+            if (_productRepository.checkId(id))
+            {
                 Console.WriteLine("ID already exists !");
-        }
-        }while(_productRepository.checkId(id));
+            }
+        } while (_productRepository.checkId(id));
 
-       string productName= GetAndValidateStringInput("Name");
+        string productName = GetAndValidateStringInput("Name");
         int quantity = GetAndValidateIntInput("quantity ");
         int price = GetAndValidateIntInput("price");
 
-        return new Product(id,productName,quantity,price); 
+        return new Product(id, productName, quantity, price);
     }
 
-   
     public string GetAndValidateStringInput(string message)
     {
         string? userInput;
-        
-        
+
+
         do
         {
             Console.WriteLine($"Enter {message}");
             userInput = Console.ReadLine();
-            if(userInput == "" || userInput is null)
+            if (userInput == "" || userInput is null)
             {
                 Console.WriteLine("******Input should not be null ****");
             }
-        } while (userInput=="" || userInput is null);
+        } while (userInput == "" || userInput is null);
         return userInput;
     }
+
     public int GetAndValidateIntInput(string message)
     {
         bool isValidDigit = false;
         int intValue;
         do
         {
-            
+
             isValidDigit = int.TryParse(GetAndValidateStringInput(message), out intValue);
             if (!isValidDigit)
             {
@@ -84,5 +93,5 @@
         return intValue;
     }
 }
-    
+
 
