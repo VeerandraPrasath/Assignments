@@ -49,7 +49,7 @@ If not, you can download and install it from the [Visual Studio downloads page](
 After installing Visual Studio:  
 - Clone the project by copying the project repository link.  
 - Use Git to clone the project to your local machine.  
-  ```bash
+  https://github.com/VeerandraPrasath/Assignments.git
 ### 3. Import the Project into Visual Studio
 - Open Visual Studio.  
 - Import the project by selecting the project's folder.  
