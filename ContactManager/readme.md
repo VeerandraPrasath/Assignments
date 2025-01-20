@@ -4,6 +4,22 @@
 The **Contact Manager** is a console application that allows users to manage their contacts. Users can add, view, search, edit, and delete contacts. The application provides a user-friendly menu for interacting with the contact list.
  
 ---
+## Implementation
+- **Contact Information**:
+  - Users can enter details like name, phone number, email address, and additional notes for each contact.
+
+- **Contact List**:
+  - The application maintains an in-memory list of contacts.
+  - Users can view, add, edit, and delete contacts.
+  - The contact list displays the name of each contact for easy identification.
+
+- **Search Functionality**:
+  - Users can search for contacts based on names or other relevant details.
+  - The search results display matching contacts or indicate if no results were found.
+
+- **User Interface**:
+  - The application provides a console-based user interface.
+  - Users interact with the contact manager through a menu system, choosing options to perform different actions.
  
 ## Features
 1. **Add Contact**  
@@ -20,41 +36,6 @@ The **Contact Manager** is a console application that allows users to manage the
  
 5. **Delete Contact**  
    Delete an existing contact from the contact list.
- 
----
- 
-## Namespaces
- 
-### `IRepositoryInteraction`
-- **Description:** Contains the `RepositoryInteraction` class which implements the `IRepositoryInteraction` interface. This namespace handles interactions with the contact list.
- 
-### `IUserInteraction`
-- **Description:** Contains the `UserInteraction` class which implements the `IUserInteraction` interface. This namespace is responsible for displaying menu options to the console.
- 
----
- 
-## Classes
- 
-### `ContactInformation`
-- Represents a contact with properties for:
-  - Name
-  - Phone Number
-  - Email
-  - Additional Notes
- 
-### `ContactManager`
-- Manages contact operations such as:
-  - Adding
-  - Viewing
-  - Searching
-  - Editing
-  - Deleting
- 
-### `RepositoryInteraction`
-- Provides methods for interacting with the contact list.
- 
-### `UserInteraction`
-- Provides methods for user menu interactions.
  
 ---
  
