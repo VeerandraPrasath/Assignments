@@ -6,11 +6,11 @@ The **Contact Manager** is a console application that allows users to manage the
 ---
 ## Implementation
 - **Contact Information**:
-  - Users can enter details like name, phone number, email address, and additional notes for each contact.
+  - Users can store details like name, phone number, email address, and additional notes for each contact.
 
 - **Contact List**:
   - The application maintains an in-memory list of contacts.
-  - Users can view, add, edit, and delete contacts.
+  - Users can view,search, add, edit, and delete contacts.
   - The contact list displays the name of each contact for easy identification.
 
 - **Search Functionality**:

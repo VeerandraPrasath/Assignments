@@ -1,17 +1,16 @@
-﻿namespace userinteraction
+﻿using ContactManager.Model;
+
+namespace ContactManager.ConsoleInteraction
 {
 
     /// <summary>
-    ///    used to implement the definiton of the IuserInteraction interface
+    /// <see cref="UserInteraction"/> implements <see cref="IUserInteraction"/>
     /// </summary>
-    public class UserInteraction : IuserInteraction
+    public class UserInteraction : IUserInteraction
     {
 
-        /// <summary>
-        ///    Used to display all the existing contact
-        /// </summary>
-        /// <param name="contacts"></param>
-        public void displayContacts(IEnumerable<ContactInformation> contacts)
+
+        public void DisplayContacts(IEnumerable<ContactInformation> contacts)
         {
             if (contacts.Count() == 0)
             {
@@ -29,21 +28,12 @@
             }
         }
 
-
-        /// <summary>
-        /// Prints the message to console
-        /// </summary>
-        /// <param name="message"></param>
-        public void displayMessage(string message)
+        public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
         }
 
-
-        /// <summary>
-        /// Display the available options to perform
-        /// </summary>
-        public void displayOption()
+        public void DisplayOption()
         {
             Console.Write("\nSelect the bleow  option to perform the  operation");
             Console.WriteLine("\n [V]iew \n [A]dd \n [E]dit \n [D]elete \n [S]earch \n[CL]ear\n [C]lose \nSelect your option:");
