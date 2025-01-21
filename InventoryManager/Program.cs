@@ -1,5 +1,8 @@
 ﻿
-using System.Globalization;
+using InventoryManager.Controller;
+using InventoryManager.ConsoleInteraction;
+using InventoryManager.Manager;
+using InventoryManager.Application;
 
 internal class Program
 {
@@ -11,9 +14,9 @@ internal class Program
     {
         ProductRepository productRepository = new ProductRepository();
         UserInteraction userInteraction = new UserInteraction(productRepository);
-        InventoryManager inventoryManager = new InventoryManager(productRepository, userInteraction);
+        ManageInventory inventoryManager = new ManageInventory(productRepository, userInteraction);
         App app = new App(inventoryManager, userInteraction, productRepository);
-        app.run();
+        app.Run();
     }
 }
 
