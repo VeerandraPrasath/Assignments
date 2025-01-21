@@ -47,24 +47,47 @@ namespace ContactManager.Manager
                         contacts.Add(_IRepositoryInteraction.AddNewContact());
                         break;
                     case "e":
-                        var filteredEditContacts = SearchContacts();
-                        if (filteredEditContacts.Count() > 0)
+                        if (contacts.Count != 0)
                         {
-                            var selectedContact = _IRepositoryInteraction.SelectContactBasedOnIndex(filteredEditContacts);
-                            _IRepositoryInteraction.EditExisitingContact(selectedContact);
+
+                            var filteredEditContacts = SearchContacts();
+                            if (filteredEditContacts.Count() > 0)
+                            {
+                                var selectedContact = _IRepositoryInteraction.SelectContactBasedOnIndex(filteredEditContacts);
+                                _IRepositoryInteraction.EditExisitingContact(selectedContact);
+                            }
+                        }
+                        else
+                        {
+                            _IUserInteraction.DisplayMessage("No contacts to edit !");
                         }
                         break;
                     case "d":
-                        var filteredDeleteContacts = SearchContacts();
-                        if (filteredDeleteContacts.Count() > 0)
+                        if (contacts.Count != 0)
                         {
+                            var filteredDeleteContacts = SearchContacts();
+                            if (filteredDeleteContacts.Count() > 0)
+                            {
 
-                            var selectedContact = _IRepositoryInteraction.SelectContactBasedOnIndex(filteredDeleteContacts);
-                            _IRepositoryInteraction.DeleteExisitingContact(selectedContact, contacts);
+                                var selectedContact = _IRepositoryInteraction.SelectContactBasedOnIndex(filteredDeleteContacts);
+                                _IRepositoryInteraction.DeleteExisitingContact(selectedContact, contacts);
+                            }
+                        }
+                        else
+                        {
+                            _IUserInteraction.DisplayMessage("No contacts to delete !");
                         }
                         break;
                     case "s":
-                        SearchContacts();
+                        if (contacts.Count != 0)
+                        {
+
+                            SearchContacts();
+                        }
+                        else
+                        {
+                            _IUserInteraction.DisplayMessage("NO contacts to search !");
+                        }
                         break;
                     case "cl":
                         Console.Clear();

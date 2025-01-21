@@ -68,7 +68,6 @@ namespace ContactManager.Controller
 
 
             string inputPhoneNum;
-            string phoneNum = "";
             isValidInput = false;
             do
             {
@@ -76,14 +75,14 @@ namespace ContactManager.Controller
                 inputPhoneNum = Console.ReadLine();
                 if (inputPhoneNum.StartsWith("+91"))
                 {
-                    phoneNum = inputPhoneNum.Remove(0, 3);
+                    inputPhoneNum = inputPhoneNum.Remove(0, 3);
 
                 }
-                if (phoneNum.Equals(""))
+                if (inputPhoneNum.Equals(""))
                 {
                     Console.WriteLine("Phone number should not be null !!!");
                 }
-                else if (phoneNum.Length != 10 || !phoneNum.All(char.IsDigit))
+                else if (inputPhoneNum.Length != 10 || !inputPhoneNum.All(char.IsDigit))
                 {
                     Console.WriteLine("Invalid phone number !");
                 }
@@ -93,11 +92,11 @@ namespace ContactManager.Controller
                 }
 
 
-            } while (phoneNum.Equals("") || !isValidInput);
+            } while (inputPhoneNum.Equals("") || !isValidInput);
 
             Console.WriteLine("Notes :");
             var address = Console.ReadLine();
-            return new ContactInformation(name!, email!, phoneNum!, address!);
+            return new ContactInformation(name!, email!, inputPhoneNum!, address!);
         }
 
         public void DeleteExisitingContact(ContactInformation contact, List<ContactInformation> contactList)
@@ -185,7 +184,7 @@ namespace ContactManager.Controller
                 Console.WriteLine("Select the valid index of the required contact:");
                 isNumber = int.TryParse(Console.ReadLine(), out index);
                 if (isNumber)
-                    isValidIndex = index <= filteredList.Count() ? true : false;
+                    isValidIndex = index <= filteredList.Count() && index>0? true : false;
 
 
             } while (!isNumber || !isValidIndex);
