@@ -1,6 +1,5 @@
 ﻿namespace ContactManager.Model
 {
-
     /// <summary>
     ///Store information of contact
     /// </summary>
@@ -39,7 +38,6 @@
             Email = email;
             Phone = phone;
             Notes = notes;
-
         }
 
         /// <summary>

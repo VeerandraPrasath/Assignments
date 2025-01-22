@@ -28,9 +28,8 @@ namespace ContactManager.Controller
         public ContactInformation AddNewContact()
         {
             bool isValidInput = false;
-            string name, inputPhoneNum,email;
+            string name, inputPhoneNum, email;
             Console.WriteLine("Provide the below details:");
-
             do
             {
                 Console.WriteLine("Enter Name :");
@@ -43,7 +42,6 @@ namespace ContactManager.Controller
             } while (name.Equals(""));
 
             isValidInput = false;
-           
             do
             {
                 Console.WriteLine("Enter valid Email :");
@@ -65,9 +63,6 @@ namespace ContactManager.Controller
 
             } while (email.Equals("") || !isValidInput);
 
-
-
-            
             isValidInput = false;
             do
             {
@@ -155,19 +150,14 @@ namespace ContactManager.Controller
                 string userOptionToContinueEdit = Console.ReadLine()!;
 
                 isContinue = userOptionToContinueEdit != "Y" && userOptionToContinueEdit != "y" ? false : true;
-
             }
-
             var message = "Contact details are successfully updated !!";
             _userInteraction.DisplayMessage(message);
         }
 
         public List<ContactInformation> FilteredContacts(string contactDetail, List<ContactInformation> contactList)
         {
-
             return contactList.Where(contact => contact.Name.Contains(contactDetail) || contact.Email.Contains(contactDetail) || contact.Phone.Contains(contactDetail) || contact.Notes.Contains(contactDetail)).OrderBy(a => a.Name).ToList();
-
-
         }
 
         public ContactInformation SelectContactBasedOnIndex(List<ContactInformation> filteredList)
@@ -184,7 +174,7 @@ namespace ContactManager.Controller
                 Console.WriteLine("Select the valid index of the required contact:");
                 isNumber = int.TryParse(Console.ReadLine(), out index);
                 if (isNumber)
-                    isValidIndex = index <= filteredList.Count() && index>0? true : false;
+                    isValidIndex = index <= filteredList.Count() && index > 0 ? true : false;
 
 
             } while (!isNumber || !isValidIndex);

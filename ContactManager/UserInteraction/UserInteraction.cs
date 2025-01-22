@@ -2,14 +2,11 @@
 
 namespace ContactManager.UserInteraction
 {
-
     /// <summary>
     /// Implements <see cref="IUserInteraction"/>
     /// </summary>
     public class UserInteraction : IUserInteraction
     {
-
-
         public void DisplayContacts(IEnumerable<ContactInformation> contactList)
         {
             if (contactList.Count() == 0)

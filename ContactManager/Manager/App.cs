@@ -3,7 +3,6 @@ using ContactManager.Model;
 using ContactManager.Controller;
 namespace ContactManager.Manager
 {
-
     /// <summary>
     /// Starts the flow of application
     /// </summary>
@@ -24,10 +23,7 @@ namespace ContactManager.Manager
             _userInteraction = userInteraction;
             _repositoryInteraction = repositoryInteraction;
             contacts = new List<ContactInformation>();
-
-
         }
-
 
         /// <summary>
         /// Initialize  the main flow 
@@ -81,7 +77,6 @@ namespace ContactManager.Manager
                     case "s":
                         if (contacts.Count != 0)
                         {
-
                             SearchContacts();
                         }
                         else

@@ -1,7 +1,6 @@
 ﻿using ContactManager.Model;
 namespace ContactManager.Controller
 {
-
     /// <summary>
     /// Used for the interaction with the <see cref="ContactInformation"/> list
     /// </summary>
@@ -40,6 +39,5 @@ namespace ContactManager.Controller
         /// <param name="contacts">All exisiting contact</param>
         /// <returns>retuns list of <see cref="ContactInformation"/></returns>
         public List<ContactInformation> FilteredContacts(string anyInfo, List<ContactInformation> contacts);
-
     }
 }
