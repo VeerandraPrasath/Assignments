@@ -1,6 +1,6 @@
 ﻿using ContactManager.Model;
 
-namespace ContactManager.ConsoleInteraction
+namespace ContactManager.UserInteraction
 {
 
     /// <summary>

@@ -1,5 +1,5 @@
 ﻿using ContactManager.Model;
-namespace ContactManager.ConsoleInteraction;
+namespace ContactManager.UserInteraction;
 
 /// <summary>
 /// <see cref="IUserInteraction"/> used to handle the interaction with the user

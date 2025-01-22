@@ -1,4 +1,4 @@
-﻿using ContactManager.ConsoleInteraction;
+﻿using ContactManager.UserInteraction;
 using ContactManager.Model;
 using ContactManager.Controller;
 namespace ContactManager.Manager

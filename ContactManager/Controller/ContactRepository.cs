@@ -1,7 +1,7 @@
 ﻿
 
 using System.Text.RegularExpressions;
-using ContactManager.ConsoleInteraction;
+using ContactManager.UserInteraction;
 using ContactManager.Model;
 
 namespace ContactManager.Controller

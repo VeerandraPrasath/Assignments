@@ -1,10 +1,10 @@
 using ContactManager.Controller;
 using ContactManager.Manager;
-using ContactManager.ConsoleInteraction;
+using ContactManager.UserInteraction;
 try
 {
 
-var userInteraction = new UserInteraction();
+    var userInteraction = new UserInteraction();
 var contactManager = new App(userInteraction, new ContactRepository(userInteraction));
 contactManager.run();
 Console.ReadKey();
