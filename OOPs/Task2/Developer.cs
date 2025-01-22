@@ -22,7 +22,7 @@
         /// <returns>returns decimal value</returns>
         public override decimal calculateBonus()
         {
-            return Salary * BonusPercentage / 100;
+            return Salary * BonusPercentage / 100 ;
         }
     }
 }
