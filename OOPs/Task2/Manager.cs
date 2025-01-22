@@ -22,8 +22,16 @@
         /// <returns>returns decimal value</returns>
         public override decimal calculateBonus()
         {
-
             return Salary * BonusPercentage / 100;
+        }
+
+        /// <summary>
+        /// Display all details
+        /// </summary>
+        public override void printDetails()
+        {
+            Console.WriteLine($"Name :{Name}\nPosition :{nameof(Manager)}\nSalary :{Salary}\nBonus:{calculateBonus()}");
+
         }
     }
 }

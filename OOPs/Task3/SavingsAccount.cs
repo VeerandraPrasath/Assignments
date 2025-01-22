@@ -15,7 +15,6 @@
         /// <param name="balance">Balance</param>
         public SavingsAccount(string accountNumber, decimal balance) : base(accountNumber, balance) { }
        
-
         /// <summary>
         /// Update  withdrawal amount 
         /// </summary>
@@ -25,11 +24,11 @@
             if (balance - amount < MIN_BALANCE)
             {
                 Console.WriteLine("Unable to dispense amount due to Minimum balance!! ");
+
                 return;
             }
             balance -= amount;
             Console.WriteLine("Amount dispensed successfully !!! ");
-
         }
     }
 }

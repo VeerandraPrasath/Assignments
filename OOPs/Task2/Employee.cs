@@ -7,7 +7,9 @@
     public abstract class Employee
     {
         public int BonusPercentage { get; init; }
+
         protected string Name { get; set; }
+
         protected decimal Salary { get; set; }
 
         /// <summary>
@@ -17,7 +19,6 @@
         /// <param name="salary"></param>
         protected Employee(string name, decimal salary)
         {
-
             Name = name;
             Salary = salary;
         }
@@ -31,7 +32,7 @@
         /// <summary>
         /// Display employee details
         /// </summary>
-        public void printDetails()
+        public virtual void printDetails()
         {
             Console.WriteLine($"Details :\nName :{Name}\nSalary :{Salary}\nBonus:{calculateBonus()}");
 

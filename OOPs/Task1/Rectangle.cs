@@ -10,9 +10,9 @@
         /// <summary>
         /// Constructor initialize value
         /// </summary>
-        /// <param name="length"></param>
-        /// <param name="breath"></param>
-        /// <param name="color"></param>
+        /// <param name="length">Length</param>
+        /// <param name="breath">Breath</param>
+        /// <param name="color">Color</param>
         public Rectangle(float length, float breath, string color)
         {
             _length = length;
@@ -37,5 +37,4 @@
 
         }
     }
-
 }

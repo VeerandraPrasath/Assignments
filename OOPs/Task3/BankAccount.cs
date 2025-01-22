@@ -23,7 +23,7 @@
         /// <summary>
         /// Update deposit amount
         /// </summary>
-        /// <param name="amount">Amount</param>
+        /// <param name="amount">Amount to deposit</param>
         public void Deposit(decimal amount)
         {
             balance = balance + amount;

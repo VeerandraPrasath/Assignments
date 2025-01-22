@@ -24,5 +24,14 @@
         {
             return Salary * BonusPercentage / 100 ;
         }
+
+        /// <summary>
+        /// Display all details
+        /// </summary>
+        public override void printDetails()
+        {
+            Console.WriteLine($"Name :{Name}\nPosition :{nameof(Developer)}\nSalary :{Salary}\nBonus:{calculateBonus()}");
+
+        }
     }
 }
