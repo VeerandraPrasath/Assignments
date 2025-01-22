@@ -2,7 +2,7 @@
 {
 
     /// <summary>
-    ///<see cref="ContactInformation"/> Bind the information of the contact into single unit
+    ///Store information of contact
     /// </summary>
     public class ContactInformation
     {
@@ -27,7 +27,7 @@
         public string Notes { get; set; }
 
         /// <summary>
-        /// Initialize all the information
+        /// Initialize Contact
         /// </summary>
         /// <param name="name">Name of the contact</param>
         /// <param name="email">Email of the Contact</param>
@@ -43,9 +43,9 @@
         }
 
         /// <summary>
-        /// <see cref="ToString"/> to get all the details of the contact 
+        /// Gives the details of the contact 
         /// </summary>
-        /// <returns>returns string with all the contact details</returns>
+        /// <returns>returns string with all details</returns>
         public override string ToString()
         {
             return $"Name :{Name} , Email :{Email} ,Phone :{Phone} ,Notes :{Notes}";

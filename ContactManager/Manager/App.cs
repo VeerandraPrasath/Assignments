@@ -5,24 +5,24 @@ namespace ContactManager.Manager
 {
 
     /// <summary>
-    /// <see cref="App"/> starts the flow of application
+    /// Starts the flow of application
     /// </summary>
     public class App
     {
         List<ContactInformation> contacts;
         private bool isExit = false;
-        private readonly IUserInteraction _IUserInteraction;
-        private readonly IContactRepository _IRepositoryInteraction;
+        private readonly IUserInteraction _userInteraction;
+        private readonly IContactRepository _repositoryInteraction;
 
         /// <summary>
-        /// <see cref="App"/> injects <see cref="IUserInteraction"/> ,<see cref="IContactRepository"/>
+        /// Injects <see cref="IUserInteraction"/> ,<see cref="IContactRepository"/>
         /// </summary>
-        /// <param name="iuserInteraction"></param>
-        /// <param name="irepositoryInteraction"></param>
-        public App(IUserInteraction iuserInteraction, IContactRepository irepositoryInteraction)
+        /// <param name="userInteraction"></param>
+        /// <param name="repositoryInteraction"></param>
+        public App(IUserInteraction userInteraction, IContactRepository repositoryInteraction)
         {
-            _IUserInteraction = iuserInteraction;
-            _IRepositoryInteraction = irepositoryInteraction;
+            _userInteraction = userInteraction;
+            _repositoryInteraction = repositoryInteraction;
             contacts = new List<ContactInformation>();
 
 
@@ -30,21 +30,21 @@ namespace ContactManager.Manager
 
 
         /// <summary>
-        /// <see cref="run"/> initialize  the main flow 
+        /// Initialize  the main flow 
         /// </summary>
         public void run()
         {
             while (!isExit)
             {
-                _IUserInteraction.DisplayOption();
+                _userInteraction.DisplayOption();
                 var userOption = Console.ReadLine();
                 switch (userOption.ToLower())
                 {
                     case "v":
-                        _IUserInteraction.DisplayContacts(contacts);
+                        _userInteraction.DisplayContacts(contacts);
                         break;
                     case "a":
-                        contacts.Add(_IRepositoryInteraction.AddNewContact());
+                        contacts.Add(_repositoryInteraction.AddNewContact());
                         break;
                     case "e":
                         if (contacts.Count != 0)
@@ -53,13 +53,13 @@ namespace ContactManager.Manager
                             var filteredEditContacts = SearchContacts();
                             if (filteredEditContacts.Count() > 0)
                             {
-                                var selectedContact = _IRepositoryInteraction.SelectContactBasedOnIndex(filteredEditContacts);
-                                _IRepositoryInteraction.EditExisitingContact(selectedContact);
+                                var selectedContact = _repositoryInteraction.SelectContactBasedOnIndex(filteredEditContacts);
+                                _repositoryInteraction.EditExisitingContact(selectedContact);
                             }
                         }
                         else
                         {
-                            _IUserInteraction.DisplayMessage("No contacts to edit !");
+                            _userInteraction.DisplayMessage("No contacts to edit !");
                         }
                         break;
                     case "d":
@@ -69,13 +69,13 @@ namespace ContactManager.Manager
                             if (filteredDeleteContacts.Count() > 0)
                             {
 
-                                var selectedContact = _IRepositoryInteraction.SelectContactBasedOnIndex(filteredDeleteContacts);
-                                _IRepositoryInteraction.DeleteExisitingContact(selectedContact, contacts);
+                                var selectedContact = _repositoryInteraction.SelectContactBasedOnIndex(filteredDeleteContacts);
+                                _repositoryInteraction.DeleteExisitingContact(selectedContact, contacts);
                             }
                         }
                         else
                         {
-                            _IUserInteraction.DisplayMessage("No contacts to delete !");
+                            _userInteraction.DisplayMessage("No contacts to delete !");
                         }
                         break;
                     case "s":
@@ -86,7 +86,7 @@ namespace ContactManager.Manager
                         }
                         else
                         {
-                            _IUserInteraction.DisplayMessage("NO contacts to search !");
+                            _userInteraction.DisplayMessage("NO contacts to search !");
                         }
                         break;
                     case "cl":
@@ -104,15 +104,15 @@ namespace ContactManager.Manager
 
 
         /// <summary>
-        /// <see cref="SearchContacts"/ > gets any information of the contact and provide the matching contacts
+        /// Search  exisiting <see cref="ContactInformation"/>
         /// </summary>
         /// <returns>returns list of <see cref="ContactInformation"/></returns>
         private List<ContactInformation> SearchContacts()
         {
             Console.WriteLine("Enter any one detail of the contact to search :");
             var anyInfoOfContact = Console.ReadLine();
-            var filteredContacts = _IRepositoryInteraction.FilteredContacts(anyInfoOfContact!, contacts);
-            _IUserInteraction.DisplayContacts(filteredContacts);
+            var filteredContacts = _repositoryInteraction.FilteredContacts(anyInfoOfContact!, contacts);
+            _userInteraction.DisplayContacts(filteredContacts);
             return filteredContacts;
         }
     }

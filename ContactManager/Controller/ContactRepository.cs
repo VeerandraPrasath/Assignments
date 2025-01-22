@@ -8,29 +8,29 @@ namespace ContactManager.Controller
 {
 
     /// <summary>
-    ///<see cref="ContactRepository"/> Implements <see cref="IContactRepository"/>
+    ///Implements <see cref="IContactRepository"/>
     /// </summary>
     public class ContactRepository : IContactRepository
     {
 
-        private readonly IUserInteraction _IUserInteraction;
+        private readonly IUserInteraction _userInteraction;
 
         /// <summary>
-        /// <see cref="ContactRepository"/> injects <see cref="IUserInteraction"/>
+        /// Injects <see cref="IUserInteraction"/>
         /// </summary>
-        /// <param name="IuserInteraction"></param>
-        public ContactRepository(IUserInteraction IuserInteraction)
+        /// <param name="userInteraction"></param>
+        public ContactRepository(IUserInteraction userInteraction)
         {
-            _IUserInteraction = IuserInteraction;
+            _userInteraction = userInteraction;
         }
 
 
         public ContactInformation AddNewContact()
         {
             bool isValidInput = false;
+            string name, inputPhoneNum,email;
             Console.WriteLine("Provide the below details:");
 
-            string name;
             do
             {
                 Console.WriteLine("Enter Name :");
@@ -43,7 +43,7 @@ namespace ContactManager.Controller
             } while (name.Equals(""));
 
             isValidInput = false;
-            string email;
+           
             do
             {
                 Console.WriteLine("Enter valid Email :");
@@ -67,7 +67,7 @@ namespace ContactManager.Controller
 
 
 
-            string inputPhoneNum;
+            
             isValidInput = false;
             do
             {
@@ -104,7 +104,7 @@ namespace ContactManager.Controller
 
             contactList.Remove(contact);
             var message = "Contact  details deleted successfully";
-            _IUserInteraction.DisplayMessage(message);
+            _userInteraction.DisplayMessage(message);
 
 
         }
@@ -116,7 +116,7 @@ namespace ContactManager.Controller
             {
 
                 var displayEditOption = "Select which info need to change \n [N]name \n [E]mail \n [P]hone no \n[NO]tes \nEnter option:";
-                _IUserInteraction.DisplayMessage(displayEditOption);
+                _userInteraction.DisplayMessage(displayEditOption);
 
                 var userOption = Console.ReadLine();
                 switch (userOption.ToLower())
@@ -159,13 +159,13 @@ namespace ContactManager.Controller
             }
 
             var message = "Contact details are successfully updated !!";
-            _IUserInteraction.DisplayMessage(message);
+            _userInteraction.DisplayMessage(message);
         }
 
-        public List<ContactInformation> FilteredContacts(string contactDetail, List<ContactInformation> contacts)
+        public List<ContactInformation> FilteredContacts(string contactDetail, List<ContactInformation> contactList)
         {
 
-            return contacts.Where(contact => contact.Name.Contains(contactDetail) || contact.Email.Contains(contactDetail) || contact.Phone.Contains(contactDetail) || contact.Notes.Contains(contactDetail)).OrderBy(a => a.Name).ToList();
+            return contactList.Where(contact => contact.Name.Contains(contactDetail) || contact.Email.Contains(contactDetail) || contact.Phone.Contains(contactDetail) || contact.Notes.Contains(contactDetail)).OrderBy(a => a.Name).ToList();
 
 
         }

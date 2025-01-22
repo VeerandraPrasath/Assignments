@@ -4,21 +4,21 @@ namespace ContactManager.UserInteraction
 {
 
     /// <summary>
-    /// <see cref="UserInteraction"/> implements <see cref="IUserInteraction"/>
+    /// Implements <see cref="IUserInteraction"/>
     /// </summary>
     public class UserInteraction : IUserInteraction
     {
 
 
-        public void DisplayContacts(IEnumerable<ContactInformation> contacts)
+        public void DisplayContacts(IEnumerable<ContactInformation> contactList)
         {
-            if (contacts.Count() == 0)
+            if (contactList.Count() == 0)
             {
-                Console.WriteLine("There is no contacts !!");
+                Console.WriteLine("There is no contactList !!");
             }
             else
             {
-                List<ContactInformation> Sortedlist = contacts.OrderBy(a => a.Name).ToList();
+                List<ContactInformation> Sortedlist = contactList.OrderBy(a => a.Name).ToList();
                 Console.WriteLine("The Contact names are listed :");
 
                 for (int i = 0; i < Sortedlist.Count(); i++)
