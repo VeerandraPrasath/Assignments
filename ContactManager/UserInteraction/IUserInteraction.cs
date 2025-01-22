@@ -1,4 +1,5 @@
 ﻿using ContactManager.Model;
+
 namespace ContactManager.UserInteraction;
 
 /// <summary>
@@ -15,7 +16,7 @@ public interface IUserInteraction
     /// Displays available contacts
     /// </summary>
     /// <param name="contacts">List of contacts</param>
-    /// 
+    
     public void DisplayContacts(IEnumerable<ContactInformation> contacts);
 
     /// <summary>

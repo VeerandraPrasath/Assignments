@@ -1,4 +1,5 @@
 ﻿using ContactManager.Model;
+
 namespace ContactManager.Controller
 {
     /// <summary>

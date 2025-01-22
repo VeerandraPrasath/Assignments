@@ -1,6 +1,7 @@
 ﻿using ContactManager.UserInteraction;
 using ContactManager.Model;
 using ContactManager.Controller;
+
 namespace ContactManager.Manager
 {
     /// <summary>
@@ -63,7 +64,6 @@ namespace ContactManager.Manager
                             var filteredDeleteContacts = SearchContacts();
                             if (filteredDeleteContacts.Count() > 0)
                             {
-
                                 var selectedContact = _repositoryInteraction.SelectContactBasedOnIndex(filteredDeleteContacts);
                                 _repositoryInteraction.DeleteExisitingContact(selectedContact, contacts);
                             }
@@ -96,11 +96,6 @@ namespace ContactManager.Manager
             }
         }
 
-
-        /// <summary>
-        /// Search  exisiting <see cref="ContactInformation"/>
-        /// </summary>
-        /// <returns>returns list of <see cref="ContactInformation"/></returns>
         private List<ContactInformation> SearchContacts()
         {
             Console.WriteLine("Enter any one detail of the contact to search :");

@@ -1,7 +1,7 @@
 ﻿namespace ContactManager.Model
 {
     /// <summary>
-    ///Store information of contact
+    /// Store information of contact
     /// </summary>
     public class ContactInformation
     {

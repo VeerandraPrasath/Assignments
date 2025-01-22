@@ -1,6 +1,4 @@
-﻿
-
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using ContactManager.UserInteraction;
 using ContactManager.Model;
 
@@ -16,7 +14,7 @@ namespace ContactManager.Controller
         /// <summary>
         /// Injects <see cref="IUserInteraction"/>
         /// </summary>
-        /// <param name="userInteraction"></param>
+        /// <param name="userInteraction">User Interaction Interface</param>
         public ContactRepository(IUserInteraction userInteraction)
         {
             _userInteraction = userInteraction;
