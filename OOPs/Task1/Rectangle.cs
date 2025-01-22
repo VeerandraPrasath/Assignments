@@ -1,14 +1,14 @@
-﻿namespace OOPs
+﻿namespace OOPs.Task1
 {
     /// <summary>
-    /// Class inherit the features of the Shape class
+    /// Inherits Shape class
     /// </summary>
     public class Rectangle : Shape
     {
-        private readonly float _length, _width;
+        private readonly double _length, _width;
 
         /// <summary>
-        /// Constructor initialize the color,length and breath
+        /// Constructor initialize value
         /// </summary>
         /// <param name="length"></param>
         /// <param name="breath"></param>
@@ -21,19 +21,19 @@
         }
 
         /// <summary>
-        /// Method calculate the area of Rectangle
+        /// Calculate area
         /// </summary>
         public override void CalculateArea()
         {
-            base.Area = _length * _width;
+            area = _length * _width;
         }
 
         /// <summary>
-        /// Method prints the Details of Rectabgle
+        /// Display Shape details
         /// </summary>
         public override void PrintDetails()
         {
-            Console.WriteLine($"\nShape : {nameof(Rectangle)} \n color :{base.color} \n Length:{_length}\n Width :{_width} \n Area :{base.Area}");
+            Console.WriteLine($"\nShape : {nameof(Rectangle)} \n color :{color} \n Length:{_length}\n Width :{_width} \n area :{area}");
 
         }
     }

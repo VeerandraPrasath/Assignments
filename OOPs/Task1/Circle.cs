@@ -1,18 +1,18 @@
-﻿namespace OOPs
+﻿namespace OOPs.Task1
 {
     /// <summary>
-    /// Class inherit from the shape class
+    /// Inherits Shape class
     /// </summary>
     public class Circle : Shape
     {
-        private readonly float _radius;
+        private readonly double _radius;
 
         /// <summary>
-        /// Initialize the color and radius value
+        /// Initialize values
         /// </summary>
         /// <param name="radius"></param>
         /// <param name="color"></param>
-        public Circle(float radius, string color)
+        public Circle(double radius, string color)
         {
             _radius = radius;
             base.color = color;
@@ -24,15 +24,16 @@
         /// </summary>
         public override void CalculateArea()
         {
-            base.Area = _radius * _radius;
+            area = Math.PI*_radius * _radius;
+            
         }
 
         /// <summary>
-        /// Print the details of the shape Circle
+        /// Display Shape details
         /// </summary>
         public override void PrintDetails()
         {
-            Console.WriteLine($"\nShape : {nameof(Circle)} \n color :{base.color} \n Radius :{_radius} \n Area :{base.Area}");
+            Console.WriteLine($"\nShape : {nameof(Circle)} \n color :{color} \n Radius :{_radius} \n area :{area}");
         }
 
 

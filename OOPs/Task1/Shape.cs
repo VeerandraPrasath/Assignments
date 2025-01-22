@@ -4,25 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOPs
+namespace OOPs.Task1
 {
     /// <summary>
-    /// Abstract class contains the common features of Shape
+    /// Stores shape features
     /// </summary>
     public abstract class Shape
     {
         protected string color { get; set; }
-        public float Area { get; set; }
+
+        protected double area { get; set; }
 
         /// <summary>
-        /// Abstract method that calculate the Area
+        /// Calculate the area
         /// </summary>
         public abstract void CalculateArea();
 
         /// <summary>
-        /// Abstract method that prints the details of the Shape
+        /// Display Shape details
         /// </summary>
-        public abstract void PrintDetails();
+        public virtual void PrintDetails()
+        {
+            Console.WriteLine($"Color : {color}  Area : {area}");
+        }
 
     }
 
