@@ -1,20 +1,31 @@
-﻿/// <summary>
-/// <see cref="Date"/> holds the <see cref="CurrentDate"/> and <see cref="records"/>
-/// </summary>
-public class Date
+﻿using ExpenseTracker.Record;
+
+namespace ExpenseTracker.UserData
 {
-    public DateTime CurrentDate;
-    public int temp = 10;
-    public List<IRecord> records;
 
     /// <summary>
-    /// Initialize the date for <see cref="CurrentDate"/>
+    /// <see cref="Date"/> holds the <see cref="CurrentDate"/> and <see cref="records"/>
     /// </summary>
-    /// <param name="date"></param>
-    public Date(DateTime date)
+    public class Date
     {
-        CurrentDate = date;
-        records = new List<IRecord>();
+        /// <summary>
+        /// Date of the records
+        /// </summary>
+        public DateTime CurrentDate { get; set; }
+
+        /// <summary>
+        /// List of records
+        /// </summary>
+        public List<IRecord> records { get; set; }
+
+        /// <summary>
+        /// Initialize the date for <see cref="CurrentDate"/>
+        /// </summary>
+        /// <param name="date"></param>
+        public Date(DateTime date)
+        {
+            CurrentDate = date;
+            records = new List<IRecord>();
+        }
     }
 }
-
