@@ -34,7 +34,6 @@
         public override void PrintDetails()
         {
             Console.WriteLine($"\nShape : {nameof(Rectangle)} \n color :{color} \n Length:{_length}\n Width :{_width} \n area :{area}");
-
         }
     }
 }

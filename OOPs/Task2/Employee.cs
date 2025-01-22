@@ -1,6 +1,5 @@
 ﻿namespace OOPs.Task2
 {
-
     /// <summary>
     /// Stores Employee details
     /// </summary>
@@ -35,8 +34,6 @@
         public virtual void printDetails()
         {
             Console.WriteLine($"Details :\nName :{Name}\nSalary :{Salary}\nBonus:{calculateBonus()}");
-
         }
-
     }
 }

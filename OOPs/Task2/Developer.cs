@@ -31,7 +31,6 @@
         public override void printDetails()
         {
             Console.WriteLine($"Name :{Name}\nPosition :{nameof(Developer)}\nSalary :{Salary}\nBonus:{calculateBonus()}");
-
-        }
+         }
     }
 }

@@ -27,7 +27,5 @@ namespace OOPs.Task1
         {
             Console.WriteLine($"Color : {color}  Area : {area}");
         }
-
     }
-
 }

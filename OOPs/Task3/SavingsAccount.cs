@@ -1,6 +1,5 @@
 ﻿namespace OOPs.Task3
 {
-
     /// <summary>
     /// Class inherit the features of the BankAccount class
     /// </summary>

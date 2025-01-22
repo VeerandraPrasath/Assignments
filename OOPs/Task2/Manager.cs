@@ -1,6 +1,5 @@
 ﻿namespace OOPs.Task2
 {
-
     /// <summary>
     /// Inherits  Employee Class
     /// </summary>
@@ -31,7 +30,6 @@
         public override void printDetails()
         {
             Console.WriteLine($"Name :{Name}\nPosition :{nameof(Manager)}\nSalary :{Salary}\nBonus:{calculateBonus()}");
-
         }
     }
 }

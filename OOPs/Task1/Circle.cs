@@ -16,7 +16,6 @@
         {
             _radius = radius;
             base.color = color;
-
         }
 
         /// <summary>
@@ -25,7 +24,6 @@
         public override void CalculateArea()
         {
             area = Math.PI*_radius * _radius;
-            
         }
 
         /// <summary>
@@ -36,5 +34,4 @@
             Console.WriteLine($"\nShape : {nameof(Circle)} \n color :{color} \n Radius :{_radius} \n area :{area}");
         }
     }
-
 }

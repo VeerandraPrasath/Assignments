@@ -1,12 +1,12 @@
 ﻿namespace OOPs.Task3
 {
-
     /// <summary>
     /// Storing account details
     /// </summary>
     public abstract class BankAccount
     {
         protected string accountNumber { get; set; }
+
         protected decimal balance { get; set; } = 0;
 
         /// <summary>

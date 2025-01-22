@@ -1,5 +1,4 @@
-﻿
-using OOPs.Task1;
+﻿using OOPs.Task1;
 using OOPs.Task2;
 using OOPs.Task3;
 
