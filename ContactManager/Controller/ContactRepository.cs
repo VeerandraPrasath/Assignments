@@ -6,13 +6,11 @@ using ContactManager.Model;
 
 namespace ContactManager.Controller
 {
-
     /// <summary>
     ///Implements <see cref="IContactRepository"/>
     /// </summary>
     public class ContactRepository : IContactRepository
     {
-
         private readonly IUserInteraction _userInteraction;
 
         /// <summary>
@@ -85,8 +83,6 @@ namespace ContactManager.Controller
                 {
                     isValidInput = true;
                 }
-
-
             } while (inputPhoneNum.Equals("") || !isValidInput);
 
             Console.WriteLine("Notes :");
@@ -96,12 +92,9 @@ namespace ContactManager.Controller
 
         public void DeleteExisitingContact(ContactInformation contact, List<ContactInformation> contactList)
         {
-
             contactList.Remove(contact);
             var message = "Contact  details deleted successfully";
             _userInteraction.DisplayMessage(message);
-
-
         }
 
         public void EditExisitingContact(ContactInformation contact)
@@ -109,10 +102,8 @@ namespace ContactManager.Controller
             bool isContinue = true;
             while (isContinue)
             {
-
                 var displayEditOption = "Select which info need to change \n [N]name \n [E]mail \n [P]hone no \n[NO]tes \nEnter option:";
                 _userInteraction.DisplayMessage(displayEditOption);
-
                 var userOption = Console.ReadLine();
                 switch (userOption.ToLower())
                 {

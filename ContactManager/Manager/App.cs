@@ -45,7 +45,6 @@ namespace ContactManager.Manager
                     case "e":
                         if (contacts.Count != 0)
                         {
-
                             var filteredEditContacts = SearchContacts();
                             if (filteredEditContacts.Count() > 0)
                             {
