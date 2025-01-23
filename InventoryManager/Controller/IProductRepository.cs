@@ -24,28 +24,28 @@ namespace InventoryManager.Controller
         /// Checks id present in <see cref="ProductRepository._productList"/>
         /// </summary>
         /// <param name="id">Product Id</param>
-        /// <returns>returns true if id present else false</returns>
-        public bool CheckId(int id);
+        /// <returns>returns true if id unique else false</returns>
+        public bool IsIdUnique(int id);
 
         /// <summary>
-        /// Delete Product with Id"/>
+        /// Delete Product
         /// </summary>
-        /// <param name="id">Product Id</param>
-        /// <returns>returns true if Product deleted else false</returns>
-        public bool DeleteProduct(int id);
+        /// <param name="product">Product to delete</param>
+        /// <returns>returns true if deleted else false</returns>
+        public bool DeleteProduct(Product product);
 
         /// <summary>
-        /// Finds Product with Id 
-        /// </summary>
-        /// <param name="id">Product Id</param>
-        /// <returns>returns Product if present else null</returns>
-        public Product FindById(int id);
-
-        /// <summary>
-        /// Find Product with Name
+        /// Check Product Name is Unique
         /// </summary>
         /// <param name="name">Product Name</param>
+        /// <returns>returns true if unique else false</returns>
+        public bool IsNameUnique(string name);
+
+        /// <summary>
+        /// Find Product
+        /// </summary>
+        /// <param name="productInformation">Product Information</param>
         /// <returns>returns Product if present else null</returns>
-        public Product GetByName(string name);
+        public Product FindProduct(string productInformation);
     }
 }

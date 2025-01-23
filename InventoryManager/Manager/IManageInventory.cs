@@ -1,4 +1,6 @@
-﻿namespace InventoryManager.Manager
+﻿using InventoryManager.Model;
+
+namespace InventoryManager.Manager
 {
     /// <summary>
     ///  Used to handle features
@@ -18,11 +20,11 @@
         /// <summary>
         /// Edits  exisiting Product
         /// </summary>
-        void EditExistingProduct();
+        public void EditExistingProduct();
 
         /// <summary>
         /// Searches Product
         /// </summary>
-        void SearchProduct();
+        public Product SearchProducts();
     }
 }

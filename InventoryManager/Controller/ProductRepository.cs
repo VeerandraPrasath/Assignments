@@ -10,7 +10,7 @@ namespace InventoryManager.Controller
         private List<Product> _productList;
 
         /// <summary>
-        /// Initialize <see cref="_productList"/>
+        /// Constructor of Product Repository
         /// </summary>
         public ProductRepository()
         {
@@ -29,45 +29,46 @@ namespace InventoryManager.Controller
             return _productList;
         }
 
-        public bool CheckId(int id)
+        public bool IsIdUnique(int id)
         {
             foreach (Product product in _productList)
             {
-                if (product.Id == id) return true;
+                if (product.Id == id)
+                {
+                    return false;
+                }
             }
 
-            return false;
+            return true;
         }
 
-        public bool DeleteProduct(int id)
+        public bool DeleteProduct(Product product)
         {
-            Product productToDelete = FindById(id);
-            if (productToDelete != null)
-            {
-                _productList.Remove(productToDelete);
+            _productList.Remove(product);
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
 
-        public Product FindById(int id)
+        public bool IsNameUnique(string name)
         {
             foreach (Product product in _productList)
             {
-                if (product.Id == id) return product;
+                if (product.Name.Equals(name))
+                {
+                    return false;
+                }
             }
-            return null;
-        }
 
-        public Product GetByName(string name)
+            return true;
+        }
+        public Product FindProduct(string productInformation)
         {
             foreach (Product product in _productList)
             {
-                if (product.Name.Equals(name)) return product;
+                if (product.Id.ToString().Equals(productInformation) || product.Name.Equals(productInformation))
+                {
+                    return product;
+                }
             }
 
             return null;

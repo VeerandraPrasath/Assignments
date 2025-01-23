@@ -1,6 +1,7 @@
 ﻿using InventoryManager.Controller;
 using InventoryManager.ConsoleInteraction;
 using InventoryManager.Manager;
+using InventoryManager.Model;
 
 internal class Program
 {
@@ -23,7 +24,7 @@ internal class Program
         private readonly IProductRepository _productRepository;
 
         /// <summary>
-        /// Injects  <see cref="IManageInventory"/>, <see cref="IUserInteraction"/> <see cref="IProductRepository"/>
+        /// Constructor for App
         /// </summary>
         /// <param name="inventoryManager">Inventory Manager</param>
         /// <param name="userInteraction">User Interaction</param>
@@ -44,7 +45,7 @@ internal class Program
             while (!isExit)
             {
                 _userInteraction.DisplayOptions();
-                string userOption = _userInteraction.GetAndValidateStringInput("option");
+                string userOption = _userInteraction.GetInputString("option");
                 switch (userOption)
                 {
                     case "1":
@@ -54,13 +55,21 @@ internal class Program
                         _inventoryManager.AddNewProduct();
                         break;
                     case "3":
-                        _inventoryManager.DeleteExistingProduct();
-                        break;
-                    case "4":
                         _inventoryManager.EditExistingProduct();
                         break;
+                    case "4":
+                        _inventoryManager.DeleteExistingProduct();
+                        break;
                     case "5":
-                        _inventoryManager.SearchProduct();
+                        Product product=_inventoryManager.SearchProducts();
+                        if (product is not null)
+                        {
+                            Console.WriteLine(product);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Product Not Found");
+                        }
                         break;
                     case "6":
                         Console.Clear();

@@ -8,17 +8,17 @@ namespace InventoryManager.ConsoleInteraction
     public interface IUserInteraction
     {
         /// <summary>
-        /// Display all the available <see cref="Product"/>
+        /// Display options
         /// </summary>
         public void DisplayOptions();
 
         /// <summary>
-        /// Display the edit options
+        /// Display edit options
         /// </summary>
         public void DisplayEditOptions();
 
         /// <summary>
-        /// Display all the <see cref="Product"/>
+        /// Display all <see cref="Product"/>
         /// </summary>
         /// <param name="productList">Product List</param>
         public void DisplayAllProducts(List<Product> productList);
@@ -27,20 +27,32 @@ namespace InventoryManager.ConsoleInteraction
         /// Get product details
         /// </summary>
         /// <returns>returns product</returns>
-        public Product GetNewProductDetail();
+        public Product GetProductDetail();
 
         /// <summary>
         /// Validates input string
         /// </summary>
         /// <param name="message">message</param>
         /// <returns>returns string</returns>
-        public string GetAndValidateStringInput(string message);
+        public string GetInputString(string message);
 
         /// <summary>
-        ///  Validates input integer
+        /// Validates input integer
         /// </summary>
         /// <param name="message">message</param>
         /// <returns>returns integer</returns>
-        public int GetAndValidateIntInput(string message);
+        public int GetInputInt(string message);
+
+        /// <summary>
+        /// Get Unique Name
+        /// </summary>
+        /// <returns>returns string</returns>
+        public string GetUniqueName();
+
+        /// <summary>
+        /// Get Unique Id
+        /// </summary>
+        /// <returns>returns int</returns>
+        public int GetUniqueId();
     }
 }

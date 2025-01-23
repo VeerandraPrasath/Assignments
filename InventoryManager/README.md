@@ -9,9 +9,9 @@ The **Inventory Manager** is a console application that allows users to manage t
   - Users can store product details like product name, product id, price and quantity for each Product.
 
 - **Product List**:
-  - The application maintains an in-memory list of contacts.
+  - The application maintains an in-memory list of products.
   - Users can view,search, add, edit, and delete Product.
-  - The Product list displays the name ,product id, price and quantityof Products  for easy identification.
+  - The Product list displays the name,id,price and quantity of products for easy identification.
 
 - **Search Functionality**:
   - Users can search for Product based on product name or with product id.
@@ -23,16 +23,16 @@ The **Inventory Manager** is a console application that allows users to manage t
  
 ## Features
 1. **Add New Product**  
-   Add new product with details such as name, id which should be unique, quantity  and  price.
+   Add new product with details such as name, id which are unique ,quantity and price.
  
 2. **View Product**  
    Display all products in the contact list.
  
 3. **Search Product**  
-   Search for Products with id or name .
+   Search for Products with id or name.
  
 4. **Edit Contact**  
-   Edit the details of existing product with product name or id .
+   Edit the details of existing product with product name or id.
  
 5. **Delete Contact**  
    Delete an existing Product from the product list.

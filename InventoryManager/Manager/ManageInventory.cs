@@ -13,7 +13,7 @@ namespace InventoryManager.Manager
         private readonly IUserInteraction _userInteraction;
 
         /// <summary>
-        /// Injects <see cref="IProductRepository"/>,<see cref="IUserInteraction"/>
+        /// Constructor for ManageInventory
         /// </summary>
         /// <param name="productRepository">Product Repository</param>
         /// <param name="userInteraction">User Interaction</param>
@@ -25,111 +25,72 @@ namespace InventoryManager.Manager
 
         public void AddNewProduct()
         {
-            Product newProduct = _userInteraction.GetNewProductDetail();
+            Product newProduct = _userInteraction.GetProductDetail();
             _productRepository.AddProduct(newProduct);
             Console.WriteLine("Product added successfully !!!");
         }
 
         public void DeleteExistingProduct()
         {
-            if(_productRepository.GetAllProducts().Count==0)
+            Product product = SearchProducts();
+            if (product is null)
             {
-                Console.WriteLine("No product available to delete !");
+                Console.WriteLine("Product Not Found  !");
 
                 return;
             }
-            int id = _userInteraction.GetAndValidateIntInput("id");
-            string message = _productRepository.DeleteProduct(id) == true ? "Deleted successfully" : "Product not found";
-            Console.WriteLine(message);
+            Console.WriteLine(product);
+            _productRepository.DeleteProduct(product);
+            Console.WriteLine("Product Deleted Successfully !");
         }
 
         public void EditExistingProduct()
         {
-            if (_productRepository.GetAllProducts().Count == 0)
-            {
-                Console.WriteLine("No product available to edit !");
-
-                return;
-            }
-            int id = _userInteraction.GetAndValidateIntInput("id");
-            Product product = _productRepository.FindById(id);
+            Product product = SearchProducts();
             if (product is not null)
             {
+                Console.WriteLine(product);
                 _userInteraction.DisplayEditOptions();
-                string userEditOption = _userInteraction.GetAndValidateStringInput("option");
+                string userEditOption = _userInteraction.GetInputString("option");
                 switch (userEditOption)
                 {
                     case "1":
-                        product.Name = _userInteraction.GetAndValidateStringInput("name to update");
-                        Console.WriteLine("***Name updated successfully*****");
+                        product.Name = _userInteraction.GetUniqueName();
+                        Console.WriteLine("\nName updated successfully !\n");
                         break;
                     case "2":
-                        product.Quantity = _userInteraction.GetAndValidateIntInput("Quantity to update");
-                        Console.WriteLine("***Quantity updated Successfully***");
+                        product.Id = _userInteraction.GetUniqueId();
+                        Console.WriteLine("\nId updated successfully !\n");
                         break;
                     case "3":
-                        product.Price = _userInteraction.GetAndValidateIntInput("Price to update ");
-                        Console.WriteLine("***Price updated successfully***");
+                        product.Quantity = _userInteraction.GetInputInt("Quantity");
+                        Console.WriteLine("\nQuantity updated Successfully !\n");
+                        break;
+                    case "4":
+                        product.Price = _userInteraction.GetInputInt("Price");
+                        Console.WriteLine("\nPrice updated successfully !\n");
                         break;
                     default:
-                        Console.WriteLine("***Invalid input***");
+                        Console.WriteLine("*** Invalid input ***");
                         break;
                 }
             }
             else
             {
-                Console.WriteLine("**** No product found with the id *****");
+                Console.WriteLine("**** No product found ********");
             }
         }
 
-        public void SearchProduct()
+        public Product SearchProducts()
         {
+            bool isExit = false;
             if (_productRepository.GetAllProducts().Count == 0)
             {
-                Console.WriteLine("No product available to search !");
-
-                return;
+                return null;
             }
-            bool isExit = false;
-            do
-            {
-                Console.WriteLine("Search with \n[1] ID \n[2] Name\n[3] Exit");
-                string userInput = _userInteraction.GetAndValidateStringInput("option");
-                Product product;
-                switch (userInput)
-                {
-                    case "1":
-                        string name = _userInteraction.GetAndValidateStringInput("Name");
-                        product = _productRepository.GetByName(name);
-                        if (product is not null)
-                        {
-                            Console.WriteLine(product);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Product not found");
-                        }
-                        break;
-                    case "2":
-                        int id = _userInteraction.GetAndValidateIntInput("ID");
-                        product = _productRepository.FindById(id);
-                        if (product is not null)
-                        {
-                            Console.WriteLine(product);
-                        }
-                        else
-                        {
-                            Console.WriteLine("***Product not found***");
-                        }
-                        break;
-                    case "3":
-                        isExit = true;
-                        break;
-                    default:
-                        Console.WriteLine("***Invalid option***");
-                        break;
-                }
-            } while (!isExit);
+            string userInput = _userInteraction.GetInputString("Product Name or Id ");
+
+            return _productRepository.FindProduct(userInput);
         }
     }
 }
