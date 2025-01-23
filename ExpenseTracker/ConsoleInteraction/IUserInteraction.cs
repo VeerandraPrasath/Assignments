@@ -12,21 +12,21 @@ namespace ExpenseTracker.ConsoleInteraction
         /// Display message
         /// </summary>
         /// <param name="message">Message</param>
-        void DisplayMessage(string message);
+        public void DisplayMessage(string message);
 
         /// <summary>
         /// Gets string input
         /// </summary>
         /// <param name="message">Message</param>
         /// <returns>returns string</returns>
-        string GetStringInput(string message);
+        public string GetStringInput(string message);
 
         /// <summary>
         /// <see cref="GetIntInput(string)"/> get integer as input
         /// </summary>
         /// <param name="message">message to be printed</param>
         /// <returns>returns integer</returns>
-        int GetIntInput(string message);
+        public int GetIntInput(string message);
 
         /// <summary>
         /// Gets dateTime input
@@ -38,19 +38,19 @@ namespace ExpenseTracker.ConsoleInteraction
         /// <summary>
         /// Displays features
         /// </summary>
-        void DisplayFeatures();
+        public void DisplayFeatures();
 
         /// <summary>
         /// Gets Income details
         /// </summary>
         /// <returns>returns <see cref="Income"/></returns>
-        Income GetIncomeDetails();
+        public Income GetIncomeDetails();
 
         /// <summary>
         /// Gets Expense details
         /// </summary>
         /// <returns>returns <see cref="Expense"/></returns>
-        Expense GetExpenseDetails();
+        public Expense GetExpenseDetails();
 
         /// <summary>
         /// Displays all records

@@ -48,7 +48,7 @@ namespace ExpenseTracker.Controller
         /// </summary>
         /// <param name="record"><see cref="IRecord"/> to add</param>
         /// <param name="date">Date</param>
-        void AddRecord(IRecord record, Date date, User user);
+        public void AddRecord(IRecord record, Date date, User user);
 
         /// <summary>
         /// Updates existing <see cref="IRecord"/>
@@ -56,7 +56,7 @@ namespace ExpenseTracker.Controller
         /// <param name="newRecord"><see cref="IRecord"/> to update</param>
         /// <param name="oldRecord"><see cref="IRecord"/> to change</param>
         /// <param name="user">Current <see cref="User"/></param>
-        void UpdateRecord(IRecord newRecord, IRecord oldRecord, User user);
+        public void UpdateRecord(IRecord newRecord, IRecord oldRecord, User user);
 
         /// <summary>
         /// Writes content to file

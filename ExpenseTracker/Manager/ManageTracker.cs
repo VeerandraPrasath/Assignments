@@ -89,7 +89,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Displays all records
         /// </summary>
-        void ViewRecords()
+        public void ViewRecords()
         {
             bool exit = false;
             if (_currentUser.Dates.Count == 0)
@@ -142,7 +142,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Adds income record details
         /// </summary>
-        void AddIncomeRecord()
+        public void AddIncomeRecord()
         {
             DateTime userInputDate = _userInteraction.GetDateInput("to add Income record");
             Date IncomeDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
@@ -159,7 +159,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Adds expense record details
         /// </summary>
-        void AddExpenseRecord()
+        public void AddExpenseRecord()
         {
             DateTime userInputDate = _userInteraction.GetDateInput("to add Expense record");
             Date ExpenseDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
@@ -176,7 +176,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Deletes record based on Date
         /// </summary>
-        void DeleteRecordOnDate()
+        public void DeleteRecordOnDate()
         {
             if (_currentUser.Dates.Count == 0)
             {
@@ -211,7 +211,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Displays summary of <see cref="User"/>
         /// </summary>
-        void FinancialSummary()
+        public void FinancialSummary()
         {
             bool Exit = false;
             if (_currentUser.Dates.Count == 0)
@@ -265,7 +265,7 @@ namespace ExpenseTracker.Manager
         /// CalculateS summary on <see cref="Date.CurrentDate"/>
         /// </summary>
         /// <param name="date">Date of the record</param>
-        void CalculateSummaryOnDate(Date date)
+        public void CalculateSummaryOnDate(Date date)
         {
             int TotalIncome = 0;
             int TotalExpense = 0;
@@ -292,7 +292,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Modify record details
         /// </summary>
-        void EditRecord()
+        public void EditRecord()
         {
             if (_currentUser.Dates.Count == 0)
             {
