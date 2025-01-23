@@ -61,6 +61,7 @@ namespace InventoryManager.Controller
 
             return true;
         }
+
         public Product FindProduct(string productInformation)
         {
             foreach (Product product in _productList)

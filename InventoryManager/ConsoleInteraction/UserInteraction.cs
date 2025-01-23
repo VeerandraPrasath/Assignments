@@ -87,6 +87,7 @@ namespace InventoryManager.ConsoleInteraction
 
             return intValue;
         }
+
         public int GetUniqueId()
         {
             int uniqueId;
