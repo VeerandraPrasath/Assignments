@@ -3,18 +3,17 @@ using InventoryManager.Controller;
 
 namespace InventoryManager.ConsoleInteraction
 {
-
     /// <summary>
-    /// <see cref="UserInteraction"/> implements the features of <see cref="IUserInteraction"/> Interface
+    /// Implements <see cref="IUserInteraction"/> Interface
     /// </summary>
     public class UserInteraction : IUserInteraction
     {
         private readonly IProductRepository _productRepository;
 
         /// <summary>
-        /// <see cref="UserInteraction"/> Constructor injects <see cref="IProductRepository"/>
+        /// Injects <see cref="IProductRepository"/>
         /// </summary>
-        /// <param name="productRepository"></param>
+        /// <param name="productRepository">Product Repository</param>
         public UserInteraction(IProductRepository productRepository)
         {
             _productRepository = productRepository;
@@ -31,34 +30,30 @@ namespace InventoryManager.ConsoleInteraction
             {
                 Console.WriteLine($"{i + 1} . {productList[i].ToString()}");
             }
-
         }
 
         public void DisplayEditOptions()
         {
-            Console.WriteLine("\n[N]ame \n[Q]uantity \n[P]rice\n");
+            Console.WriteLine("\n[1] Name \n[2] Quantity \n[3] Price\n");
         }
 
         public void DisplayOptions()
         {
-            Console.WriteLine("\n[V]iew \n[A]dd \n[E]dit \n[D]elete \n[S]earch \n[C]lear \n[EX]it\n");
+            Console.WriteLine("\n[1] View \n[2] Add \n[3] Edit \n[4] Delete \n[5] Search \n[6] Clear \n[7] Exit\n");
         }
 
         public Product GetNewProductDetail()
         {
             Console.WriteLine("Enter the below details :\n");
-
             int id;
             do
             {
-
                 id = GetAndValidateIntInput("new Id");
                 if (_productRepository.CheckId(id))
                 {
                     Console.WriteLine("**** ID already exists ****");
                 }
             } while (_productRepository.CheckId(id));
-
             string productName = GetAndValidateStringInput("Name");
             int quantity = GetAndValidateIntInput("quantity ");
             int price = GetAndValidateIntInput("price");
@@ -69,8 +64,6 @@ namespace InventoryManager.ConsoleInteraction
         public string GetAndValidateStringInput(string message)
         {
             string userInput;
-
-
             do
             {
                 Console.WriteLine($"Enter {message} :");
@@ -80,6 +73,7 @@ namespace InventoryManager.ConsoleInteraction
                     Console.WriteLine("**** Input should not be null ****");
                 }
             } while (userInput == "" || userInput is null);
+
             return userInput;
         }
 
@@ -89,13 +83,13 @@ namespace InventoryManager.ConsoleInteraction
             int intValue;
             do
             {
-
                 isValidDigit = int.TryParse(GetAndValidateStringInput(message), out intValue);
                 if (!isValidDigit)
                 {
                     Console.WriteLine("**** Input should be number ****");
                 }
             } while (!isValidDigit);
+
             return intValue;
         }
     }

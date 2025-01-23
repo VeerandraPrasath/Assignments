@@ -1,11 +1,11 @@
 ﻿using InventoryManager.Controller;
 using InventoryManager.ConsoleInteraction;
 using InventoryManager.Model;
+
 namespace InventoryManager.Manager
 {
-
     /// <summary>
-    /// <see cref="ManageInventory"/> implements the <see cref="IManageInventory"/> interface 
+    /// Implements <see cref="IManageInventory"/>
     /// </summary>
     class ManageInventory : IManageInventory
     {
@@ -13,45 +13,42 @@ namespace InventoryManager.Manager
         private readonly IUserInteraction _userInteraction;
 
         /// <summary>
-        /// Constructor that injects the required Interfaces <see cref="IProductRepository"/> <see cref="IUserInteraction"/>
+        /// Injects <see cref="IProductRepository"/>,<see cref="IUserInteraction"/>
         /// </summary>
-        /// <param name="productRepository"></param>
-        /// <param name="userInteraction"></param>
+        /// <param name="productRepository">Product Repository</param>
+        /// <param name="userInteraction">User Interaction</param>
         public ManageInventory(IProductRepository productRepository, IUserInteraction userInteraction)
         {
             _productRepository = productRepository;
             _userInteraction = userInteraction;
         }
 
-
         public void AddNewProduct()
         {
             Product newProduct = _userInteraction.GetNewProductDetail();
             _productRepository.AddProduct(newProduct);
             Console.WriteLine("Product added successfully !!!");
-
         }
-
 
         public void DeleteExistingProduct()
         {
             if(_productRepository.GetAllProducts().Count==0)
             {
                 Console.WriteLine("No product available to delete !");
+
                 return;
             }
             int id = _userInteraction.GetAndValidateIntInput("id");
             string message = _productRepository.DeleteProduct(id) == true ? "Deleted successfully" : "Product not found";
             Console.WriteLine(message);
-
         }
-
 
         public void EditExistingProduct()
         {
             if (_productRepository.GetAllProducts().Count == 0)
             {
                 Console.WriteLine("No product available to edit !");
+
                 return;
             }
             int id = _userInteraction.GetAndValidateIntInput("id");
@@ -60,25 +57,17 @@ namespace InventoryManager.Manager
             {
                 _userInteraction.DisplayEditOptions();
                 string userEditOption = _userInteraction.GetAndValidateStringInput("option");
-
                 switch (userEditOption)
                 {
-                    case "N":
-                    case "n":
+                    case "1":
                         product.Name = _userInteraction.GetAndValidateStringInput("name to update");
-
                         Console.WriteLine("***Name updated successfully*****");
                         break;
-                    case "Q":
-                    case "q":
-
-
+                    case "2":
                         product.Quantity = _userInteraction.GetAndValidateIntInput("Quantity to update");
                         Console.WriteLine("***Quantity updated Successfully***");
                         break;
-                    case "P":
-                    case "p":
-
+                    case "3":
                         product.Price = _userInteraction.GetAndValidateIntInput("Price to update ");
                         Console.WriteLine("***Price updated successfully***");
                         break;
@@ -93,24 +82,23 @@ namespace InventoryManager.Manager
             }
         }
 
-
         public void SearchProduct()
         {
             if (_productRepository.GetAllProducts().Count == 0)
             {
                 Console.WriteLine("No product available to search !");
+
                 return;
             }
             bool isExit = false;
             do
             {
-
-                Console.WriteLine("Search with \n[I]D \n[N]ame\n[E]xit");
+                Console.WriteLine("Search with \n[1] ID \n[2] Name\n[3] Exit");
                 string userInput = _userInteraction.GetAndValidateStringInput("option");
                 Product product;
-                switch (userInput.ToLower())
+                switch (userInput)
                 {
-                    case "n":
+                    case "1":
                         string name = _userInteraction.GetAndValidateStringInput("Name");
                         product = _productRepository.GetByName(name);
                         if (product is not null)
@@ -122,7 +110,7 @@ namespace InventoryManager.Manager
                             Console.WriteLine("Product not found");
                         }
                         break;
-                    case "i":
+                    case "2":
                         int id = _userInteraction.GetAndValidateIntInput("ID");
                         product = _productRepository.FindById(id);
                         if (product is not null)
@@ -134,7 +122,7 @@ namespace InventoryManager.Manager
                             Console.WriteLine("***Product not found***");
                         }
                         break;
-                    case "e":
+                    case "3":
                         isExit = true;
                         break;
                     default:

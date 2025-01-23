@@ -1,15 +1,9 @@
-﻿
-using InventoryManager.Controller;
+﻿using InventoryManager.Controller;
 using InventoryManager.ConsoleInteraction;
 using InventoryManager.Manager;
-using InventoryManager.Application;
 
 internal class Program
 {
-    /// <summary>
-    /// Main function
-    /// </summary>
-    /// <param name="args"></param>
     private static void Main(string[] args)
     {
         ProductRepository productRepository = new ProductRepository();
@@ -18,5 +12,70 @@ internal class Program
         App app = new App(inventoryManager, userInteraction, productRepository);
         app.Run();
     }
-}
+
+    /// <summary>
+    /// Starts the main flow
+    /// </summary>
+    public class App
+    {
+        private readonly IManageInventory _inventoryManager;
+        private readonly IUserInteraction _userInteraction;
+        private readonly IProductRepository _productRepository;
+
+        /// <summary>
+        /// Injects  <see cref="IManageInventory"/>, <see cref="IUserInteraction"/> <see cref="IProductRepository"/>
+        /// </summary>
+        /// <param name="inventoryManager">Inventory Manager</param>
+        /// <param name="userInteraction">User Interaction</param>
+        /// <param name="productRepository">Product Repository</param>
+        public App(IManageInventory inventoryManager, IUserInteraction userInteraction, IProductRepository productRepository)
+        {
+            _inventoryManager = inventoryManager;
+            _userInteraction = userInteraction;
+            _productRepository = productRepository;
+        }
+
+        /// <summary>
+        /// Initialize the work flow
+        /// </summary>
+        public void Run()
+        {
+            bool isExit = false;
+            while (!isExit)
+            {
+                _userInteraction.DisplayOptions();
+                string userOption = _userInteraction.GetAndValidateStringInput("option");
+                switch (userOption)
+                {
+                    case "1":
+                        _userInteraction.DisplayAllProducts(_productRepository.GetAllProducts());
+                        break;
+                    case "2":
+                        _inventoryManager.AddNewProduct();
+                        break;
+                    case "3":
+                        _inventoryManager.DeleteExistingProduct();
+                        break;
+                    case "4":
+                        _inventoryManager.EditExistingProduct();
+                        break;
+                    case "5":
+                        _inventoryManager.SearchProduct();
+                        break;
+                    case "6":
+                        Console.Clear();
+                        break;
+                    case "7":
+                        isExit = true;
+                        break;
+                    default:
+                        Console.WriteLine("***Invalid Input***");
+                        break;
+                }
+            }
+        }
+    }
+  }
+
+
 

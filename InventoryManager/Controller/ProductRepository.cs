@@ -2,24 +2,25 @@
 
 namespace InventoryManager.Controller
 {
-
     /// <summary>
-    /// <see cref="ProductRepository"/> implements <see cref="IProductRepository"/>
+    /// Implements <see cref="IProductRepository"/>
     /// </summary>
     public class ProductRepository : IProductRepository
     {
         private List<Product> _productList;
 
         /// <summary>
-        /// <see cref="ProductRepository"/> initialize the <see cref="_productList"/>
+        /// Initialize <see cref="_productList"/>
         /// </summary>
         public ProductRepository()
         {
             _productList = new List<Product>();
         }
+
         public bool AddProduct(Product newProduct)
         {
             _productList.Add(newProduct);
+
             return true;
         }
 
@@ -34,6 +35,7 @@ namespace InventoryManager.Controller
             {
                 if (product.Id == id) return true;
             }
+
             return false;
         }
 
@@ -43,6 +45,7 @@ namespace InventoryManager.Controller
             if (productToDelete != null)
             {
                 _productList.Remove(productToDelete);
+
                 return true;
             }
             else
@@ -50,6 +53,7 @@ namespace InventoryManager.Controller
                 return false;
             }
         }
+
         public Product FindById(int id)
         {
             foreach (Product product in _productList)
@@ -58,12 +62,14 @@ namespace InventoryManager.Controller
             }
             return null;
         }
+
         public Product GetByName(string name)
         {
             foreach (Product product in _productList)
             {
                 if (product.Name.Equals(name)) return product;
             }
+
             return null;
         }
     }

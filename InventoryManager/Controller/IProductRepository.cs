@@ -2,55 +2,50 @@
 
 namespace InventoryManager.Controller
 {
-
     /// <summary>
-    /// <see cref="IProductRepository"/> Interface is used to interact with the <see cref="ProductRepository._productList"/>
+    /// Interact with <see cref="ProductRepository._productList"/>
     /// </summary>
     public interface IProductRepository
     {
         /// <summary>
-        /// Abstract <see cref="GetAllProducts"/> get all the products
+        /// Get Product List
         /// </summary>
-        /// <returns>
-        /// list of available <see cref="Product"/>
-        /// </returns>
+        /// <returns>returns Product List</returns>
         public List<Product> GetAllProducts();
 
         /// <summary>
-        /// <see cref="AddProduct(Product)"/> add new product
+        /// Add Product to Product List
         /// </summary>
-        /// <param name="newProduct">
-        /// <see cref="Product"/> new product to add
-        /// </param>
-        /// <returns>true if product added else false</returns>
+        /// <param name="newProduct">New Product</param>
+        /// <returns>returns true if product added else false</returns>
         public bool AddProduct(Product newProduct);
 
         /// <summary>
-        /// <see cref="CheckId(int)"/>  checks the id present in the <see cref="ProductRepository._productList"/>
+        /// Checks id present in <see cref="ProductRepository._productList"/>
         /// </summary>
-        /// <param name="id"> id of the product</param>
-        /// <returns>true if id present else false</returns>
+        /// <param name="id">Product Id</param>
+        /// <returns>returns true if id present else false</returns>
         public bool CheckId(int id);
 
         /// <summary>
-        ///  <see cref="DeleteProduct(int)"/> delete product with id"/>
+        /// Delete Product with Id"/>
         /// </summary>
-        /// <param name="id">id of the product</param>
-        /// <returns>true if deleted else false</returns>
+        /// <param name="id">Product Id</param>
+        /// <returns>returns true if Product deleted else false</returns>
         public bool DeleteProduct(int id);
 
         /// <summary>
-        /// <see cref="FindById(int)"/> finds the <see cref="Product"/> with id 
+        /// Finds Product with Id 
         /// </summary>
-        /// <param name="id">id of the product</param>
-        /// <returns><see cref="Product"/> if found else null</returns>
+        /// <param name="id">Product Id</param>
+        /// <returns>returns Product if present else null</returns>
         public Product FindById(int id);
 
         /// <summary>
-        /// <see cref="GetByName(string)"/> find the product with name
+        /// Find Product with Name
         /// </summary>
-        /// <param name="name">name of the product</param>
-        /// <returns><see cref="Product"/> if found else null</returns>
+        /// <param name="name">Product Name</param>
+        /// <returns>returns Product if present else null</returns>
         public Product GetByName(string name);
     }
 }

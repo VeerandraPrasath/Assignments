@@ -1,38 +1,34 @@
 ﻿namespace InventoryManager.Model
 {
-
     /// <summary>
-    /// <see cref="Product"/> bind the details of a product
+    /// Stores Product information
     /// </summary>
     public class Product
     {
         /// <summary>
-        /// Id of product
+        /// Product Id
         /// </summary>
         public int Id { get; set; }
-
         /// <summary>
-        /// Name of the product
+        /// Product Name
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
-        /// Quantity of product
+        /// Product Quantity
         /// </summary>
         public int Quantity { get; set; }
-
         /// <summary>
-        /// Price of the product
+        /// Product Price
         /// </summary>
         public int Price { get; set; }
 
         /// <summary>
-        /// <see cref="Product"/> constructor initialize the id,name,quantity and prize 
+        /// Initialize Product values 
         /// </summary>
-        /// <param name="id">id of the <see cref="Product"/></param>
-        /// <param name="name">name of the <see cref="Product"/></param>
-        /// <param name="quantity">quantity of the <see cref="Product"/></param>
-        /// <param name="price">price of the <see cref="Product"/></param>
+        /// <param name="id">Id</param>
+        /// <param name="name">Name</param>
+        /// <param name="quantity">Quantity</param>
+        /// <param name="price">Price</param>
         public Product(int id, string name, int quantity, int price)
         {
             Id = id;
@@ -42,9 +38,9 @@
         }
 
         /// <summary>
-        /// <see cref="ToString"/> combines all the details of <see cref="Product"/> into string
+        /// Gives Product Information
         /// </summary>
-        /// <returns>string with all the <see cref="Product"/> details</returns>
+        /// <returns>returns string</returns>
         public override string ToString()
         {
             return $"ID :{Id}  Name : {Name} Quantity : {Quantity} Price : {Price} ";
