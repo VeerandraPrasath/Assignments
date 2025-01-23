@@ -3,7 +3,7 @@
     /// <summary>
     /// Storing account details
     /// </summary>
-    public abstract class BankAccount
+    public class BankAccount
     {
         protected string accountNumber { get; set; }
         protected decimal balance { get; set; } = 0;
@@ -32,6 +32,16 @@
         /// Update withdrawal amount
         /// </summary>
         /// <param name="amount">Amount</param>
-        public abstract void Withdraw(decimal amount);
+        public virtual void Withdraw(decimal amount)
+        {
+            if (balance - amount < 0)
+            {
+                Console.WriteLine("Insufficient balance !! ");
+
+                return;
+            }
+            balance -= amount;
+            Console.WriteLine("Amount dispensed successfully !!! ");
+        }
     }
 }
