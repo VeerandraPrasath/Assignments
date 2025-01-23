@@ -1,7 +1,7 @@
 ﻿namespace OOPs.Task3
 {
     /// <summary>
-    /// class inherit from the bankAccount class
+    /// Inherits BankAccount class
     /// </summary>
     public class CheckingAccount : BankAccount
     {
@@ -15,7 +15,7 @@
         /// <summary>
         /// Update withdrawal amount
         /// </summary>
-        /// <param name="amount"></param>
+        /// <param name="amount">Amount to withdraw</param>
         public override void Withdraw(decimal amount)
         {
             if (balance - amount < 0)

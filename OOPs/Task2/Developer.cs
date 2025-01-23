@@ -1,6 +1,5 @@
 ﻿namespace OOPs.Task2
 {
-
     /// <summary>
     /// Inherits Employee class
     /// </summary>

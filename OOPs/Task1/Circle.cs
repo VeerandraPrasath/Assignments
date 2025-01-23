@@ -10,8 +10,8 @@
         /// <summary>
         /// Initialize values
         /// </summary>
-        /// <param name="radius"></param>
-        /// <param name="color"></param>
+        /// <param name="radius">Radius</param>
+        /// <param name="color">Color</param>
         public Circle(double radius, string color)
         {
             _radius = radius;

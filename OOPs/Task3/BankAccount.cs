@@ -6,7 +6,6 @@
     public abstract class BankAccount
     {
         protected string accountNumber { get; set; }
-
         protected decimal balance { get; set; } = 0;
 
         /// <summary>

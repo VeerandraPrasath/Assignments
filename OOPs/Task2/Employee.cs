@@ -8,7 +8,6 @@
         public int BonusPercentage { get; init; }
 
         protected string Name { get; set; }
-
         protected decimal Salary { get; set; }
 
         /// <summary>
