@@ -8,13 +8,13 @@ namespace ContactManager.Controller
     public interface IContactRepository
     {
         /// <summary>
-        ///Create  new <see cref="ContactInformation"/>
+        /// Create  new <see cref="ContactInformation"/>
         /// </summary>
         /// <returns>returns <see cref="ContactInformation"/></returns>
         public ContactInformation AddNewContact();
 
         /// <summary>
-        ///  Edits the details the exisiting contact  
+        /// Edits the details the exisiting contact  
         /// </summary>
         /// <param name="contact">Contact need to be edited</param>
         public void EditExisitingContact(ContactInformation contact);

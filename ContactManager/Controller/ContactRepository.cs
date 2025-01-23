@@ -20,7 +20,6 @@ namespace ContactManager.Controller
             _userInteraction = userInteraction;
         }
 
-
         public ContactInformation AddNewContact()
         {
             bool isValidInput = false;
@@ -164,8 +163,6 @@ namespace ContactManager.Controller
                 isNumber = int.TryParse(Console.ReadLine(), out index);
                 if (isNumber)
                     isValidIndex = index <= filteredList.Count() && index > 0 ? true : false;
-
-
             } while (!isNumber || !isValidIndex);
             return filteredList.ElementAt(index - 1);
         }

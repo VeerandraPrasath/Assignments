@@ -20,7 +20,7 @@ public interface IUserInteraction
     public void DisplayContacts(IEnumerable<ContactInformation> contacts);
 
     /// <summary>
-    ///Display message
+    /// Display message
     /// </summary>
     /// <param name="message">message to print</param>
     public void DisplayMessage(string message);

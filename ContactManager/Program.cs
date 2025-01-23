@@ -20,8 +20,8 @@ public class App
     /// <summary>
     /// Injects <see cref="IUserInteraction"/> ,<see cref="IContactRepository"/>
     /// </summary>
-    /// <param name="userInteraction"></param>
-    /// <param name="repositoryInteraction"></param>
+    /// <param name="userInteraction">User Interaction</param>
+    /// <param name="repositoryInteraction">Repository Interaction</param>
     public App(IUserInteraction userInteraction, IContactRepository repositoryInteraction)
     {
         _userInteraction = userInteraction;
@@ -105,6 +105,7 @@ public class App
         var anyInfoOfContact = Console.ReadLine();
         var filteredContacts = _repositoryInteraction.FilteredContacts(anyInfoOfContact!, contacts);
         _userInteraction.DisplayContacts(filteredContacts);
+
         return filteredContacts;
     }
 }
