@@ -20,11 +20,11 @@ manager.printDetails();
 
 //Task3
 BankAccount savingsAccount = new SavingsAccount("3746347", 1200);
-savingsAccount.Deposit(100); //   Deposit success - balance=1300
-savingsAccount.Withdraw(300);//Withdram Sucess - balance =1000
-savingsAccount.Withdraw(1); //Withdram fails because of mininum balance
+savingsAccount.Deposit(100); 
+savingsAccount.Withdraw(300); 
+savingsAccount.Withdraw(1);  
 
 BankAccount checkingAccount = new CheckingAccount("3746233347", 2000);
-checkingAccount.Deposit(100); //   Deposit success - balance=1300
-checkingAccount.Withdraw(300);//Withdram Sucess - balance =1000
-checkingAccount.Withdraw(1); //Withdram fails because of mininum balance
+checkingAccount.Deposit(100); 
+checkingAccount.Withdraw(300); 
+checkingAccount.Withdraw(1);  
