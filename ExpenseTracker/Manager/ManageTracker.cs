@@ -5,91 +5,75 @@ using ExpenseTracker.UserData;
 
 namespace ExpenseTracker.Manager
 {
-
     /// <summary>
-    /// <see cref="ManagerTracker"/> handles all the functionalities 
+    /// Implements <see cref="IManageTracker"/>
     /// </summary>
-    public class ManagerTracker : IManageTracker
+    public class ManageTracker : IManageTracker
     {
         private User _currentUser;
-
-
         private readonly IUserInteraction _userInteraction;
         private readonly IRepositoryInteraction _repositoryInteraction;
 
         /// <summary>
-        /// <see cref="ManagerTracker"/> injects <see cref="IUserInteraction"/> <see cref="IRepositoryInteraction"/>
+        /// Constructor for ManageTracker
         /// </summary>
-        public ManagerTracker(IUserInteraction userInteraction, IRepositoryInteraction repositoryInteraction)
+        public ManageTracker(IUserInteraction userInteraction, IRepositoryInteraction repositoryInteraction)
         {
-
             _userInteraction = userInteraction;
             _currentUser = null;
             _repositoryInteraction = repositoryInteraction;
         }
 
-
-
         public void CheckExisitingUser()
         {
-            string userName = _userInteraction.StringAsInput("Username");
+            string userName = _userInteraction.GetStringInput("Username");
             _currentUser = _repositoryInteraction.IsUserPresent(userName);
-            if (_currentUser != null) Console.Clear();
+            if (_currentUser != null)
+            {
+                Console.Clear();
+            }
             _userInteraction.DisplayMessage("________________________________________________");
             string message = _currentUser != null ? $"          Logged into {userName}" : "Invalid User !";
             _userInteraction.DisplayMessage(message);
             _userInteraction.DisplayMessage("________________________________________________");
             if (_currentUser != null)
             {
-
                 Login();
-
             }
-
-
         }
 
         public void Login()
         {
-
             bool Exit = false;
             while (!Exit)
             {
                 _userInteraction.DisplayFeatures();
-                string userChoice = _userInteraction.StringAsInput("Option ");
+                string userChoice = _userInteraction.GetStringInput("Option ");
                 switch (userChoice)
                 {
-                    case "v":
-                    case "V":
+                    case "1":
                         ViewRecords();
                         break;
-                    case "i":
-                    case "I":
+                    case "2":
                         AddIncomeRecord();
                         _repositoryInteraction.WriteToFile();
                         break;
-                    case "E":
-                    case "e":
+                    case "3":
                         AddExpenseRecord();
                         _repositoryInteraction.WriteToFile();
                         break;
-                    case "M":
-                    case "m":
+                    case "4":
                         EditRecord();
                         _repositoryInteraction.WriteToFile();
                         break;
-                    case "D":
-                    case "d":
-                        DeleteRecordBasedOnDate();
+                    case "5":
+                        DeleteRecordOnDate();
                         _repositoryInteraction.WriteToFile();
                         break;
-
-                    case "F":
-                    case "f":
+                    case "6":
                         FinancialSummary();
                         break;
-                    case "l":
-                    case "L":
+                    case "7":
                         _userInteraction.DisplayMessage("________________________________________________");
                         _userInteraction.DisplayMessage("\nLogged out Successfully !\n");
                         _userInteraction.DisplayMessage("________________________________________________");
@@ -98,25 +82,31 @@ namespace ExpenseTracker.Manager
                     default:
                         Console.WriteLine("Invalid Option !");
                         break;
-
                 }
             }
         }
 
         /// <summary>
-        /// <see cref="ViewRecords"/> display all the records
+        /// Displays all records
         /// </summary>
         void ViewRecords()
         {
             bool exit = false;
+            if (_currentUser.Dates.Count == 0)
+            {
+                _userInteraction.DisplayMessage("___________________________________");
+                _userInteraction.DisplayMessage("\n   No Transactions found ");
+                _userInteraction.DisplayMessage("___________________________________");
+
+                return;
+            }
             while (!exit)
             {
-                _userInteraction.DisplayMessage("\n[A]ll records\n[S]pecific Date\n[E]xit\n");
-                string userOption = _userInteraction.StringAsInput("option");
+                _userInteraction.DisplayMessage("\n[1] All records\n[2] Specific Date\n[3] Exit\n");
+                string userOption = _userInteraction.GetStringInput("option");
                 switch (userOption)
                 {
-                    case "a":
-                    case "A":
+                    case "1":
                         _userInteraction.DisplayMessage("--------------------------------------------");
                         _userInteraction.DisplayMessage("          ALL Transactions");
                         _userInteraction.DisplayMessage("--------------------------------------------");
@@ -124,14 +114,12 @@ namespace ExpenseTracker.Manager
                         _userInteraction.DisplayMessage("--------------------------------------------");
                         exit = true;
                         break;
-                    case "s":
-                    case "S":
-                        DateTime userInputDate = _userInteraction.DateAsInput("to view Transactions");
+                    case "2":
+                        DateTime userInputDate = _userInteraction.GetDateInput("to view Transactions");
                         Date Date = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
-
                         if (Date is not null)
                         {
-                            _userInteraction.DisplayRecordsOnSpecificDate(Date);
+                            _userInteraction.DisplayDateRecords(Date);
                         }
                         else
                         {
@@ -141,86 +129,73 @@ namespace ExpenseTracker.Manager
                         }
                         exit = true;
                         break;
-                    case "e":
-                    case "E":
+                    case "3":
                         exit = true;
                         break;
                     default:
                         Console.WriteLine("Invalid Option !\n");
                         break;
-
-
                 }
-
             }
-
         }
 
         /// <summary>
-        /// <see cref="AddIncomeRecord"/> adds the income record details
+        /// Adds income record details
         /// </summary>
         void AddIncomeRecord()
         {
-            DateTime userInputDate = _userInteraction.DateAsInput("to add Income record");
+            DateTime userInputDate = _userInteraction.GetDateInput("to add Income record");
             Date IncomeDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
-
             if (IncomeDate is null)
             {
                 IncomeDate = new Date(userInputDate);
                 _currentUser.Dates.Add(IncomeDate);
-
             }
-
             IRecord record = _userInteraction.GetIncomeDetails();
-
             _repositoryInteraction.AddRecord(record, IncomeDate, _currentUser);
-
             _userInteraction.DisplayMessage("Record added successfully !!!!!!");
         }
 
-
         /// <summary>
-        /// <see cref="AddExpenseRecord"/> adds the expense record details
+        /// Adds expense record details
         /// </summary>
         void AddExpenseRecord()
         {
-            DateTime userInputDate = _userInteraction.DateAsInput("to add Expense record");
+            DateTime userInputDate = _userInteraction.GetDateInput("to add Expense record");
             Date ExpenseDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
-
             if (ExpenseDate is null)
             {
                 ExpenseDate = new Date(userInputDate);
                 _currentUser.Dates.Add(ExpenseDate);
-
             }
-
             IRecord record = _userInteraction.GetExpenseDetails();
-
             _repositoryInteraction.AddRecord(record, ExpenseDate, _currentUser);
-
             _userInteraction.DisplayMessage("Record added successfully !!!!!!");
-
-
         }
 
         /// <summary>
-        /// <see cref="DeleteRecordBasedOnDate"/> deletes the record based on given date
+        /// Deletes record based on Date
         /// </summary>
-        void DeleteRecordBasedOnDate()
+        void DeleteRecordOnDate()
         {
-            DateTime userInputDate = _userInteraction.DateAsInput("to add Income record");
+            if (_currentUser.Dates.Count == 0)
+            {
+                _userInteraction.DisplayMessage("___________________________________");
+                _userInteraction.DisplayMessage("\n   No Transactions found ");
+                _userInteraction.DisplayMessage("___________________________________");
+
+                return;
+            }
+            DateTime userInputDate = _userInteraction.GetDateInput("to add Income record");
             Date IncomeDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
             if (IncomeDate is not null)
             {
-
-                _userInteraction.DisplayRecordsOnSpecificDate(IncomeDate);
-                int userOption = _userInteraction.IntAsInput("Index of Record to delete");
+                _userInteraction.DisplayDateRecords(IncomeDate);
+                int userOption = _userInteraction.GetIntInput("Index of Record to delete");
                 if (userOption <= IncomeDate.records.Count && userOption > 0)
                 {
-
                     _repositoryInteraction.DeleteRecord(IncomeDate.records, userOption - 1, _currentUser);
                     _userInteraction.DisplayMessage("Record Deleted Sucessfully !");
-
                 }
                 else
                 {
@@ -234,19 +209,26 @@ namespace ExpenseTracker.Manager
         }
 
         /// <summary>
-        /// <see cref="FinancialSummary"/> displays the summary of the <see cref="User"/>
+        /// Displays summary of <see cref="User"/>
         /// </summary>
         void FinancialSummary()
         {
             bool Exit = false;
+            if (_currentUser.Dates.Count == 0)
+            {
+                _userInteraction.DisplayMessage("___________________________________");
+                _userInteraction.DisplayMessage("\n   No Transactions found ");
+                _userInteraction.DisplayMessage("___________________________________");
+
+                return;
+            }
             while (!Exit)
             {
-                _userInteraction.DisplayMessage("[O]verAll Summary\n[S]pecific Summary\n[E]xit");
-                string userOption = _userInteraction.StringAsInput("option");
+                _userInteraction.DisplayMessage("[1] OverAll Summary\n[2] Specific Summary\n[3] Exit");
+                string userOption = _userInteraction.GetStringInput("option");
                 switch (userOption)
                 {
-                    case "o":
-                    case "O":
+                    case "1":
                         _userInteraction.DisplayMessage("--------------------------------------------");
                         _userInteraction.DisplayMessage($"     OverAll Summary of {_currentUser.Name}");
                         _userInteraction.DisplayMessage("--------------------------------------------");
@@ -256,43 +238,35 @@ namespace ExpenseTracker.Manager
                         _userInteraction.DisplayMessage("--------------------------------------------");
                         Exit = true;
                         break;
-                    case "S":
-                    case "s":
-                        DateTime userInputDate = _userInteraction.DateAsInput("to view Summary");
+                    case "2":
+                        DateTime userInputDate = _userInteraction.GetDateInput("to view Summary");
                         Date Date = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
-
                         if (Date is not null)
                         {
-                            CalculateSummaryOnSpecificDate(Date);
+                            CalculateSummaryOnDate(Date);
                         }
                         else
                         {
                             _userInteraction.DisplayMessage($"No Transactions on date {userInputDate.ToString()}");
-
                         }
                         Exit = true;
                         break;
-                    case "e":
-                    case "E":
+                    case "3":
                         Exit = true;
                         break;
                     default:
                         Console.WriteLine("Invalid Option !");
                         break;
-
-
                 }
-
             }
         }
 
         /// <summary>
-        /// <see cref="CalculateSummaryOnSpecificDate(Date)"/> calculate the summary for specific <see cref="Date.CurrentDate"/>
+        /// CalculateS summary on <see cref="Date.CurrentDate"/>
         /// </summary>
         /// <param name="date">Date of the record</param>
-        void CalculateSummaryOnSpecificDate(Date date)
+        void CalculateSummaryOnDate(Date date)
         {
-
             int TotalIncome = 0;
             int TotalExpense = 0;
             foreach (IRecord record in date.records)
@@ -305,7 +279,6 @@ namespace ExpenseTracker.Manager
                 {
                     TotalExpense += record.Amount;
                 }
-
             }
             _userInteraction.DisplayMessage("--------------------------------------------");
             _userInteraction.DisplayMessage($"    Summary on {date.CurrentDate}");
@@ -314,15 +287,22 @@ namespace ExpenseTracker.Manager
             _userInteraction.DisplayMessage($"TotalIncome  : {TotalIncome}\n");
             _userInteraction.DisplayMessage($"TotalExpense : {TotalExpense}\n");
             _userInteraction.DisplayMessage("--------------------------------------------");
-
         }
 
         /// <summary>
-        /// <see cref="EditRecord"/> modify the details of the existing record
+        /// Modify record details
         /// </summary>
         void EditRecord()
         {
-            DateTime userInputDate = _userInteraction.DateAsInput("to add edit record");
+            if (_currentUser.Dates.Count == 0)
+            {
+                _userInteraction.DisplayMessage("___________________________________");
+                _userInteraction.DisplayMessage("\n   No Transactions found ");
+                _userInteraction.DisplayMessage("___________________________________");
+
+                return;
+            }
+            DateTime userInputDate = _userInteraction.GetDateInput("to add edit record");
             Date editDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
             if (editDate is not null)
             {
@@ -330,8 +310,8 @@ namespace ExpenseTracker.Manager
                 {
                     _userInteraction.DisplayMessage($"\nNo Transactions on {editDate.ToString()}\n");
                 }
-                _userInteraction.DisplayRecordsOnSpecificDate(editDate);
-                int userOption = _userInteraction.IntAsInput("Index of Record to edit");
+                _userInteraction.DisplayDateRecords(editDate);
+                int userOption = _userInteraction.GetIntInput("Index of Record to edit");
                 if (userOption <= editDate.records.Count && userOption > 0)
                 {
                     IRecord record = editDate.records[userOption - 1];
@@ -339,7 +319,6 @@ namespace ExpenseTracker.Manager
                     if (record is Income)
                     {
                         updateRecord = _userInteraction.GetIncomeDetails();
-
                     }
                     else
                     {
@@ -347,7 +326,6 @@ namespace ExpenseTracker.Manager
                     }
                     _repositoryInteraction.UpdateRecord(updateRecord, record, _currentUser);
                     _userInteraction.DisplayMessage("Record edited Sucessfully !");
-
                 }
                 else
                 {
@@ -358,9 +336,6 @@ namespace ExpenseTracker.Manager
             {
                 _userInteraction.DisplayMessage("\nInvalid Date !\n");
             }
-
-
         }
-
     }
 }

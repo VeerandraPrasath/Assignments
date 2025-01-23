@@ -1,46 +1,45 @@
 ﻿using Newtonsoft.Json;
 using ExpenseTracker.UserData;
+
 namespace ExpenseTracker.FileInteraction
 {
-
     /// <summary>
-    /// <see cref="IFileInteraction"/> handles the file read and write
+    /// Handles the file interaction
     /// </summary>
     public interface IFileInteraction
     {
-
         /// <summary>
-        /// <see cref="ReadAlldata(string)"/> reads the content from file
+        /// Reads all content from file
         /// </summary>
-        /// <param name="filePath">Location of the file</param>
-        /// <returns>List of <see cref="User"/>/></returns>
+        /// <param name="filePath">Path of the file</param>
+        /// <returns>returns list of <see cref="User"/>/></returns>
         public List<User> ReadAlldata(string filePath);
 
         /// <summary>
-        /// <see cref="WriteData(string, List{User})"/> write the content to file
+        /// Writes all contents to file
         /// </summary>
-        /// <param name="filePath">Location of the file</param>
-        /// <param name="users">Content to be written to the file</param>
+        /// <param name="filePath">Path of the file</param>
+        /// <param name="users">Content which written to the file</param>
         public void WriteData(string filePath, List<User> users);
     }
 
     /// <summary>
-    /// <see cref="FileInteraction"/> implements <see cref="IFileInteraction"/>
+    /// Implements <see cref="IFileInteraction"/>
     /// </summary>
     public class FileInteraction : IFileInteraction
     {
+
         public List<User> ReadAlldata(string filePath)
         {
-            var vSettings = new JsonSerializerSettings();
-            vSettings.TypeNameHandling = TypeNameHandling.Objects;
-            var vJsonStr = File.ReadAllText(filePath);
-            if (string.IsNullOrWhiteSpace(vJsonStr))
+            if (!File.Exists(filePath))
             {
                 return new List<User>();
             }
-            return JsonConvert.DeserializeObject<List<User>>(vJsonStr, vSettings);
-            
+            var vSettings = new JsonSerializerSettings();
+            vSettings.TypeNameHandling = TypeNameHandling.Objects;
+            var vJsonStr = File.ReadAllText(filePath);
 
+            return JsonConvert.DeserializeObject<List<User>>(vJsonStr, vSettings);
         }
 
         public void WriteData(string filePath, List<User> userList)
@@ -50,7 +49,6 @@ namespace ExpenseTracker.FileInteraction
             vSettings.TypeNameHandling = TypeNameHandling.Objects;
             var vJsonStr = JsonConvert.SerializeObject(userList, Formatting.Indented, vSettings);
             File.WriteAllText(filePath, vJsonStr);
-
         }
     }
 }

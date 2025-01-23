@@ -1,19 +1,17 @@
 ﻿using ExpenseTracker.Record;
 using ExpenseTracker.UserData;
+
 namespace ExpenseTracker.ConsoleInteraction
 {
-
     /// <summary>
-    /// <see cref="UserInteraction"/> implements <see cref="IUserInteraction"/>
+    /// Implements <see cref="IUserInteraction"/>
     /// </summary>
     public class UserInteraction : IUserInteraction
     {
 
-        public string StringAsInput(string message)
+        public string GetStringInput(string message)
         {
-            string? userInput;
-
-
+            string userInput;
             do
             {
                 Console.Write($"Enter {message} :");
@@ -23,41 +21,40 @@ namespace ExpenseTracker.ConsoleInteraction
                     Console.WriteLine("******Input should not be null ****");
                 }
             } while (userInput == "" || userInput is null);
+
             return userInput;
         }
 
-        public int IntAsInput(string message)
+        public int GetIntInput(string message)
         {
             bool isValidDigit = false;
             int intValue;
             do
             {
-
-                isValidDigit = int.TryParse(StringAsInput(message), out intValue);
+                isValidDigit = int.TryParse(GetStringInput(message), out intValue);
                 if (!isValidDigit)
                 {
                     Console.WriteLine("   Input should be number !");
                 }
             } while (!isValidDigit);
+
             return intValue;
         }
 
-        public DateTime DateAsInput(string message)
+        public DateTime GetDateInput(string message)
         {
             bool isValidDate = false;
             DateTime date;
             do
             {
-
-                string userInput = StringAsInput($"date(format: yyyy - MM - dd) {message}");
-
+                string userInput = GetStringInput($"date(format: yyyy - MM - dd) {message}");
                 isValidDate = DateTime.TryParse(userInput, out date);
                 if (!isValidDate)
                 {
                     Console.WriteLine("Invalid date format. Please try again !.");
                 }
-
             } while (!isValidDate);
+
             return date;
         }
 
@@ -68,20 +65,22 @@ namespace ExpenseTracker.ConsoleInteraction
 
         public void DisplayFeatures()
         {
-            Console.WriteLine("\n[V]iew Records \nAdd [I]ncome Record \nAdd [E]xpense Record \n[M]odify Record \n[D]elete \n[F]inancial summary\n[L]og out\n");
+            Console.WriteLine("\n[1] View Records \n[2] Add Income Record \n[3] Add Expense Record \n[4] Modify Record \n[5] Delete \n[6] Financial summary\n[7] Log out\n");
         }
 
         public Income GetIncomeDetails()
         {
-
             int amount;
             do
             {
-
-                amount = IntAsInput("amount");
-                if (amount <= 0) Console.WriteLine("Amount should be greater than 0 !\n");
+                amount = GetIntInput("amount");
+                if (amount <= 0)
+                {
+                    Console.WriteLine("Amount should be greater than 0 !\n");
+                }
             } while (amount <= 0);
-            string category = StringAsInput("the category ");
+            string category = GetStringInput("the category ");
+
             return new Income(amount, category);
         }
 
@@ -90,11 +89,14 @@ namespace ExpenseTracker.ConsoleInteraction
             int amount;
             do
             {
-
-                amount = IntAsInput("amount");
-                if (amount <= 0) Console.WriteLine("Amount should be greater than 0 !\n");
+                amount = GetIntInput("amount");
+                if (amount <= 0)
+                {
+                    Console.WriteLine("Amount should be greater than 0 !\n");
+                }
             } while (amount <= 0);
-            string category = StringAsInput("the category ");
+            string category = GetStringInput("the category ");
+
             return new Expense(amount, category);
         }
 
@@ -104,6 +106,7 @@ namespace ExpenseTracker.ConsoleInteraction
             if (dates.Count == 0)
             {
                 Console.WriteLine("\nNo Transactions !!!\n");
+
                 return;
             }
             foreach (Date date in dates)
@@ -116,12 +119,13 @@ namespace ExpenseTracker.ConsoleInteraction
             }
         }
 
-        public void DisplayRecordsOnSpecificDate(Date date)
+        public void DisplayDateRecords(Date date)
         {
             int count = 1;
             if (date.records.Count == 0)
             {
                 Console.WriteLine("\nNo Transactions !!!\n");
+
                 return;
             }
             Console.WriteLine($"Transactions on {date.CurrentDate.ToString()}");

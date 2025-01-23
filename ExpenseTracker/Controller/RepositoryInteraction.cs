@@ -5,23 +5,26 @@ using ExpenseTracker.UserData;
 
 namespace ExpenseTracker.Controller
 {
-
     /// <summary>
-    /// <see cref="RepositoryInteraction"/> implements <see cref="IRepositoryInteraction"/>
+    /// Implements <see cref="IRepositoryInteraction"/>
     /// </summary>
     public class RepositoryInteraction : IRepositoryInteraction
     {
-        string FilePath { get; set; }
         private List<User> _users;
         private readonly IFileInteraction _fileInteraction;
         private readonly IUserInteraction _userInteraction;
 
         /// <summary>
-        /// <see cref="RepositoryInteraction"/> injects <see cref="IUserInteraction"/>,<see cref="IFileInteraction"/> and the filepath
+        /// Path of the file
         /// </summary>
-        /// <param name="userInteraction"></param>
-        /// <param name="fileInteraction"></param>
-        /// <param name="filePath"></param>
+        public string FilePath { get; set; }
+
+        /// <summary>
+        /// Constructor for RepositoryInteraction
+        /// </summary>
+        /// <param name="userInteraction">User Interaction</param>
+        /// <param name="fileInteraction">File Interaction</param>
+        /// <param name="filePath">Path of the File</param>
         public RepositoryInteraction(IUserInteraction userInteraction, IFileInteraction fileInteraction, string filePath)
         {
             _fileInteraction = fileInteraction;
@@ -36,6 +39,7 @@ namespace ExpenseTracker.Controller
             {
                 if (user.Name.Equals(username)) return user;
             }
+
             return null;
         }
 
@@ -44,14 +48,16 @@ namespace ExpenseTracker.Controller
             string newUser;
             do
             {
-
-                newUser = _userInteraction.StringAsInput("New Username");
-                if (IsUserPresent(newUser) is not null) _userInteraction.DisplayMessage("\nUsername already exist !\n");
+                newUser = _userInteraction.GetStringInput("New Username");
+                if (IsUserPresent(newUser) is not null)
+                {
+                    _userInteraction.DisplayMessage("\nUsername already exist !\n");
+                }
             } while (IsUserPresent(newUser) is not null);
             _users.Add(new User(newUser));
             _userInteraction.DisplayMessage("\nAccount created successfully ! please Login !\n");
-            return true;
 
+            return true;
         }
 
         public void LoadAllData()
@@ -63,14 +69,13 @@ namespace ExpenseTracker.Controller
         {
             foreach (Date Date in user.Dates)
             {
-
                 if (Date.CurrentDate.Date == Checkdate.Date)
                 {
                     return Date;
                 }
             }
-            return null;
 
+            return null;
         }
 
         public bool DeleteRecord(List<IRecord> records, int index, User user)
@@ -78,8 +83,8 @@ namespace ExpenseTracker.Controller
             IRecord record = records[index];
             user.CurrentBalance = record is Income ? user.CurrentBalance - record.Amount : user.CurrentBalance + record.Amount;
             records.Remove(record);
-            return true;
 
+            return true;
         }
 
         public void AddRecord(IRecord record, Date date, User user)
@@ -94,9 +99,7 @@ namespace ExpenseTracker.Controller
                 user.CurrentBalance -= record.Amount;
                 user.TotalExpense += record.Amount;
             }
-
             date.records.Add(record);
-
         }
 
         public void UpdateRecord(IRecord newRecord, IRecord oldRecord, User user)
@@ -113,13 +116,11 @@ namespace ExpenseTracker.Controller
             }
             oldRecord.Category = newRecord.Category;
             oldRecord.Amount = newRecord.Amount;
-
         }
 
         public void WriteToFile()
         {
             _fileInteraction.WriteData(FilePath, _users);
         }
-
     }
 }
