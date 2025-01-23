@@ -5,7 +5,7 @@ using ContactManager.Model;
 namespace ContactManager.Controller
 {
     /// <summary>
-    ///Implements <see cref="IContactRepository"/>
+    /// Implements <see cref="IContactRepository"/>
     /// </summary>
     public class ContactRepository : IContactRepository
     {
@@ -49,7 +49,6 @@ namespace ContactManager.Controller
                 if (!Regex.IsMatch(email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
                 {
                     Console.WriteLine("Invalid Email !!");
-
                 }
                 else
                 {
@@ -66,7 +65,6 @@ namespace ContactManager.Controller
                 if (inputPhoneNum.StartsWith("+91"))
                 {
                     inputPhoneNum = inputPhoneNum.Remove(0, 3);
-
                 }
                 if (inputPhoneNum.Equals(""))
                 {
