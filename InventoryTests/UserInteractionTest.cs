@@ -105,10 +105,6 @@ namespace InventoryManagerTests
         [Test]
         public void GetInputIntShallReturnInt_BasedOnUserInput()
         {
-            //string input = "5\n\100\nojdad";
-            //StringReader  inputReader = new StringReader(input);
-            //Console.SetIn(inputReader);
-
             string input = "1";
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
