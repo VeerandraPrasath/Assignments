@@ -10,18 +10,24 @@ namespace InventoryManagerTests
     {
         private List<Product> _productList;
         private IProductRepository _productRepository;
+        private Product _product1;
+        private Product _product2;  
         [SetUp]
         public void setup()
         {
-            _productList = new List<Product>() { new Product(1, "Prasath", 10, 20) };
+            _product1 = new Product(1, "Prasath", 10, 20);
+            _product2 = new Product(2, "Arun", 10, 15);
+            _productList = new List<Product>() {_product1,_product2 };
             _productRepository = new ProductRepository(_productList);
         }
 
+        [TestCase(3,"Vasanth",23,234)]
+        [TestCase(4, "Nikil", 23, 22)]
         [Test]
-        public void AddProductShallReturnTrueIfProductAdded()
+        public void AddProductShallReturnTrueIfProductAdded(int id,string name,int quantity,int price)
         {
 
-            var product = new Product(2, "Arun", 5, 10);
+            var product = new Product(id,name,price,quantity);
             var result = _productRepository.AddProduct(product);
             ClassicAssert.AreEqual(true, result);
         }
@@ -33,17 +39,14 @@ namespace InventoryManagerTests
             ClassicAssert.AreEqual(_productList, result);
         }
 
+        [TestCase(3,true)]
+        [TestCase(4, true)]
+        [TestCase(1,false)]
+        [TestCase(2, false)]
         [Test]
-        public void IsIdUniqueShallReturnsTrueIfIdUniqueElseFalse()
+        public void IsIdUniqueShallReturnsTrueIfIdUniqueElseFalse(int id,bool expected)
         {
-            var id = 1;
-            var expected = false;
             var result = _productRepository.IsIdUnique(id);
-            ClassicAssert.AreEqual(expected, result);
-
-            id = 2;
-            expected = true;
-            result = _productRepository.IsIdUnique(id);
             ClassicAssert.AreEqual(expected, result);
         }
 
@@ -61,38 +64,23 @@ namespace InventoryManagerTests
             ClassicAssert.AreEqual(expected, result);
         }
 
+        [TestCase("Prasath",false)]
+        [TestCase("Nikil",true)]
+        [TestCase("Arun",false)]
         [Test]
-        public void IsNameUniqueShallReturnsTrueIfIdUniqueElseFalse()
+        public void IsNameUniqueShallReturnsTrueIfIdUniqueElseFalse(string name,bool expected)
         {
-            var name = "Prasath";
-            var expected = false;
             var result = _productRepository.IsNameUnique(name);
-            ClassicAssert.AreEqual(expected, result);
-
-            name = "Arun";
-            expected = true;
-            result = _productRepository.IsNameUnique(name);
             ClassicAssert.AreEqual(expected, result);
         }
 
+        [TestCase("Prasath",true)]
+        [TestCase("Zyusa",false)]
         [Test]
-        public void FindProductShallReturnProductIfPresentElseNull()
+        public void FindProductShallReturnProductIfPresentElseNull(string productDetail,bool expected)
         {
-            //string input = "5\n\100\nojdad";
-            //StringReader  inputReader = new StringReader(input);
-            //Console.SetIn(inputReader);
-
-            //StringWriter output = new StringWriter();
-            //Console.SetOut(output);
-            //string res = output.ToString();
-
-            var result = _productRepository.FindProduct("Prasath");
-            ClassicAssert.NotNull(result);
-
-            result = _productRepository.FindProduct("2");
-            ClassicAssert.Null(result);
-            //ClassicAssert.Contains
-
+            var result = _productRepository.FindProduct(productDetail);
+            ClassicAssert.AreEqual(result is not null, expected);
         }
     }
 }

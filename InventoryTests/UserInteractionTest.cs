@@ -1,6 +1,7 @@
 ﻿using InventoryManager.ConsoleInteraction;
 using InventoryManager.Controller;
 using InventoryManager.Model;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
@@ -31,10 +32,9 @@ namespace InventoryManagerTests
         public void DisplayAllProductsShallPrintAllProductInList()
         {
             string products="";
-            string newLine = "";
             for (int i = 0; i < _productList.Count; i++)
             {
-                products += $"{newLine}{i + 1} . {_productList[i].ToString()}\r\n";
+                products += $"{i + 1} . {_productList[i].ToString()}\r\n";
                 
             }
 
@@ -43,7 +43,6 @@ namespace InventoryManagerTests
             _userInteraction.DisplayAllProducts(_productList);
 
             string output = stringWriter.ToString();
-            //ClassicAssert.IsTrue(output.Contains(products));
             ClassicAssert.AreEqual(products, output);
         }
 
@@ -57,6 +56,7 @@ namespace InventoryManagerTests
 
             string output = stringWriter.ToString();
             ClassicAssert.AreEqual(message, output);
+            stringWriter.Dispose();
         }
 
         [Test]
@@ -78,66 +78,100 @@ namespace InventoryManagerTests
             string output = stringWriter.ToString();
             ClassicAssert.AreEqual(message, output);
         }
-
+        [TestCase(3,"Vasanth",10,15)]
+        [TestCase(4,"Nikil",12,10)]
         [Test]
-        public void GetProductDetail_ShallReturnProductBasedOnUserInput()
+        public void GetProductDetail_ShallReturnProductBasedOnUserInput(int id,string name,int quantity,int price)
         {
+            string input = $"{id}\n{name}\n{quantity}\n{price}";
+            StringReader inputReader = new StringReader(input);
+            Console.SetIn(inputReader);
+
+            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>())).Returns((string name) => {
+                foreach (Product p in _productList)
+                {
+                    if (p.Name.Equals(name)) return false; break;
+                }
+                return true;
+            });
+            _productRepository.Setup(mock => mock.IsIdUnique(It.IsAny<int>()))
+                      .Returns((int id) => !_productList.Any(p => p.Id == id));
+
+
+            Product result = _userInteraction.GetProductDetail();
+            ClassicAssert.IsTrue(result.Id==id && result.Name.Equals(name) && result.Quantity==quantity && result.Price==price);
 
         }
 
+        [TestCase("ABCD")]
+        [TestCase("Prasath")]
         [Test]
-        public void GetInputStringShallReturnString_BasedOnUserInput()
+        public void GetInputStringShallReturnString_BasedOnUserInput(string input)
         {
-            //string input = "5\n\100\nojdad";
-            //StringReader  inputReader = new StringReader(input);
-            //Console.SetIn(inputReader);
-
-            string input = "Prasath";
             StringReader inputReader= new StringReader(input);
             Console.SetIn(inputReader);
 
             var result = _userInteraction.GetInputString("Name");
 
             ClassicAssert.AreEqual(input, result);
-
+            inputReader.Dispose();
         }
 
+
+        [TestCase("1")]
+        [TestCase("91283")]
+        [TestCase("0003")]
+        [TestCase("2323")]
         [Test]
-        public void GetInputIntShallReturnInt_BasedOnUserInput()
+        public void GetInputIntShallReturnInt_BasedOnUserInput(string input)
         {
-            string input = "1";
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
 
             var result = _userInteraction.GetInputString("Id");
 
             ClassicAssert.AreEqual(input, result);
-
+            inputReader.Dispose();
         }
 
         [Test]
-        public void GetUniqueIdShallReturnIdIfInputIdIsUnique()
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        public void GetUniqueIdShallReturnIdIfInputIdIsUnique(int input)
         {
-            string consoleinput = "1";
+            string consoleinput = $"{input}";
             StringReader inputReader = new StringReader(consoleinput);
             Console.SetIn(inputReader);
 
-            var input = 1;
-            _productRepository.Setup(mock=>mock.IsIdUnique(input)).Returns(true);
-             var result= _userInteraction.GetUniqueId();
+            //var input = 3;
+            _productRepository.Setup(mock => mock.IsIdUnique(input))
+                       .Returns((int id) => !_productList.Any(p => p.Id == id));
+
+            var result = _userInteraction.GetUniqueId();
             ClassicAssert.AreEqual(input, result);
+            inputReader.Dispose();
         }
 
+        [TestCase("Vasanth")]
+        [TestCase("Nikil")]
         [Test]
-        public void GetUniqueNameShallReturnIdIfInputIdIsUnique()
+        public void GetUniqueNameShallReturnNameIfInputNameIsUnique(string input)
         {
-            string input = "Prasath";
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
 
-            _productRepository.Setup(mock => mock.IsNameUnique(input)).Returns(true);
-            var result = _userInteraction.GetUniqueId();
+            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>())).Returns((string name) => {
+                foreach (Product p in _productList)
+                {
+                    if (p.Name.Equals(name)) return false; break;
+                }
+                return true;
+            });
+
+            var result = _userInteraction.GetUniqueName();
             ClassicAssert.AreEqual(input, result);
+            inputReader.Dispose();
         }
     }
 }
