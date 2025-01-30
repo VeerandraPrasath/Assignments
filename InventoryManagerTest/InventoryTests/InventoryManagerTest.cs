@@ -15,6 +15,7 @@ namespace InventoryManagerTests
         private Mock<IUserInteraction> _userInteraction;
         private List<Product> _productList;
         private Product _product1,_emptyProduct;
+
         [SetUp]
         public void Setup()
         {
@@ -26,27 +27,31 @@ namespace InventoryManagerTests
             _manageInventory = new ManageInventory(_productRepository.Object, _userInteraction.Object);
         }
 
+        [TestCase(2,"Arun",10,30)]
+        [TestCase(3,"Bhai",30,40)]
         [Test]
-        public void AddNewProductShallAddProductTOList()
+        public void AddNewProduct_ShallAddProductTOList(int id,string name,int quantity,int price)
         {
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            var product = new Product(2, "NewProduct", 2, 10);
+            var product = new Product(id,name,quantity,price);
             _userInteraction.Setup(mock => mock.GetProductDetail()).Returns(product);
             _manageInventory.AddNewProduct();
-            _productRepository.Verify(mock=>mock.AddProduct(product));
 
+
+            _productRepository.Verify(mock=>mock.AddProduct(product));
             var output= stringWriter.ToString();
             ClassicAssert.IsTrue(output.Contains("Product added successfully !!!"));
-
         }
 
+        [TestCase("Prasath")]
+        [TestCase("1")]
         [Test]
-        public void DeleteExistingProductShallDeleteProductIfExisted()
-        {   var inputString = "Prasath";
+        public void DeleteExistingProduct_ShallDeleteProduct_IfExisted(string inputString)
+        {  
             _productRepository.Setup(mock=>mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
+            _userInteraction.Setup(mock => mock.GetInputString(It.IsAny<string>())).Returns(inputString);
             _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_product1);
 
             _manageInventory.DeleteExistingProduct();   
@@ -54,36 +59,32 @@ namespace InventoryManagerTests
             _productRepository.Verify(mock=>mock.DeleteProduct(_product1));
         }
 
+        [TestCase("Arun")]
+        [TestCase("2")]
         [Test]
-        public void DeleteExistingProductShallNotDeleteProductIfNotExisted()
+        public void DeleteExistingProduct_ShallNotDeleteProduct_IfNotExisted(string inputString)
         {
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            var inputString = "4";
             _productRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
+            _userInteraction.Setup(mock => mock.GetInputString(It.IsAny<string>())).Returns(inputString);
             _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_emptyProduct);
 
             _manageInventory.DeleteExistingProduct();
 
-            //_productRepository.Verify(mock => mock.DeleteProduct(_product1));
             var output = stringWriter.ToString();
             ClassicAssert.IsTrue(output.Contains("Product Not Found  !"));
         }
 
-        [Test]
-        public void EditExistingProductShallEditProductNameWhenOptionIs1()
+        [TestCase("Prasath","Veera","1")]
+        public void EditExistingProduct_ShallEditProductName_WhenOptionIs1(string inputString,string newName,string userOption)
         {
-            var inputString = "Prasath";
-            //var editOption = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n";
+       
             _productRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
+            _userInteraction.Setup(mock => mock.GetInputString(It.IsAny<string>())).Returns(inputString);
             _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_product1);
-
-            var newName = "Veera";
-            //_userInteraction.Setup(mock=>mock.DisplayEditOptions());
-            _userInteraction.Setup(mock=>mock.GetInputString("option")).Returns("1");
+            _userInteraction.Setup(mock=>mock.GetInputString("option")).Returns(userOption);
             _userInteraction.Setup(mock => mock.GetUniqueName()).Returns(newName);
 
             _manageInventory.EditExistingProduct();
@@ -92,92 +93,69 @@ namespace InventoryManagerTests
 
         }
 
-        [Test]
-        public void EditExistingProductShallEditProductIdWhenOptionIs2()
+        [TestCase("Prasath", 3, "2")]
+        public void EditExistingProduct_ShallEditProductId_WhenOptionIs2(string inputString, int newId, string userOption)
         {
-            var inputString = "Prasath";
-            //var editOption = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n";
             _productRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
+            _userInteraction.Setup(mock => mock.GetInputString(It.IsAny<string>())).Returns(inputString);
             _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_product1);
-
-            var newId = 3;
-            //_userInteraction.Setup(mock => mock.DisplayEditOptions());
-            _userInteraction.Setup(mock => mock.GetInputString("option")).Returns("2");
+            _userInteraction.Setup(mock => mock.GetInputString("option")).Returns(userOption);
             _userInteraction.Setup(mock => mock.GetUniqueId()).Returns(newId);
 
             _manageInventory.EditExistingProduct();
 
             ClassicAssert.AreEqual(newId, _product1.Id);
-
         }
 
-        [Test]
-        public void EditExistingProductShallEditProductQuantityWhenOptionIs3()
+        [TestCase("Prasath", 30, "3")]
+        public void EditExistingProduct_ShallEditProductQuantity_WhenOptionIs3(string inputString, int newQuantity, string userOption)
         {
-            var inputString = "Prasath";
-            //var editOption = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n";
             _productRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
+            _userInteraction.Setup(mock => mock.GetInputString(It.IsAny<string>())).Returns(inputString);
             _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_product1);
-
-            var newQuantity = 30;
-            //_userInteraction.Setup(mock => mock.DisplayEditOptions());
-            _userInteraction.Setup(mock => mock.GetInputString("option")).Returns("3");
+            _userInteraction.Setup(mock => mock.GetInputString("option")).Returns(userOption);
             _userInteraction.Setup(mock => mock.GetInputInt(It.IsAny<string>())).Returns(newQuantity);
 
             _manageInventory.EditExistingProduct();
 
             ClassicAssert.AreEqual(newQuantity, _product1.Quantity);
-
         }
 
-        [Test]
-        public void EditExistingProductShallEditProductPriceWhenOptionIs4()
+        [TestCase("Prasath", 15, "4")]
+        public void EditExistingProduct_ShallEditProductPrice_WhenOptionIs4(string inputString, int newPrice, string userOption)
         {
-            var inputString = "Prasath";
-            //var editOption = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n";
             _productRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
+            _userInteraction.Setup(mock => mock.GetInputString(It.IsAny<string>())).Returns(inputString);
             _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_product1);
-
-            var newPrice = 100;
-            //_userInteraction.Setup(mock => mock.DisplayEditOptions());
-            _userInteraction.Setup(mock => mock.GetInputString("option")).Returns("4");
+            _userInteraction.Setup(mock => mock.GetInputString("option")).Returns(userOption);
             _userInteraction.Setup(mock => mock.GetInputInt(It.IsAny<string>())).Returns(newPrice);
 
             _manageInventory.EditExistingProduct();
 
             ClassicAssert.AreEqual(newPrice, _product1.Price);
-
         }
 
+        [TestCase("Prasa",false)]
+        [TestCase("1",true)]
+        [TestCase("Arun",true)]
+        [TestCase("xxzzyy",false)]
         [Test]
-        public void SearchProductsShallReturnProductIfExisted()
+        public void SearchProducts_ShallReturnProduct_IfExistedElseNull(string inputString,bool expected)
         {
-            var inputString = "Prasath";
-            //var editOption = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n";
             _productRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
-            _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_product1);
-
-            Product product=_manageInventory.SearchProducts();
-            ClassicAssert.AreEqual(_product1, product);
-        }
-
-        [Test]
-        public void SearchProductsShallReturnNullIfNotExisted()
-        {
-            var inputString = "4";
-            //var editOption = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n";
-            _productRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
-            _userInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(inputString);
-            _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(_emptyProduct);
-
+            _userInteraction.Setup(mock => mock.GetInputString(It.IsAny<string>())).Returns(inputString);
+            _productRepository.Setup(mock => mock.FindProduct(inputString)).Returns(() => {
+                foreach (var p in _productList)
+                {
+                    if (p.Id.ToString().Equals(inputString) || p.Name.Equals(inputString))
+                    {
+                        return p;
+                    }
+                }
+                return null;
+            });
             Product product = _manageInventory.SearchProducts();
-            ClassicAssert.IsNull(product);
+            ClassicAssert.AreEqual(expected,product is not null);
         }
     }
-
 }
-;

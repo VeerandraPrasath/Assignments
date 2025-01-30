@@ -5,7 +5,7 @@ using InventoryManager.Model;
 
 namespace InventoryManager
 {
-    internal class Program
+    public class Program
     {
         private static void Main(string[] args)
         {
@@ -15,7 +15,7 @@ namespace InventoryManager
             App app = new App(inventoryManager, userInteraction, productRepository);
             app.Run();
         }
-
+    }
         /// <summar
         /// Starts the main flow
         /// </summary>
@@ -41,7 +41,7 @@ namespace InventoryManager
             /// <summary>
             /// Initialize the work flow
             /// </summary>
-            public void Run()
+            public  void Run()
             {
                 bool isExit = false;
                 while (!isExit)
@@ -87,4 +87,3 @@ namespace InventoryManager
             }
         }
     }
-}

@@ -52,7 +52,7 @@ namespace InventoryManager.ConsoleInteraction
             name = GetUniqueName();
             quantity = GetInputInt("quantity ");
             price = GetInputInt("price");
-
+           
             return new Product(id,name, quantity, price);
         }
 

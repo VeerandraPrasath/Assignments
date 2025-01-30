@@ -16,26 +16,27 @@ namespace InventoryManagerTests
         private Mock<IProductRepository> _productRepository;
         private IUserInteraction _userInteraction;
         StringWriter stringWriter;
+
         [SetUp]
         public void SetUp()
         {
             _product1 = new Product(1, "Prasath", 10, 20);
-            _productList = new List<Product>() { _product1,new Product(2,"Arun",20,30)};
+            _productList = new List<Product>() { _product1, new Product(2, "Arun", 20, 30) };
             _productRepository = new Mock<IProductRepository>();
-            _userInteraction=new UserInteraction(_productRepository.Object);
+            _userInteraction = new UserInteraction(_productRepository.Object);
             stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
         }
 
         [Test]
-        public void DisplayAllProductsShallPrintAllProductInList()
+        public void DisplayAllProducts_ShallPrintAllProductInList()
         {
-            string products="";
+            string products = "";
             for (int i = 0; i < _productList.Count; i++)
             {
                 products += $"{i + 1} . {_productList[i].ToString()}\r\n";
-                
+
             }
 
             StringWriter stringWriter = new StringWriter();
@@ -47,7 +48,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayAllProductsShallPrintMessageIFProductNotFoundInList()
+        public void DisplayAllProducts_ShallPrintMessage_IFProductNotFoundInList()
         {
             string message = "**** No products available ****\r\n";
             StringWriter stringWriter = new StringWriter();
@@ -60,7 +61,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayEditOptionsShallPrintAllEditOptions()
+        public void DisplayEditOptions_ShallPrintAllEditOptions()
         {
             string message = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n\r\n";
             _userInteraction.DisplayEditOptions();
@@ -70,7 +71,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayOptionsShallPrintAllAvailableOptions()
+        public void DisplayOptions_ShallPrintAllAvailableOptions()
         {
             string message = "\n[1] View \n[2] Add \n[3] Edit \n[4] Delete \n[5] Search \n[6] Clear \n[7] Exit\n\r\n";
             _userInteraction.DisplayOptions();
@@ -78,28 +79,24 @@ namespace InventoryManagerTests
             string output = stringWriter.ToString();
             ClassicAssert.AreEqual(message, output);
         }
-        [TestCase(3,"Vasanth",10,15)]
-        [TestCase(4,"Nikil",12,10)]
+
+        [TestCase(3, "Vasanth", 10, 15)]
+        [TestCase(4, "Nikil", 12, 10)]
         [Test]
-        public void GetProductDetail_ShallReturnProductBasedOnUserInput(int id,string name,int quantity,int price)
+        public void GetProductDetail_ShallReturnProduct_BasedOnUserInput(int id, string name, int quantity, int price)
         {
             string input = $"{id}\n{name}\n{quantity}\n{price}";
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
-
-            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>())).Returns((string name) => {
-                foreach (Product p in _productList)
-                {
-                    if (p.Name.Equals(name)) return false; break;
-                }
-                return true;
-            });
+            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>()))
+                  .Returns((string name) => !_productList.Any(p => p.Name.Equals(name)));
             _productRepository.Setup(mock => mock.IsIdUnique(It.IsAny<int>()))
                       .Returns((int id) => !_productList.Any(p => p.Id == id));
 
 
             Product result = _userInteraction.GetProductDetail();
-            ClassicAssert.IsTrue(result.Id==id && result.Name.Equals(name) && result.Quantity==quantity && result.Price==price);
+
+            ClassicAssert.IsTrue(result.Id == id && result.Name.Equals(name) && result.Quantity == quantity && result.Price == price);
 
         }
 
@@ -108,7 +105,7 @@ namespace InventoryManagerTests
         [Test]
         public void GetInputStringShallReturnString_BasedOnUserInput(string input)
         {
-            StringReader inputReader= new StringReader(input);
+            StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
 
             var result = _userInteraction.GetInputString("Name");
@@ -144,7 +141,6 @@ namespace InventoryManagerTests
             StringReader inputReader = new StringReader(consoleinput);
             Console.SetIn(inputReader);
 
-            //var input = 3;
             _productRepository.Setup(mock => mock.IsIdUnique(input))
                        .Returns((int id) => !_productList.Any(p => p.Id == id));
 
@@ -160,16 +156,11 @@ namespace InventoryManagerTests
         {
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
-
-            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>())).Returns((string name) => {
-                foreach (Product p in _productList)
-                {
-                    if (p.Name.Equals(name)) return false; break;
-                }
-                return true;
-            });
+            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>()))
+                  .Returns((string name) => !_productList.Any(p => p.Name.Equals(name)));
 
             var result = _userInteraction.GetUniqueName();
+
             ClassicAssert.AreEqual(input, result);
             inputReader.Dispose();
         }
