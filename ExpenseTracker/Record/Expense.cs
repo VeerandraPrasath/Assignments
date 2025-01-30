@@ -1,17 +1,37 @@
-﻿// See https://aka.ms/new-console-template for more information
-public class Expense :IRecord
+﻿namespace ExpenseTracker.Record
 {
-    public int Amount { get; set; }
-    public string Category { get; set; }
-    public Expense(User user, int amount, string category)
+    /// <summary>
+    /// Implements <see cref="IRecord"/>
+    /// </summary>
+    public class Expense : IRecord
     {
-        Amount = amount;
-        Category = category;
-        user.CurrentBalance -= amount;
-    }
-    public override string ToString()
-    {
-        return $" {nameof(Expense)}  Category {Category} INR :{Amount}";
+        /// <summary>
+        /// Amount of the record
+        /// </summary>
+        public int Amount { get; set; }
+        /// <summary>
+        /// Category of the record
+        /// </summary>
+        public string Category { get; set; }
+
+        /// <summary>
+        /// Constructor for Expense
+        /// </summary>
+        /// <param name="amount">Amount of the expense</param>
+        /// <param name="category">Category of the expense</param>
+        public Expense(int amount, string category)
+        {
+            Amount = amount;
+            Category = category;
+        }
+
+        /// <summary>
+        /// Gives all the expense details
+        /// </summary>
+        /// <returns>returns string</returns>
+        public override string ToString()
+        {
+            return $" {nameof(Expense)}  Category {Category} INR :{Amount}";
+        }
     }
 }
-

@@ -1,7 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
-public interface IRecord
+﻿namespace ExpenseTracker.Record
 {
-    public int Amount { get; set; }
-    public string Category { get; set; }
+    /// <summary>
+    /// Stores the details of the record
+    /// </summary>
+    public interface IRecord
+    {
+        /// <summary>
+        /// Amount of the record
+        /// </summary>
+        public int Amount { get; set; }
+        /// <summary>
+        /// Category of the record
+        /// </summary>
+        public string Category { get; set; }
+    }
 }
-

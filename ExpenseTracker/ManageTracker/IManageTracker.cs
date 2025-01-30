@@ -1,7 +1,18 @@
-﻿// See https://aka.ms/new-console-template for more information
-public interface IManageTracker
+﻿namespace ExpenseTracker.Manager
 {
-    public void login();
-    public void CheckExisitingUser();
-}
+    /// <summary>
+    /// Manages the Login functionalities
+    /// </summary>
+    public interface IManageTracker
+    {
+        /// <summary>
+        /// Used to login the account
+        /// </summary>
+        public void Login();
 
+        /// <summary>
+        /// Checks wheather the User is valid
+        /// </summary>
+        public void CheckExisitingUser();
+    }
+}

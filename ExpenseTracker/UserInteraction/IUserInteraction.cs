@@ -1,18 +1,67 @@
-﻿// See https://aka.ms/new-console-template for more information
-public interface IUserInteraction
+﻿using ExpenseTracker.Record;
+using ExpenseTracker.UserData;
+
+namespace ExpenseTracker.ConsoleInteraction
 {
-    void displayMessage(string message);
+    /// <summary>
+    /// Handles interaction with User
+    /// </summary>
+    public interface IUserInteraction
+    {
+        /// <summary>
+        /// Display message
+        /// </summary>
+        /// <param name="message">Message</param>
+        public void DisplayMessage(string message);
 
-    string stringAsInput(string message);
-    int intAsInput(string message);
+        /// <summary>
+        /// Gets string input
+        /// </summary>
+        /// <param name="message">Message</param>
+        /// <returns>returns string</returns>
+        public string GetStringInput(string message);
 
-    public DateTime dateAsInput(string message);
+        /// <summary>
+        /// <see cref="GetIntInput(string)"/> get integer as input
+        /// </summary>
+        /// <param name="message">message to be printed</param>
+        /// <returns>returns integer</returns>
+        public int GetIntInput(string message);
 
-    void displayFeatures();
+        /// <summary>
+        /// Gets dateTime input
+        /// </summary>
+        /// <param name="message">Message</param>
+        /// <returns>returns dateTime</returns>
+        public DateTime GetDateInput(string message);
 
-    Income getIncomeDetails(User user);
-   Expense getExpenseDetails(User user);
-    public void displayAllRecords(List<Date> dates);
-    public void displayRecordsOnSpecificDate(Date date);
+        /// <summary>
+        /// Displays features
+        /// </summary>
+        public void DisplayFeatures();
+
+        /// <summary>
+        /// Gets Income details
+        /// </summary>
+        /// <returns>returns <see cref="Income"/></returns>
+        public Income GetIncomeDetails();
+
+        /// <summary>
+        /// Gets Expense details
+        /// </summary>
+        /// <returns>returns <see cref="Expense"/></returns>
+        public Expense GetExpenseDetails();
+
+        /// <summary>
+        /// Displays all records
+        /// </summary>
+        /// <param name="dates">List of Dates</param>
+        public void DisplayAllRecords(List<Date> dates);
+
+        /// <summary>
+        /// Display records on Date
+        /// </summary>
+        /// <param name="date">Date</param>
+        public void DisplayDateRecords(Date date);
+    }
 }
-

@@ -1,12 +1,29 @@
-﻿// See https://aka.ms/new-console-template for more information
-public class Date
+﻿using ExpenseTracker.Record;
+
+namespace ExpenseTracker.UserData
 {
-    public DateTime CurrentDate;
-    public List<IRecord> records;
-    public Date(DateTime date)
+    /// <summary>
+    /// Stores <see cref="CurrentDate"/> and <see cref="records"/>
+    /// </summary>
+    public class Date
     {
-        CurrentDate = date;
-        records=new List<IRecord>();    
+        /// <summary>
+        /// Date of the records
+        /// </summary>
+        public DateTime CurrentDate { get; set; }
+        /// <summary>
+        /// List of records
+        /// </summary>
+        public List<IRecord> records { get; set; }
+
+        /// <summary>
+        /// Constructor for Date
+        /// </summary>
+        /// <param name="date">Date and Time</param>
+        public Date(DateTime date)
+        {
+            CurrentDate = date;
+            records = new List<IRecord>();
+        }
     }
 }
-

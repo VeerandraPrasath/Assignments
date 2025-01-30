@@ -1,161 +1,163 @@
-﻿// See https://aka.ms/new-console-template for more information
-public class ManagerTracker : IManageTracker
+﻿using ExpenseTracker.ConsoleInteraction;
+using ExpenseTracker.Controller;
+using ExpenseTracker.Record;
+using ExpenseTracker.UserData;
+
+namespace ExpenseTracker.Manager
 {
-    public User _user;
-    
-    private readonly IUserInteraction _userInteraction;
-    private readonly IRepositoryInteraction _repositoryInteraction;
-   
-    public ManagerTracker(IUserInteraction userInteraction, IRepositoryInteraction repositoryInteraction)
+    /// <summary>
+    /// Implements <see cref="IManageTracker"/>
+    /// </summary>
+    public class ManageTracker : IManageTracker
     {
-       
-        _userInteraction = userInteraction;
-        _user = null;
-        _repositoryInteraction = repositoryInteraction;
-    }
-  
+        private User _currentUser;
+        private readonly IUserInteraction _userInteraction;
+        private readonly IRepositoryInteraction _repositoryInteraction;
 
-   
-    public void CheckExisitingUser()
-    {
-        string userName = _userInteraction.stringAsInput("Username");
-        _user=_repositoryInteraction.isUserPresent(userName);
-        string message= _user != null ? $"Logged into {userName}  !" : "Invalid User !";
-        _userInteraction.displayMessage(message);
-        if (_user != null)
+        /// <summary>
+        /// Constructor for ManageTracker
+        /// </summary>
+        public ManageTracker(IUserInteraction userInteraction, IRepositoryInteraction repositoryInteraction)
         {
-
-            login();
-            
+            _userInteraction = userInteraction;
+            _currentUser = null;
+            _repositoryInteraction = repositoryInteraction;
         }
 
-
-    }
-
-     public  void login()
-    {
-       
-        bool Exit = false;
-        while (!Exit)
+        public void CheckExisitingUser()
         {
-            _userInteraction.displayFeatures();
-           string userChoice= _userInteraction.stringAsInput("Option ");
-            switch (userChoice)
+            string userName = _userInteraction.GetStringInput("Username");
+            _currentUser = _repositoryInteraction.IsUserPresent(userName);
+            if (_currentUser != null)
             {
-                case "v":
-                case "V":
-                    viewRecords();
-                    break;
-                case "i":
-                case "I":
-                    addIncomeRecord();
-                    break;
-                case "E":
-                case "e":
-                    addExpenseRecord();
-                    break;
-                case "M":
-                case "m":
-                    break;
-                case "D":
-                case "d":
-                    break;
-                case "F":
-                case "f":
-                    break;
-                case "l":
-                case "L":
-                    Exit=true;
-                    break;
-                default:
-                    Console.WriteLine("Invalid Option !");
-                    break;
-
+                Console.Clear();
+            }
+            _userInteraction.DisplayMessage("________________________________________________");
+            string message = _currentUser != null ? $"          Logged into {userName}" : "Invalid User !";
+            _userInteraction.DisplayMessage(message);
+            _userInteraction.DisplayMessage("________________________________________________");
+            if (_currentUser != null)
+            {
+                Login();
             }
         }
-    }
 
-    void viewRecords()
-    {
-        bool Exit = false;
-        while (!Exit)
+        public void Login()
         {
-            _userInteraction.displayMessage("[A]ll records\n[S]pecific Date\n[E]xit");
-            string userOption = _userInteraction.stringAsInput("option");
-            switch (userOption)
+            bool Exit = false;
+            while (!Exit)
             {
-                case "a":
-                case "A":
-                    _userInteraction.displayMessage("**** ALL Transactions ***");
-                    _userInteraction.displayAllRecords(_user.Dates);
-                    break;
-                case "s":
-                case "S":
-                   DateTime userInputDate = _userInteraction.dateAsInput("to view Transactions");
-                   Date Date = _repositoryInteraction.isDatePresent(userInputDate, _user);
-
-                    if (Date is not null)
-                    {
-                        _userInteraction.displayRecordsOnSpecificDate(Date);    
-                    }
-                    else
-                    {
-                        _userInteraction.displayMessage($"No Transactions on date {userInputDate.ToString()}");
-
-                    }
-                    break;
-                case "e":
-                case "E":
-                    Exit=true;
-                    break;
-                default:
-                    Console.WriteLine("Invalid Option !");
-                    break;
-
-
+                _userInteraction.DisplayFeatures();
+                string userChoice = _userInteraction.GetStringInput("Option ");
+                switch (userChoice)
+                {
+                    case "1":
+                        ViewRecords();
+                        break;
+                    case "2":
+                        AddIncomeRecord();
+                        break;
+                    case "3":
+                        AddExpenseRecord();
+                        break;
+                    case "4":
+                        _userInteraction.DisplayMessage("________________________________________________");
+                        _userInteraction.DisplayMessage("\nLogged out Successfully !\n");
+                        _userInteraction.DisplayMessage("________________________________________________");
+                        Exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Option !");
+                        break;
+                }
             }
-
         }
 
+        /// <summary>
+        /// Displays all records
+        /// </summary>
+        public void ViewRecords()
+        {
+            bool exit = false;
+            if (_currentUser.Dates.Count == 0)
+            {
+                _userInteraction.DisplayMessage("___________________________________");
+                _userInteraction.DisplayMessage("\n   No Transactions found ");
+                _userInteraction.DisplayMessage("___________________________________");
+
+                return;
+            }
+            while (!exit)
+            {
+                _userInteraction.DisplayMessage("\n[1] All records\n[2] Specific Date\n[3] Exit\n");
+                string userOption = _userInteraction.GetStringInput("option");
+                switch (userOption)
+                {
+                    case "1":
+                        _userInteraction.DisplayMessage("--------------------------------------------");
+                        _userInteraction.DisplayMessage("          ALL Transactions");
+                        _userInteraction.DisplayMessage("--------------------------------------------");
+                        _userInteraction.DisplayAllRecords(_currentUser.Dates);
+                        _userInteraction.DisplayMessage("--------------------------------------------");
+                        exit = true;
+                        break;
+                    case "2":
+                        DateTime userInputDate = _userInteraction.GetDateInput("to view Transactions");
+                        Date Date = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
+                        if (Date is not null)
+                        {
+                            _userInteraction.DisplayDateRecords(Date);
+                        }
+                        else
+                        {
+                            _userInteraction.DisplayMessage("________________________________________________");
+                            _userInteraction.DisplayMessage($"No Transactions on date {userInputDate.ToString()}\n");
+                            _userInteraction.DisplayMessage("________________________________________________");
+                        }
+                        exit = true;
+                        break;
+                    case "3":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Option !\n");
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds income record details
+        /// </summary>
+        public void AddIncomeRecord()
+        {
+            DateTime userInputDate = _userInteraction.GetDateInput("to add Income record");
+            Date IncomeDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
+            if (IncomeDate is null)
+            {
+                IncomeDate = new Date(userInputDate);
+                _currentUser.Dates.Add(IncomeDate);
+            }
+            IRecord record = _userInteraction.GetIncomeDetails();
+            _repositoryInteraction.AddRecord(record, IncomeDate, _currentUser);
+            _userInteraction.DisplayMessage("Record added successfully !!!!!!");
+        }
+
+        /// <summary>
+        /// Adds expense record details
+        /// </summary>
+        public void AddExpenseRecord()
+        {
+            DateTime userInputDate = _userInteraction.GetDateInput("to add Expense record");
+            Date ExpenseDate = _repositoryInteraction.IsDatePresent(userInputDate, _currentUser);
+            if (ExpenseDate is null)
+            {
+                ExpenseDate = new Date(userInputDate);
+                _currentUser.Dates.Add(ExpenseDate);
+            }
+            IRecord record = _userInteraction.GetExpenseDetails();
+            _repositoryInteraction.AddRecord(record, ExpenseDate, _currentUser);
+            _userInteraction.DisplayMessage("Record added successfully !!!!!!");
+        }
     }
-    void addIncomeRecord()
-    {
-        DateTime userInputDate = _userInteraction.dateAsInput("to add Income record");
-        Date IncomeDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
-
-        if (IncomeDate is not null)
-        {
-            IncomeDate.records.Add(_userInteraction.getIncomeDetails(_user));
-        }
-        else
-        {
-            var newDate = new Date(userInputDate);
-            newDate.records.Add(_userInteraction.getIncomeDetails(_user));
-            _user.Dates.Add(newDate);
-
-        }
-        _userInteraction.displayMessage("Record added successfully !!!!!!");
-    }
-    void addExpenseRecord()
-    {
-       DateTime userInputDate = _userInteraction.dateAsInput("to add Expense record");
-        Date expenseDate = _repositoryInteraction.isDatePresent(userInputDate, _user);
-
-        if (expenseDate is not null)
-        {
-            expenseDate.records.Add(_userInteraction.getExpenseDetails(_user));
-        }
-        else
-        {
-            var newDate = new Date(userInputDate);
-            newDate.records.Add(_userInteraction.getExpenseDetails(_user));
-            _user.Dates.Add(newDate);
-
-        }
-        _userInteraction.displayMessage("Record added successfully !!!!!!");
-
-
-    }
-
 }
-

@@ -1,18 +1,40 @@
-﻿// See https://aka.ms/new-console-template for more information
-public interface IFileInteraction
+﻿using ExpenseTracker.UserData;
+
+namespace ExpenseTracker.FileInteraction
 {
-    List<User> readAlldata();
-    bool writeData();
-}
-public class FileInteraction : IFileInteraction
-{
-    public List<User> readAlldata()
+    /// <summary>
+    /// Handles the file interaction
+    /// </summary>
+    public interface IFileInteraction
     {
-       return new List<User>();
+        /// <summary>
+        /// Reads all content from file
+        /// </summary>
+        /// <returns>returns list of <see cref="User"/>/></returns>
+        public List<User> ReadAlldata();
+
+
+        /// <summary>
+        /// Writes all contents to file
+        /// </summary>
+        public bool WriteData();
     }
 
-    public bool writeData()
+    /// <summary>
+    /// Implements <see cref="IFileInteraction"/>
+    /// </summary>
+    public class FileInteraction : IFileInteraction
     {
-        return true;
+
+
+        public List<User> ReadAlldata()
+        {
+            return new List<User>();
+        }
+
+        public bool WriteData()
+        {
+            return true;
+        }
     }
 }
