@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InventoryManagerTest\InventoryManager\InventoryManager.csproj" />
+    <ProjectReference Include="..\InventoryManager\InventoryManager.csproj" />
   </ItemGroup>
 
 </Project>
