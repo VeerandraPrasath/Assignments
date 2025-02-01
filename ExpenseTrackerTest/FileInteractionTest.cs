@@ -10,7 +10,6 @@ namespace ExpenseTrackerTest
 {
     public class FileInteractionTest
     {
-      
         private IFileInteraction _fileInteraction;
         private const string PATH = "UserList.json";
 
@@ -23,7 +22,7 @@ namespace ExpenseTrackerTest
         [Test]
         public void ReadAllData_ShallReturnsUserList()
         {
-           var result= _fileInteraction.ReadAlldata(PATH);
+            var result = _fileInteraction.ReadAlldata(PATH);
 
             ClassicAssert.IsTrue(result is List<User>);
         }
@@ -32,16 +31,16 @@ namespace ExpenseTrackerTest
         public void WriteDate_ShallWriteUserDetailsToFile()
         {
             var userList = new List<User>() { new User("Prasath"), new User("Arun") };
-            var expectedJson= JsonConvert.SerializeObject(userList, Formatting.Indented, new JsonSerializerSettings
+            var expectedJson = JsonConvert.SerializeObject(userList, Formatting.Indented, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects
             });
 
-            _fileInteraction.WriteData(PATH,userList);
-             var actualJson=File.ReadAllText(PATH);
+            _fileInteraction.WriteData(PATH, userList);
+            var actualJson = File.ReadAllText(PATH);
 
             ClassicAssert.AreEqual(expectedJson, actualJson);
         }
     }
-    
+
 }

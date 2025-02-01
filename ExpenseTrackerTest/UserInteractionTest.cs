@@ -67,12 +67,11 @@ namespace ExpenseTrackerTest
         [TestCase("Aruneshwar")]
         public void DisplayMessage_ShallPrintMessage(string input)
         {
-           
+
             _userInteraction.DisplayMessage(input);
-            string consoleString= consoleRead.ToString();
+            string consoleString = consoleRead.ToString();
 
-            ClassicAssert.AreEqual($"{ input}\r\n", consoleString);
-
+            ClassicAssert.AreEqual($"{input}\r\n", consoleString);
         }
     }
 }
