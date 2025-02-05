@@ -3,14 +3,25 @@ namespace Linq
 {
     public class Product
     {
-        public string Name { get; set; }    
-        public int Id { get; set; }
-        public int CategoryId { get; set; }
+        public string ProductName { get; set; }    
+        public int ProductId { get; set; }
+        public string Category { get; set; }
         public decimal Price { get; set; }
 
-        public Product()
+        public int SupplierId { get; set; }
+
+        public Product(string name,int id,string category,decimal price,int suppilerId)
         {
-            
+            ProductName = name;
+            ProductId = id;
+            Category = category;
+            Price = price;
+            SupplierId = suppilerId;
+        }
+
+        public override string ToString()
+        {
+            return $"Name : {ProductName}  ProductId : {ProductId} Price  : {Price}  Category : {Category}";
         }
     }
 }
