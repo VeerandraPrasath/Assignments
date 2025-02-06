@@ -1,13 +1,21 @@
-﻿
-namespace Linq
+﻿namespace Linq
 {
-    public  class Task1
+    /// <summary>
+    /// Get the average price of products in a category where price is greater than 500
+    /// </summary>
+    public class Task1
     {
-        public List<Product> productList {  get; set; }
+        /// <summary>
+        /// List to store the Product
+        /// </summary>
+        public List<Product> ProductList { get; set; }
 
+        /// <summary>
+        /// Constructor for Task1
+        /// </summary>
         public Task1()
         {
-            productList = new List<Product>() {
+            ProductList = new List<Product>() {
                 new Product("Laptop",1,"Electronics",50000,1),
                 new Product("Mobile",2,"Electronics",20000,3),
                 new Product("Shirt",3,"Clothing",1000,5),
@@ -17,22 +25,24 @@ namespace Linq
             };
         }
 
+        /// <summary>
+        /// Initialize the methods
+        /// </summary>
         public void Run()
         {
-            GetProductByCategory("Electronics");
-           
+            GetProductByCategoryAndPriceGreaterThan500("Electronics");
         }
 
-        public void GetProductByCategory(string category)
+        /// <summary>
+        /// Get Product based on the given category and price greater than 500 and calculate the average price
+        /// </summary>
+        /// <param name="category">Category of the product</param>
+        public void GetProductByCategoryAndPriceGreaterThan500(string category)
         {
-            List<Product> filteredProduct = productList.Where(p => p.Category == category && p.Price > 500).ToList(); 
-
-            var objectListOnlyWithNameAndPrice=filteredProduct.Select(p => new { p.ProductName, p.Price }).OrderByDescending((a)=>a.Price);
-            decimal averageOfProductPrice=objectListOnlyWithNameAndPrice.Average(p=>p.Price);  
-
-            Console.WriteLine($"Average Price of {category} is {averageOfProductPrice}");
-        }   
-
-            
+            List<Product> filteredProductsByCategoryAndPriceGreaterThan500 = ProductList.Where(p => p.Category == category && p.Price > 500).ToList();
+            var objectListOnlyWithNameAndPrice = filteredProductsByCategoryAndPriceGreaterThan500.Select(p => new { p.ProductName, p.Price }).OrderByDescending((a) => a.Price);
+            decimal averagePrice = objectListOnlyWithNameAndPrice.Average(p => p.Price);
+            Console.WriteLine($"\nAverage Price of {category} is {averagePrice}");
+        }
     }
 }

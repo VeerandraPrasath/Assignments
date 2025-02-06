@@ -1,46 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Linq
 {
+    /// <summary>
+    /// Build custom linq using Fluent API pattern
+    /// </summary>
     public class Task5
     {
-        QueryBuilder q;
+        private QueryBuilder queryBuilder;
+
+        /// <summary>
+        /// Constructor for Task5
+        /// </summary>
         public Task5()
         {
-            q= new QueryBuilder();
+            queryBuilder = new QueryBuilder();
         }
+
+        /// <summary>
+        /// Perfom all the queries
+        /// </summary>
         public void Run()
         {
-            var result =q.Filter(p => p.Price > 10).SortBy(func => func.Price).Join(p=>p.SupplierId,s=>s.SupplierId).Execute();
-        
-
-            foreach (var item in result)
+            Console.WriteLine("\nProducts with price greater than 100 and sorted by price and performed Inner join with Supplier using Supplier ID");
+            Console.WriteLine("_________________________________________________________________________________________________________________");
+            var ProductsPriceGreaterThan100 = queryBuilder.Filter(p => p.Price > 100).SortBy(func => func.Price).Join((p, s) => p.SupplierId == s.SupplierId).Execute();
+            foreach (var item in ProductsPriceGreaterThan100)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("\nProducts with price lesser than 100 and sorted by price");
+            Console.WriteLine("__________________________________________________________");
+            var ProductsPriceLessThan100 = queryBuilder.Filter(p => p.Price < 100).Execute();
+            foreach (var item in ProductsPriceLessThan100)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("\nProducts Name starts with S");
+            Console.WriteLine("_____________________________");
+            var ProductsNameStartWithA = queryBuilder.Filter(p => p.ProductName.StartsWith('S')).SortBy(func => func.Price).Execute();
+            foreach (var item in ProductsNameStartWithA)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("\nProduct Name contains e");
+            Console.WriteLine("_________________________");
+            var ProductsNameContainsA = queryBuilder.Filter(p => p.ProductName.Contains('e')).SortBy(func => func.Price).Execute();
+            foreach (var item in ProductsNameContainsA)
             {
                 Console.WriteLine(item.ToString());
             }
         }
-
-
     }
 
+    /// <summary>
+    /// Query Builder class to build custom linq queries
+    /// </summary>
     public class QueryBuilder
     {
-        public List<Product> productList { get; set; }
+        /// <summary>
+        /// Stores the list of products
+        /// </summary>
+        public List<Product> ProductList { get; set; }
 
-        public List<Supplier> supplierList { get; set; }
+        /// <summary>
+        /// Stores the list of suppliers
+        /// </summary>
+        public List<Supplier> SupplierList { get; set; }
 
-        public  IEnumerable<object> result { get; set; }
+        /// <summary>
+        /// Stores the Result of the queries
+        /// </summary>
+        public IEnumerable<object> Result { get; set; }
 
-        public int Count { get; set; }
-
+        /// <summary>
+        /// Constructor for QueryBuilder
+        /// </summary>
         public QueryBuilder()
         {
-            productList = new List<Product>() {
+            ProductList = new List<Product>() {
                new Product("Laptop",1,"Electronics",50000,1),
                 new Product("Mobile",2,"Electronics",2000,3),
                 new Product("Shirt",3,"Clothing",100,5),
@@ -48,7 +85,8 @@ namespace Linq
                 new Product("Shoes",5,"Footwear",3000,8),
                 new Product("Sneakers",6,"Footwear",25,9)
             };
-            supplierList = new List<Supplier>()
+
+            SupplierList = new List<Supplier>()
             {
                 new Supplier("Lenova",1,1),
                 new Supplier("Samsung",3,2),
@@ -57,49 +95,58 @@ namespace Linq
                 new Supplier("Bata",8,6),
                 new Supplier("Puma",9,5)
             };
-
-            result = null;
+            Result = ProductList;
         }
 
-
+        /// <summary>
+        /// Filter the products based on the condition
+        /// </summary>
+        /// <param name="func">Condition to perform filtering</param>
+        /// <returns>Returns the current class instance</returns>
         public QueryBuilder Filter(Func<Product, bool> func)
         {
-            result = productList.Where(func);
-           
+            var source = Result as IEnumerable<Product>;
+            Result = source.Where(func);
+
             return this;
         }
 
+        /// <summary>
+        /// Sort the products based on the condition
+        /// </summary>
+        /// <param name="func">Condition to perform sorting</param>
+        /// <returns>Returns the current class instance</returns>
         public QueryBuilder SortBy(Func<Product, decimal> func)
         {
-            //result = from p in result as IEnumerable<Product> orderby func select p;
-            var source = (IEnumerable<Product>)result;
-            result = source.OrderBy(func);
+            var source = (IEnumerable<Product>)Result;
+            Result = source.OrderBy(func);
 
             return this;
         }
 
-        //public QueryBuilder Join(Func<Product, Supplier, bool> func)
-        //{
-        //    var source=result as IEnumerable<Product>;
-            
-        //    result = from p in source from s in supplierList where func(p, s) select new { p.ProductId, p.ProductName, s.SupplierName, p.Price };
-        //    return this;
-        //}
-
-        public QueryBuilder Join(Func<Product,int> func1,Func<Supplier, int> func2)
+        /// <summary>
+        /// Join the products with suppliers based on the condition
+        /// </summary>
+        /// <param name="func">Condition to perform inner join</param>
+        /// <returns>Returns the current class instance</returns>
+        public QueryBuilder Join(Func<Product, Supplier, bool> func)
         {
-            var source = result as IEnumerable<Product>;
-            //result = from p in source join s in supplierList on func1(p) equals func2(s) select new { p.ProductId, p.ProductName, s.SupplierName, p.Price };
-            result = source.Join(supplierList, func1, func2, (p, s) =>new  { p.ProductName,p.ProductId,p.Price,s.SupplierName});
+            var source = Result as IEnumerable<Product>;
+            Result = from p in source from s in SupplierList where func(p, s) select new { p.ProductId, p.ProductName, s.SupplierName, p.Price };
+
             return this;
         }
 
+        /// <summary>
+        /// Execute the query
+        /// </summary>
+        /// <returns>Returns the result</returns>
         public IEnumerable<object> Execute()
         {
-            return result;
+            var temp = Result;
+            Result = ProductList;
+
+            return temp;
         }
-
     }
-
 }
- 

@@ -1,9 +1,10 @@
 ﻿using Linq;
+
 bool Exit = false;
 while(!Exit)
 {
-    Console.WriteLine("[1] Task1\n[2] Task2\n[3] Task3\n[4] Task4\n[5] Task5 \n[6] Exit");
-    Console.Write("Enter your choice");
+    Console.WriteLine("\n[1] Task1\n[2] Task2\n[3] Task3\n[4] Task4\n[5] Task5 \n[6] Exit");
+    Console.Write("Enter your choice :");
     string userOption = Console.ReadLine();
     switch (userOption)
     {
@@ -13,13 +14,11 @@ while(!Exit)
             break;
         case "2":
             Task2 task2 = new Task2();
-            task2.GroupByCategory();
-            task2.JoinWithProductId();
+            task2.Run();
             break;
         case "3":
             Task3 task3 = new Task3();
-            task3.SecondHighestNumber();
-            task3.UniqueTargetPair(10);
+            task3.Run();
             break;
         case "4":
             Task4 task4 = new Task4();

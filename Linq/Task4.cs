@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Linq
+﻿namespace Linq
 {
+    /// <summary>
+    /// Get products based on category and perform sorting
+    /// </summary>
     public class Task4
     {
-        public List<Product> productList { get; set; }
+        /// <summary>
+        /// Stores the list of products
+        /// </summary>
+        public List<Product> ProductList { get; set; }
+
+        /// <summary>
+        /// Constructor for Task4
+        /// </summary>
         public Task4()
         {
-            productList = new List<Product>() {
+            ProductList = new List<Product>() {
                  new Product("Laptop",1,"Electronics",50000,1),
                 new Product("Mobile",2,"Electronics",20000,3),
                 new Product("Shirt",3,"Clothing",1000,5),
@@ -25,16 +29,24 @@ namespace Linq
                 new Product("Sandals",11,"Footwear",1000,14),
             };
         }
+
+        /// <summary>
+        /// Initialize the methods
+        /// </summary>
         public void Run()
         {
-            GetProductByCategory("Books");
-
+            GetProductByCategoryAndOrderByDescendingBasedOnPrice("Books");
         }
-        public void GetProductByCategory(string category)
-        {
-            List<Product> OrderBooksByPrice = productList.Where(p => p.Category == category).OrderByDescending(x=>x.Price).ToList();
-            OrderBooksByPrice.ForEach(p => Console.WriteLine(p));
 
+        /// <summary>
+        /// Get the products based on category and order by descending based on product price
+        /// </summary>
+        /// <param name="category"></param>
+        public void GetProductByCategoryAndOrderByDescendingBasedOnPrice(string category)
+        {
+            Console.WriteLine($"\nProducts in {category} Category Ordered by  Descending  based on Product Price\n");
+            List<Product> OrderBooksByPrice = ProductList.Where(p => p.Category == category).OrderByDescending(x => x.Price).ToList();
+            OrderBooksByPrice.ForEach(p => Console.WriteLine(p));
         }
     }
 }
