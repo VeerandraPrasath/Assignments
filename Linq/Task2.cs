@@ -1,4 +1,5 @@
 ﻿using ConsoleTables;
+using Linq.Model;
 
 namespace Linq
 {

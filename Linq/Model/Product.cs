@@ -1,4 +1,4 @@
-﻿namespace Linq
+﻿namespace Linq.Model
 {
     /// <summary>
     /// Stores the details of the Product
@@ -38,7 +38,7 @@
         /// <param name="category">Category of the Product</param>
         /// <param name="price">Price of </param>
         /// <param name="suppilerId">Id of the Supplier</param>
-        public Product(string name,int id,string category,decimal price,int suppilerId)
+        public Product(string name, int id, string category, decimal price, int suppilerId)
         {
             ProductName = name;
             ProductId = id;

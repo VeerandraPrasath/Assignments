@@ -1,4 +1,6 @@
-﻿namespace Linq
+﻿using Linq.Model;
+
+namespace Linq
 {
     /// <summary>
     /// Get products based on category and perform sorting

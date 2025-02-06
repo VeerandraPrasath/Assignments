@@ -1,4 +1,6 @@
-﻿namespace Linq
+﻿using Linq.Model;
+
+namespace Linq
 {
     /// <summary>
     /// Get the average price of products in a category where price is greater than 500

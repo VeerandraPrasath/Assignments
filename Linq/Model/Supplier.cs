@@ -1,4 +1,4 @@
-﻿namespace Linq
+﻿namespace Linq.Model
 {
     /// <summary>
     /// Stores the details of the Supplier

@@ -1,4 +1,6 @@
 ﻿
+using Linq.Model;
+
 namespace Linq
 {
     /// <summary>
@@ -6,14 +8,14 @@ namespace Linq
     /// </summary>
     public class Task5
     {
-        private QueryBuilder queryBuilder;
+        private QueryBuilder<Product> queryBuilder;
 
         /// <summary>
         /// Constructor for Task5
         /// </summary>
         public Task5()
         {
-            queryBuilder = new QueryBuilder();
+            queryBuilder = new QueryBuilder<Product>();
         }
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace Linq
     /// <summary>
     /// Query Builder class to build custom linq queries
     /// </summary>
-    public class QueryBuilder
+    public class QueryBuilder<T> 
     {
         /// <summary>
         /// Stores the list of products
@@ -103,7 +105,7 @@ namespace Linq
         /// </summary>
         /// <param name="func">Condition to perform filtering</param>
         /// <returns>Returns the current class instance</returns>
-        public QueryBuilder Filter(Func<Product, bool> func)
+        public QueryBuilder<T> Filter(Func<Product, bool> func)
         {
             var source = Result as IEnumerable<Product>;
             Result = source.Where(func);
@@ -116,7 +118,7 @@ namespace Linq
         /// </summary>
         /// <param name="func">Condition to perform sorting</param>
         /// <returns>Returns the current class instance</returns>
-        public QueryBuilder SortBy(Func<Product, decimal> func)
+        public QueryBuilder<T> SortBy(Func<Product, decimal> func)
         {
             var source = (IEnumerable<Product>)Result;
             Result = source.OrderBy(func);
@@ -129,7 +131,7 @@ namespace Linq
         /// </summary>
         /// <param name="func">Condition to perform inner join</param>
         /// <returns>Returns the current class instance</returns>
-        public QueryBuilder Join(Func<Product, Supplier, bool> func)
+        public QueryBuilder<T> Join(Func<Product, Supplier, bool> func)
         {
             var source = Result as IEnumerable<Product>;
             Result = from p in source from s in SupplierList where func(p, s) select new { p.ProductId, p.ProductName, s.SupplierName, p.Price };
