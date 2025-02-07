@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5A2B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPs", "OOPs\OOPs.csproj", "{22D2F965-A5A4-472D-8035-9D8FF3FB642E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", "{8DFEFE8C-2590-4AB9-B38F-FC8F78C43F79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{22D2F965-A5A4-472D-8035-9D8FF3FB642E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22D2F965-A5A4-472D-8035-9D8FF3FB642E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22D2F965-A5A4-472D-8035-9D8FF3FB642E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DFEFE8C-2590-4AB9-B38F-FC8F78C43F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DFEFE8C-2590-4AB9-B38F-FC8F78C43F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DFEFE8C-2590-4AB9-B38F-FC8F78C43F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DFEFE8C-2590-4AB9-B38F-FC8F78C43F79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
