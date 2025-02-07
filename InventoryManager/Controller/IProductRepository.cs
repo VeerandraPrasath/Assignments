@@ -18,7 +18,7 @@ namespace InventoryManager.Controller
         /// </summary>
         /// <param name="newProduct">New Product</param>
         /// <returns>returns true if product added else false</returns>
-        public bool AddProduct(Product newProduct);
+        public void AddProduct(Product newProduct);
 
         /// <summary>
         /// Checks id present in <see cref="ProductRepository._productList"/>

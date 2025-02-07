@@ -33,21 +33,22 @@ namespace InventoryManager.ConsoleInteraction
             }
         }
 
-        public void DisplayEditOptions()
+        public void DisplayEditMenuOptions()
         {
             Console.WriteLine("\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n");
         }
 
-        public void DisplayOptions()
+        public void DisplayMenuOptions()
         {
             Console.WriteLine("\n[1] View \n[2] Add \n[3] Edit \n[4] Delete \n[5] Search \n[6] Clear \n[7] Exit\n");
         }
 
-        public Product GetProductDetail()
+        public Product GetProductDetails()
         {
             int id,quantity,price;
             string name;
             Console.WriteLine("Enter the below details :\n");
+
             id=GetUniqueId();
             name = GetUniqueName();
             quantity = GetInputInt("quantity ");

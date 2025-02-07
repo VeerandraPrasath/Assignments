@@ -17,11 +17,9 @@ namespace InventoryManager.Controller
             _productList = new List<Product>();
         }
 
-        public bool AddProduct(Product newProduct)
+        public void AddProduct(Product newProduct)
         {
             _productList.Add(newProduct);
-
-            return true;
         }
 
         public List<Product> GetAllProducts()
@@ -31,15 +29,8 @@ namespace InventoryManager.Controller
 
         public bool IsIdUnique(int id)
         {
-            foreach (Product product in _productList)
-            {
-                if (product.Id == id)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            Product product = _productList.Find(p => p.Id == id);
+            return product != null ? true : false;
         }
 
         public bool DeleteProduct(Product product)
@@ -51,15 +42,8 @@ namespace InventoryManager.Controller
 
         public bool IsNameUnique(string name)
         {
-            foreach (Product product in _productList)
-            {
-                if (product.Name.Equals(name))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            Product product = _productList.Find(p => p.Name.Equals(name));
+            return product != null ? true : false;
         }
 
         public Product FindProduct(string productInformation)

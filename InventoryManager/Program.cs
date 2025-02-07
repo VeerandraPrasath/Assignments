@@ -44,7 +44,7 @@ internal class Program
             bool isExit = false;
             while (!isExit)
             {
-                _userInteraction.DisplayOptions();
+                _userInteraction.DisplayMenuOptions();
                 string userOption = _userInteraction.GetInputString("option");
                 switch (userOption)
                 {

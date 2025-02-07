@@ -15,7 +15,7 @@ The **Inventory Manager** is a console application that allows users to manage t
 
 - **Search Functionality**:
   - Users can search for Product based on product name or with product id.
-  - The search results display matching product or indicate no product mathches if no results  found.
+  - The search results display matching product or indicate no product mathches if no results found.
 
 - **User Interface**:
   - The application provides a console-based user interface.

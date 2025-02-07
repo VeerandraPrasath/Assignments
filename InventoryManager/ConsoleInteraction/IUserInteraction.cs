@@ -10,12 +10,12 @@ namespace InventoryManager.ConsoleInteraction
         /// <summary>
         /// Display options
         /// </summary>
-        public void DisplayOptions();
+        public void DisplayMenuOptions();
 
         /// <summary>
         /// Display edit options
         /// </summary>
-        public void DisplayEditOptions();
+        public void DisplayEditMenuOptions();
 
         /// <summary>
         /// Display all <see cref="Product"/>
@@ -27,7 +27,7 @@ namespace InventoryManager.ConsoleInteraction
         /// Get product details
         /// </summary>
         /// <returns>returns product</returns>
-        public Product GetProductDetail();
+        public Product GetProductDetails();
 
         /// <summary>
         /// Validates input string

@@ -25,7 +25,7 @@ namespace InventoryManager.Manager
 
         public void AddNewProduct()
         {
-            Product newProduct = _userInteraction.GetProductDetail();
+            Product newProduct = _userInteraction.GetProductDetails();
             _productRepository.AddProduct(newProduct);
             Console.WriteLine("Product added successfully !!!");
         }
@@ -50,7 +50,7 @@ namespace InventoryManager.Manager
             if (product is not null)
             {
                 Console.WriteLine(product);
-                _userInteraction.DisplayEditOptions();
+                _userInteraction.DisplayEditMenuOptions();
                 string userEditOption = _userInteraction.GetInputString("option");
                 switch (userEditOption)
                 {

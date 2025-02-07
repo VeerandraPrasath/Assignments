@@ -8,7 +8,7 @@ namespace InventoryManager.Manager
     public interface IManageInventory
     {
         /// <summary>
-        /// Add new Product
+        /// Adds new Product
         /// </summary>
         public void AddNewProduct();
 
