@@ -30,7 +30,7 @@ namespace InventoryManager.Controller
         public bool IsIdUnique(int id)
         {
             Product product = _productList.Find(p => p.Id == id);
-            return product != null ? true : false;
+            return product == null ? true : false;
         }
 
         public bool DeleteProduct(Product product)
@@ -43,7 +43,7 @@ namespace InventoryManager.Controller
         public bool IsNameUnique(string name)
         {
             Product product = _productList.Find(p => p.Name.Equals(name));
-            return product != null ? true : false;
+            return product == null ? true : false;
         }
 
         public Product FindProduct(string productInformation)
