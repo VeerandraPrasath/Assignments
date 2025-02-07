@@ -33,7 +33,7 @@ namespace ExpenseTracker.ConsoleInteraction
                 isValidDigit = int.TryParse(GetStringInput(message), out intValue);
                 if (!isValidDigit)
                 {
-                    Console.WriteLine("   Input should be number !");
+                    Console.WriteLine("Input should be number !");
                 }
             } while (!isValidDigit);
 
@@ -62,7 +62,7 @@ namespace ExpenseTracker.ConsoleInteraction
             Console.WriteLine(message);
         }
 
-        public void DisplayFeatures()
+        public void DisplayMainMenu()
         {
             Console.WriteLine("\n[1] View Records \n[2] Add Income Record \n[3] Add Expense Record \n[4] Log out\n");
         }
@@ -99,7 +99,7 @@ namespace ExpenseTracker.ConsoleInteraction
             return new Expense(amount, category);
         }
 
-        public void DisplayAllRecords(List<Date> dates)
+        public void DisplayAllRecords(List<Transaction> dates)
         {
             int count = 1;
             if (dates.Count == 0)
@@ -108,30 +108,30 @@ namespace ExpenseTracker.ConsoleInteraction
 
                 return;
             }
-            foreach (Date date in dates)
+            foreach (Transaction date in dates)
             {
-                foreach (IRecord record in date.records)
+                foreach (IRecord record in date.RecordList)
                 {
-                    Console.WriteLine($"{count}.{date.CurrentDate.ToString()} {record}");
+                    Console.WriteLine($"{count}.{date.TransactionDate.ToString()} {record}");
                     count++;
                 }
             }
         }
 
-        public void DisplayDateRecords(Date date)
+        public void DisplayRecordsByDate(Transaction date)
         {
             int count = 1;
-            if (date.records.Count == 0)
+            if (date.RecordList.Count == 0)
             {
                 Console.WriteLine("\nNo Transactions !!!\n");
 
                 return;
             }
-            Console.WriteLine($"Transactions on {date.CurrentDate.ToString()}");
+            Console.WriteLine($"Transactions on {date.TransactionDate.ToString()}");
             Console.WriteLine("------------------------------------------------------\n");
-            foreach (IRecord record in date.records)
+            foreach (IRecord record in date.RecordList)
             {
-                Console.WriteLine($"{count}.{date.CurrentDate.ToString()} {record}");
+                Console.WriteLine($"{count}.{date.TransactionDate.ToString()} {record}");
                 count++;
             }
             Console.WriteLine("------------------------------------------------------\n");

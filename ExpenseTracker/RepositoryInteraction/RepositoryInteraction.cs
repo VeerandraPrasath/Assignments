@@ -33,43 +33,36 @@ namespace ExpenseTracker.Controller
             FilePath = filePath;
         }
 
-        public User IsUserPresent(string username)
+        public User FindUserByUsername(string username)
         {
-            foreach (User user in _users)
-            {
-                if (user.Name.Equals(username)) return user;
-            }
-
-            return null;
+            return _users.Find(user => user.Name.Equals(username)); 
         }
 
-        public bool CreateNewUser()
+        public void CreateNewUser()
         {
             string newUser;
             do
             {
                 newUser = _userInteraction.GetStringInput("New Username");
-                if (IsUserPresent(newUser) is not null)
+                if (FindUserByUsername(newUser) is not null)
                 {
                     _userInteraction.DisplayMessage("\nUsername already exist !\n");
                 }
-            } while (IsUserPresent(newUser) is not null);
+            } while (FindUserByUsername(newUser) is not null);
             _users.Add(new User(newUser));
             _userInteraction.DisplayMessage("\nAccount created successfully ! please Login !\n");
-
-            return true;
         }
 
-        public void LoadAllData()
+        public void LoadFileData()
         {
-            _users = _fileInteraction.ReadAlldata();
+            _users = _fileInteraction.ReadFileData();
         }
 
-        public Date IsDatePresent(DateTime Checkdate, User user)
+        public Transaction FindTransactionByDate(DateTime Checkdate, User user)
         {
-            foreach (Date Date in user.Dates)
+            foreach (Transaction Date in user.Dates)
             {
-                if (Date.CurrentDate.Date == Checkdate.Date)
+                if (Date.TransactionDate.Date == Checkdate.Date)
                 {
                     return Date;
                 }
@@ -78,7 +71,7 @@ namespace ExpenseTracker.Controller
             return null;
         }
 
-        public void AddRecord(IRecord record, Date date, User user)
+        public void AddRecord(IRecord record, Transaction date, User user)
         {
             if (record is Income)
             {
@@ -90,7 +83,7 @@ namespace ExpenseTracker.Controller
                 user.CurrentBalance -= record.Amount;
                 user.TotalExpense += record.Amount;
             }
-            date.records.Add(record);
+            date.RecordList.Add(record);
         }
     }
 }

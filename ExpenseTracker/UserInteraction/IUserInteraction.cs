@@ -38,7 +38,7 @@ namespace ExpenseTracker.ConsoleInteraction
         /// <summary>
         /// Displays features
         /// </summary>
-        public void DisplayFeatures();
+        public void DisplayMainMenu();
 
         /// <summary>
         /// Gets Income details
@@ -53,15 +53,15 @@ namespace ExpenseTracker.ConsoleInteraction
         public Expense GetExpenseDetails();
 
         /// <summary>
-        /// Displays all records
+        /// Displays all RecordList
         /// </summary>
         /// <param name="dates">List of Dates</param>
-        public void DisplayAllRecords(List<Date> dates);
+        public void DisplayAllRecords(List<Transaction> dates);
 
         /// <summary>
-        /// Display records on Date
+        /// Display RecordList on Transaction
         /// </summary>
-        /// <param name="date">Date</param>
-        public void DisplayDateRecords(Date date);
+        /// <param name="date">Transaction</param>
+        public void DisplayRecordsByDate(Transaction date);
     }
 }

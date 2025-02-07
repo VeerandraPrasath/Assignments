@@ -40,7 +40,7 @@ public class App
     /// </summary>
     public void Run()
     {
-        _repositoryInteraction.LoadAllData();
+        _repositoryInteraction.LoadFileData();
         _userInteraction.DisplayMessage("_________________________________________________________");
         _userInteraction.DisplayMessage("      Welcome to the Expense Tracker Application");
         _userInteraction.DisplayMessage("__________________________________________________________");

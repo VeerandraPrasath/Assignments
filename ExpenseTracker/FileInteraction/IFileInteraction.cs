@@ -11,8 +11,7 @@ namespace ExpenseTracker.FileInteraction
         /// Reads all content from file
         /// </summary>
         /// <returns>returns list of <see cref="User"/>/></returns>
-        public List<User> ReadAlldata();
-
+        public List<User> ReadFileData();
 
         /// <summary>
         /// Writes all contents to file
@@ -25,9 +24,7 @@ namespace ExpenseTracker.FileInteraction
     /// </summary>
     public class FileInteraction : IFileInteraction
     {
-
-
-        public List<User> ReadAlldata()
+        public List<User> ReadFileData()
         {
             return new List<User>();
         }
