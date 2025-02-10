@@ -11,6 +11,7 @@ namespace ExpenseTracker.UserData
         /// Transaction of the RecordList
         /// </summary>
         public DateTime TransactionDate { get; set; }
+
         /// <summary>
         /// List of RecordList
         /// </summary>

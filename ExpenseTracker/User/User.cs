@@ -13,17 +13,17 @@
         /// <summary>
         /// Current Balance of the user
         /// </summary>
-        public int CurrentBalance { get; set; }
+        public decimal CurrentBalance { get; set; }
 
         /// <summary>
         /// Total income of the user
         /// </summary>
-        public int TotalIncome { get; set; }
+        public decimal TotalIncome { get; set; }
 
         /// <summary>
         /// Total expense of the user
         /// </summary>
-        public int TotalExpense { get; set; }
+        public decimal TotalExpense { get; set; }
 
         /// <summary>
         /// List of dates
@@ -38,9 +38,6 @@
         {
             Name = name;
             Dates = new List<Transaction>();
-            CurrentBalance = 0;
-            TotalIncome = 0;
-            TotalExpense = 0;
         }
     }
 }

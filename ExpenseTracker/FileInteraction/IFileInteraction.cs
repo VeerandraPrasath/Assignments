@@ -18,20 +18,4 @@ namespace ExpenseTracker.FileInteraction
         /// </summary>
         public bool WriteData();
     }
-
-    /// <summary>
-    /// Implements <see cref="IFileInteraction"/>
-    /// </summary>
-    public class FileInteraction : IFileInteraction
-    {
-        public List<User> ReadFileData()
-        {
-            return new List<User>();
-        }
-
-        public bool WriteData()
-        {
-            return true;
-        }
-    }
 }
