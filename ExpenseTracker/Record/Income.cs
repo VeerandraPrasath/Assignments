@@ -9,6 +9,7 @@ public class Income :IRecord
     /// Amount of the record
     /// </summary>
     public int Amount { get; set; }
+
     /// <summary>
     /// Category of the record
     /// </summary>
@@ -21,8 +22,8 @@ public class Income :IRecord
     /// <param name="category">Category of the income</param>
     public Income(int amount, string category)
     {
-        Amount  = amount;   
-        Category = category;    
+        Amount = amount;
+        Category = category;
     }
 
     /// <summary>
@@ -34,4 +35,3 @@ public class Income :IRecord
         return $" {nameof(Income)}  Category {Category} INR :{Amount}";
     }
 }
-

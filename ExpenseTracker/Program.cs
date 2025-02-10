@@ -32,7 +32,6 @@ public class App
         _userInteraction = userInteraction;
         _manageTracker = manageTracker;
         _repositoryInteraction = repositoryInteraction;
-
     }
 
     /// <summary>

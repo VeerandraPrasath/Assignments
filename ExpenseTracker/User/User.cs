@@ -9,22 +9,26 @@
         /// Name of the user
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// Current Balance of the user
         /// </summary>
-        public int CurrentBalance { get; set; }
+        public decimal CurrentBalance { get; set; }
+
         /// <summary>
         /// Total income of the user
         /// </summary>
-        public int TotalIncome { get; set; }
+        public decimal TotalIncome { get; set; }
+
         /// <summary>
         /// Total expense of the user
         /// </summary>
-        public int TotalExpense { get; set; }
+        public decimal TotalExpense { get; set; }
+
         /// <summary>
         /// List of dates
         /// </summary>
-        public List<Date> Dates { get; set; }
+        public List<Transaction> Dates { get; set; }
 
         /// <summary>
         /// Constructor for User
@@ -33,10 +37,7 @@
         public User(string name)
         {
             Name = name;
-            Dates = new List<Date>();
-            CurrentBalance = 0;
-            TotalIncome = 0;
-            TotalExpense = 0;
+            Dates = new List<Transaction>();
         }
     }
 }
