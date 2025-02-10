@@ -1,10 +1,10 @@
 ﻿using Understanding_.Net;
 
-Console.Write("Enter value of a");
-int a = GetValidInt();
-Console.Write("Enter value of b");
-int b = GetValidInt();
-MathUtils mathUtils = new MathUtils(a, b);
+Console.Write("Enter number 1 :");
+int number1 = GetValidInt();
+Console.Write("Enter number 2 :");
+int number2 = GetValidInt();
+MathUtils mathUtils = new MathUtils(number1, number2);
 mathUtils.Run();
 Console.ReadKey();
 
@@ -17,7 +17,7 @@ int GetValidInt()
         isInt = int.TryParse(Console.ReadLine(), out a);
         if (!isInt)
         {
-            Console.WriteLine("Please enter a valid integer");
+            Console.WriteLine("Please enter number1 valid integer");
         }
     } while (!isInt);
     return a;
