@@ -1,11 +1,11 @@
 ﻿using Understanding_.Net;
 
-Console.WriteLine("Enter value of a");
+Console.Write("Enter value of a");
 int a = GetValidInt();
-Console.WriteLine("Enter value of b");
+Console.Write("Enter value of b");
 int b = GetValidInt();
 MathUtils mathUtils = new MathUtils(a, b);
-mathUtils.run();
+mathUtils.Run();
 Console.ReadKey();
 
 int GetValidInt()
