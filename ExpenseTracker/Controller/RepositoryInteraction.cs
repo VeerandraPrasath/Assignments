@@ -1,5 +1,5 @@
-﻿using ExpenseTracker.ConsoleInteraction;
-using ExpenseTracker.FileInteraction;
+﻿using ExpenseTracker.UserInteraction;
+using ExpenseTracker.FileInteractions;
 using ExpenseTracker.Record;
 using ExpenseTracker.UserData;
 
@@ -10,7 +10,7 @@ namespace ExpenseTracker.Controller
     /// </summary>
     public class RepositoryInteraction : IRepositoryInteraction
     {
-        private List<User> _users;
+        private List<User> _userList;
         private readonly IFileInteraction _fileInteraction;
         private readonly IUserInteraction _userInteraction;
 
@@ -29,47 +29,40 @@ namespace ExpenseTracker.Controller
         {
             _fileInteraction = fileInteraction;
             _userInteraction = userInteraction;
-            _users = new List<User>();
+            _userList = new List<User>();
             FilePath = filePath;
         }
 
-        public User IsUserPresent(string username)
+        public User FindUserByUsername(string username)
         {
-            foreach (User user in _users)
-            {
-                if (user.Name.Equals(username)) return user;
-            }
-
-            return null;
+           return  _userList.Find(x => x.Name.Equals(username));
         }
 
-        public bool CreateNewUser()
+        public void CreateNewUser()
         {
             string newUser;
             do
             {
-                newUser = _userInteraction.GetStringInput("New Username");
-                if (IsUserPresent(newUser) is not null)
+                newUser = _userInteraction.GetValidString("New Username");
+                if (FindUserByUsername(newUser) is not null)
                 {
                     _userInteraction.DisplayMessage("\nUsername already exist !\n");
                 }
-            } while (IsUserPresent(newUser) is not null);
-            _users.Add(new User(newUser));
+            } while (FindUserByUsername(newUser) is not null);
+            _userList.Add(new User(newUser));
             _userInteraction.DisplayMessage("\nAccount created successfully ! please Login !\n");
-
-            return true;
         }
 
-        public void LoadAllData()
+        public void LoadAllFileData()
         {
-            _users = _fileInteraction.ReadAlldata(FilePath);
+            _userList = _fileInteraction.ReadFiledata(FilePath);
         }
 
-        public Date IsDatePresent(DateTime Checkdate, User user)
+        public Transaction FindTransactionByTransactionDate(DateTime transactionDate, User user)
         {
-            foreach (Date Date in user.Dates)
+            foreach (Transaction Date in user.TransactionList)
             {
-                if (Date.CurrentDate.Date == Checkdate.Date)
+                if (Date.TransactionDate.Date == transactionDate.Date)
                 {
                     return Date;
                 }
@@ -78,16 +71,14 @@ namespace ExpenseTracker.Controller
             return null;
         }
 
-        public bool DeleteRecord(List<IRecord> records, int index, User user)
+        public void DeleteRecord(List<IRecord> recordList, int index, User user)
         {
-            IRecord record = records[index];
+            IRecord record = recordList[index];
             user.CurrentBalance = record is Income ? user.CurrentBalance - record.Amount : user.CurrentBalance + record.Amount;
-            records.Remove(record);
-
-            return true;
+            recordList.Remove(record);
         }
 
-        public void AddRecord(IRecord record, Date date, User user)
+        public void AddRecord(IRecord record, Transaction transaction, User user)
         {
             if (record is Income)
             {
@@ -99,7 +90,7 @@ namespace ExpenseTracker.Controller
                 user.CurrentBalance -= record.Amount;
                 user.TotalExpense += record.Amount;
             }
-            date.records.Add(record);
+            transaction.RecordList.Add(record);
         }
 
         public void UpdateRecord(IRecord newRecord, IRecord oldRecord, User user)
@@ -120,7 +111,7 @@ namespace ExpenseTracker.Controller
 
         public void WriteToFile()
         {
-            _fileInteraction.WriteData(FilePath, _users);
+            _fileInteraction.WriteData(FilePath, _userList);
         }
     }
 }

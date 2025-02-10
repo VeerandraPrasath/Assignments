@@ -9,30 +9,30 @@ namespace ExpenseTracker.Controller
     public interface IRepositoryInteraction
     {
         /// <summary>
-        /// Checks wheather User present
+        /// Checks wheather User present or not
         /// </summary>
         /// <param name="username">User Name</param>
         /// <returns>returns User if found else null</returns>
-        public User IsUserPresent(string username);
+        public User FindUserByUsername(string username);
 
         /// <summary>
         /// Creates new <see cref="User"/>
         /// </summary>
         /// <returns>returns true if <see cref="User"/> created else false</returns>
-        public bool CreateNewUser();
+        public void CreateNewUser();
 
         /// <summary>
         /// Load all Data from file
         /// </summary>
-        public void LoadAllData();
+        public void LoadAllFileData();
 
         /// <summary>
         /// Checks wheather Date presents
         /// </summary>
-        /// <param name="date">Date to search</param>
+        /// <param name="transactionDate">Date to search</param>
         /// <param name="user"><see cref="User"/> to search</param>
         /// <returns>returns Date if present else null</returns>
-        public Date IsDatePresent(DateTime date, User user);
+        public Transaction FindTransactionByTransactionDate(DateTime transactionDate, User user);
 
         /// <summary>
         /// Deletes exisiting <see cref="IRecord"/>
@@ -41,14 +41,14 @@ namespace ExpenseTracker.Controller
         /// <param name="index">Index of the <see cref="IRecord"/></param>
         /// <param name="user">Current User</param>
         /// <returns>returns true if record deleted else false</returns>
-        public bool DeleteRecord(List<IRecord> recordList, int index, User user);
+        public void DeleteRecord(List<IRecord> recordList, int index, User user);
 
         /// <summary>
-        /// Adds <see cref="IRecord"/> on specific date
+        /// Adds <see cref="IRecord"/> on specific transactionDate
         /// </summary>
         /// <param name="record"><see cref="IRecord"/> to add</param>
         /// <param name="date">Date</param>
-        public void AddRecord(IRecord record, Date date, User user);
+        public void AddRecord(IRecord record, Transaction date, User user);
 
         /// <summary>
         /// Updates existing <see cref="IRecord"/>

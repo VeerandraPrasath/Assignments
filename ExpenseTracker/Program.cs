@@ -1,6 +1,6 @@
-﻿using ExpenseTracker.ConsoleInteraction;
+﻿using ExpenseTracker.UserInteraction;
 using ExpenseTracker.Controller;
-using ExpenseTracker.FileInteraction;
+using ExpenseTracker.FileInteractions;
 using ExpenseTracker.Manager;
 
 var userInteraction = new UserInteraction();
@@ -39,14 +39,14 @@ public class App
     /// </summary>
     public void Run()
     {
-        _repositoryInteraction.LoadAllData();
+        _repositoryInteraction.LoadAllFileData();
         _userInteraction.DisplayMessage("_________________________________________________________");
         _userInteraction.DisplayMessage("      Welcome to the Expense Tracker Application");
         _userInteraction.DisplayMessage("__________________________________________________________");
         while (!Exit)
         {
             _userInteraction.DisplayMessage("[1] New User\n[2] Existing User\n[3] Close App\n");
-            string userOption = _userInteraction.GetStringInput("option");
+            string userOption = _userInteraction.GetValidString("option");
             switch (userOption)
             {
                 case "1":
