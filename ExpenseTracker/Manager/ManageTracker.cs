@@ -52,7 +52,7 @@ namespace ExpenseTracker.Manager
                 switch (userChoice)
                 {
                     case "1":
-                        ViewRecords();
+                        ViewTransactionRecords();
                         break;
                     case "2":
                         AddIncomeRecord();
@@ -63,15 +63,15 @@ namespace ExpenseTracker.Manager
                         _repositoryInteraction.WriteToFile();
                         break;
                     case "4":
-                        EditRecord();
+                        EditRecordByTransactionDate();
                         _repositoryInteraction.WriteToFile();
                         break;
                     case "5":
-                        DeleteRecordOnDate();
+                        DeleteRecordByTransactionDate();
                         _repositoryInteraction.WriteToFile();
                         break;
                     case "6":
-                        FinancialSummary();
+                        DisplayFinancialSummary();
                         break;
                     case "7":
                         _userInteraction.DisplayMessage("________________________________________________");
@@ -89,7 +89,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Displays all records
         /// </summary>
-        private void ViewRecords()
+        private void ViewTransactionRecords()
         {
             bool exit = false;
             if (_currentUser.TransactionList.Count == 0)
@@ -176,7 +176,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Deletes record based on transaction
         /// </summary>
-        private void DeleteRecordOnDate()
+        private void DeleteRecordByTransactionDate()
         {
             if (_currentUser.TransactionList.Count == 0)
             {
@@ -211,7 +211,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Displays summary of <see cref="User"/>
         /// </summary>
-        private void FinancialSummary()
+        private void DisplayFinancialSummary()
         {
             bool Exit = false;
             if (_currentUser.TransactionList.Count == 0)
@@ -243,7 +243,7 @@ namespace ExpenseTracker.Manager
                         Transaction transaction = _repositoryInteraction.FindTransactionByTransactionDate(userInputDate, _currentUser);
                         if (transaction is not null)
                         {
-                            CalculateSummaryOnDate(transaction);
+                            CalculateSummaryByTransactionDate(transaction);
                         }
                         else
                         {
@@ -265,7 +265,7 @@ namespace ExpenseTracker.Manager
         /// CalculateS summary on <see cref="Date.CurrentDate"/>
         /// </summary>
         /// <param name="transaction">transaction of the record</param>
-        private void CalculateSummaryOnDate(Transaction transaction)
+        private void CalculateSummaryByTransactionDate(Transaction transaction)
         {
             decimal TotalIncome = 0;
             decimal TotalExpense = 0;
@@ -292,7 +292,7 @@ namespace ExpenseTracker.Manager
         /// <summary>
         /// Modify record details
         /// </summary>
-        private void EditRecord()
+        private void EditRecordByTransactionDate()
         {
             if (_currentUser.TransactionList.Count == 0)
             {
