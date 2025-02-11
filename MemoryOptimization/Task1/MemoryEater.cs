@@ -1,7 +1,6 @@
-﻿
-namespace MemoryOptimization
+﻿namespace MemoryOptimization.Task1
 {
-    public class Task1
+    public class MemoryEater
     {
         List<int[]> memalloc = new List<int[]>();
 
@@ -13,8 +12,5 @@ namespace MemoryOptimization
                 Thread.Sleep(100);
             }
         }
-
     }
-
-
 }
