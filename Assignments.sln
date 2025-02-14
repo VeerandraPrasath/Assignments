@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPs", "OOPs\OOPs.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager", "InventoryManager\InventoryManager.csproj", "{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker", "ExpenseTracker\ExpenseTracker.csproj", "{BA206D79-35E3-4E75-97E5-DAE8E684EF36}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagerTests", "InventoryTests\InventoryManagerTests.csproj", "{3D07E351-2440-4AD8-8C31-2A12F884D287}"
 EndProject
 Global
@@ -34,6 +36,10 @@ Global
 		{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3D07E351-2440-4AD8-8C31-2A12F884D287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D07E351-2440-4AD8-8C31-2A12F884D287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D07E351-2440-4AD8-8C31-2A12F884D287}.Release|Any CPU.ActiveCfg = Release|Any CPU
