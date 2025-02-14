@@ -1,4 +1,4 @@
-﻿using CollectionAndGeneric;
+﻿using CollectionAndGeneric.Task5;
 
 //Task1 task1 = new Task1();
 //task1.Run();
@@ -11,3 +11,6 @@
 
 //Task4 task4 = new Task4();
 //task4.Run();
+
+Task5 task5 = new Task5();
+task5.Run();
