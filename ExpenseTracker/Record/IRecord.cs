@@ -9,6 +9,7 @@
         /// Amount of the record
         /// </summary>
         public decimal Amount { get; set; }
+
         /// <summary>
         /// Category of the record
         /// </summary>

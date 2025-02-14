@@ -8,7 +8,6 @@ namespace ExpenseTracker.UserInteraction
     /// </summary>
     public class UserInteraction : IUserInteraction
     {
-
         public string GetValidString(string message)
         {
             string userInput;
