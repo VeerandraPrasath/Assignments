@@ -33,7 +33,7 @@ namespace ExpenseTracker.Controller
             FilePath = filePath;
         }
 
-        public User FindUserByUsername(string username)
+        public User FindByUsername(string username)
         {
            return  _userList.Find(x => x.Name.Equals(username));
         }
@@ -44,21 +44,21 @@ namespace ExpenseTracker.Controller
             do
             {
                 newUser = _userInteraction.GetValidString("New Username");
-                if (FindUserByUsername(newUser) is not null)
+                if (FindByUsername(newUser) is not null)
                 {
                     _userInteraction.DisplayMessage("\nUsername already exist !\n");
                 }
-            } while (FindUserByUsername(newUser) is not null);
+            } while (FindByUsername(newUser) is not null);
             _userList.Add(new User(newUser));
             _userInteraction.DisplayMessage("\nAccount created successfully ! please Login !\n");
         }
 
-        public void LoadAllFileData()
+        public void LoadData()
         {
             _userList = _fileInteraction.ReadFiledata(FilePath);
         }
 
-        public Transaction FindTransactionByTransactionDate(DateTime transactionDate, User user)
+        public Transaction FindByTransactionDate(DateTime transactionDate, User user)
         {
             foreach (Transaction Date in user.TransactionList)
             {

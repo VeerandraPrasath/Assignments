@@ -14,19 +14,19 @@ namespace ExpenseTracker.FileInteractions
             {
                 return new List<User>();
             }
-            var vSettings = new JsonSerializerSettings();
-            vSettings.TypeNameHandling = TypeNameHandling.Objects;
-            var vJsonStr = File.ReadAllText(filePath);
+            var serializationSettings = new JsonSerializerSettings();
+            serializationSettings.TypeNameHandling = TypeNameHandling.Objects;
+            var jsonString = File.ReadAllText(filePath);
 
-            return JsonConvert.DeserializeObject<List<User>>(vJsonStr, vSettings);
+            return JsonConvert.DeserializeObject<List<User>>(jsonString, serializationSettings);
         }
 
         public void WriteData(string filePath, List<User> userList)
         { 
-            var vSettings = new JsonSerializerSettings();
-            vSettings.TypeNameHandling = TypeNameHandling.Objects;
-            var vJsonStr = JsonConvert.SerializeObject(userList, Formatting.Indented, vSettings);
-            File.WriteAllText(filePath, vJsonStr);
+            var serializationSettings = new JsonSerializerSettings();
+            serializationSettings.TypeNameHandling = TypeNameHandling.Objects;
+            var jsonString = JsonConvert.SerializeObject(userList, Formatting.Indented, serializationSettings);
+            File.WriteAllText(filePath, jsonString);
         }
     }
 }

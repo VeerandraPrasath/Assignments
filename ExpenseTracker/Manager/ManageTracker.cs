@@ -11,6 +11,7 @@ namespace ExpenseTracker.Manager
     public class ManageTracker : IManageTracker
     {
         private User _currentUser;
+
         private readonly IUserInteraction _userInteraction;
         private readonly IRepositoryInteraction _repositoryInteraction;
 
@@ -27,7 +28,7 @@ namespace ExpenseTracker.Manager
         public void CheckExisitingUser()
         {
             string userName = _userInteraction.GetValidString("Username");
-            _currentUser = _repositoryInteraction.FindUserByUsername(userName);
+            _currentUser = _repositoryInteraction.FindByUsername(userName);
             if (_currentUser != null)
             {
                 Console.Clear();
@@ -116,7 +117,7 @@ namespace ExpenseTracker.Manager
                         break;
                     case "2":
                         DateTime userInputDate = _userInteraction.GetValidDate("to view Transactions");
-                        Transaction transaction = _repositoryInteraction.FindTransactionByTransactionDate(userInputDate, _currentUser);
+                        Transaction transaction = _repositoryInteraction.FindByTransactionDate(userInputDate, _currentUser);
                         if (transaction is not null)
                         {
                             _userInteraction.DisplayRecordsByDate(transaction);
@@ -145,7 +146,7 @@ namespace ExpenseTracker.Manager
         private void AddIncomeRecord()
         {
             DateTime userInputDate = _userInteraction.GetValidDate("to add Income record");
-            Transaction transaction = _repositoryInteraction.FindTransactionByTransactionDate(userInputDate, _currentUser);
+            Transaction transaction = _repositoryInteraction.FindByTransactionDate(userInputDate, _currentUser);
             if (transaction is null)
             {
                 transaction = new Transaction(userInputDate);
@@ -162,7 +163,7 @@ namespace ExpenseTracker.Manager
         private void AddExpenseRecord()
         {
             DateTime userInputDate = _userInteraction.GetValidDate("to add Expense record");
-            Transaction transaction = _repositoryInteraction.FindTransactionByTransactionDate(userInputDate, _currentUser);
+            Transaction transaction = _repositoryInteraction.FindByTransactionDate(userInputDate, _currentUser);
             if (transaction is null)
             {
                 transaction = new Transaction(userInputDate);
@@ -186,8 +187,8 @@ namespace ExpenseTracker.Manager
 
                 return;
             }
-            DateTime userInputDate = _userInteraction.GetValidDate("to add Income record");
-            Transaction transaction = _repositoryInteraction.FindTransactionByTransactionDate(userInputDate, _currentUser);
+            DateTime userInputDate = _userInteraction.GetValidDate("to delete Income record");
+            Transaction transaction = _repositoryInteraction.FindByTransactionDate(userInputDate, _currentUser);
             if (transaction is not null)
             {
                 _userInteraction.DisplayRecordsByDate(transaction);
@@ -240,7 +241,7 @@ namespace ExpenseTracker.Manager
                         break;
                     case "2":
                         DateTime userInputDate = _userInteraction.GetValidDate("to view Summary");
-                        Transaction transaction = _repositoryInteraction.FindTransactionByTransactionDate(userInputDate, _currentUser);
+                        Transaction transaction = _repositoryInteraction.FindByTransactionDate(userInputDate, _currentUser);
                         if (transaction is not null)
                         {
                             CalculateSummaryByTransactionDate(transaction);
@@ -302,8 +303,8 @@ namespace ExpenseTracker.Manager
 
                 return;
             }
-            DateTime userInputDate = _userInteraction.GetValidDate("to add edit record");
-            Transaction editTransaction = _repositoryInteraction.FindTransactionByTransactionDate(userInputDate, _currentUser);
+            DateTime userInputDate = _userInteraction.GetValidDate("to edit record");
+            Transaction editTransaction = _repositoryInteraction.FindByTransactionDate(userInputDate, _currentUser);
             if (editTransaction is not null)
             {
                 if (editTransaction.RecordList.Count == 0 || editTransaction.RecordList is null)

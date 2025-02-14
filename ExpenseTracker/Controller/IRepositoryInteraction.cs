@@ -13,7 +13,7 @@ namespace ExpenseTracker.Controller
         /// </summary>
         /// <param name="username">User Name</param>
         /// <returns>returns User if found else null</returns>
-        public User FindUserByUsername(string username);
+        public User FindByUsername(string username);
 
         /// <summary>
         /// Creates new <see cref="User"/>
@@ -24,7 +24,7 @@ namespace ExpenseTracker.Controller
         /// <summary>
         /// Load all Data from file
         /// </summary>
-        public void LoadAllFileData();
+        public void LoadData();
 
         /// <summary>
         /// Checks wheather Date presents
@@ -32,7 +32,7 @@ namespace ExpenseTracker.Controller
         /// <param name="transactionDate">Date to search</param>
         /// <param name="user"><see cref="User"/> to search</param>
         /// <returns>returns Date if present else null</returns>
-        public Transaction FindTransactionByTransactionDate(DateTime transactionDate, User user);
+        public Transaction FindByTransactionDate(DateTime transactionDate, User user);
 
         /// <summary>
         /// Deletes exisiting <see cref="IRecord"/>
