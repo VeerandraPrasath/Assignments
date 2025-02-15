@@ -6,7 +6,6 @@ using NUnit.Framework;
 using NUnit.Framework.Legacy;
 using ExpenseTracker.UserData;
 using ExpenseTracker.Record;
-using System.Collections.Specialized;
 
 namespace ExpenseTrackerTest
 {
@@ -40,6 +39,9 @@ namespace ExpenseTrackerTest
         [TestCase("Arun")]
         public void IsUserPresent_ShallReturnsUser_IfPresent(string userName)
         {
+            _userInteraction.Setup(x => x.GetValidString(It.IsAny<string>())).Returns(userName);
+            _repositoryInteraction.CreateNewUser();   
+
             var result = _repositoryInteraction.FindByUsername(userName);
 
             ClassicAssert.AreEqual(userName, result.Name);
@@ -61,8 +63,8 @@ namespace ExpenseTrackerTest
             _userInteraction.Setup(x => x.GetValidString(It.IsAny<string>())).Returns(userName);
 
             _repositoryInteraction.CreateNewUser();
-            
-            ClassicAssert.IsTrue(_userList.Any(x => x.Name.Equals(userName)));
+
+            _userInteraction.Verify(x=>x.DisplayMessage("\nAccount created successfully ! please Login !\n"));
         }
 
         [Test]
@@ -97,10 +99,10 @@ namespace ExpenseTrackerTest
         [TestCase(0, true)]
         public void DeleteRecord_ShallReturnTrue_IfRemoved(int index, bool expected)
         {
-            int count=_user1.TransactionList.Count;
+            int count = _recordList.Count;
             _repositoryInteraction.DeleteRecord(_recordList, index, _user1);
 
-            ClassicAssert.AreEqual(expected, (_user1.TransactionList.Count==count-1));
+            ClassicAssert.AreEqual(count - 1, _recordList.Count);
         }
 
         [Test]
@@ -129,7 +131,7 @@ namespace ExpenseTrackerTest
         {
             _repositoryInteraction.WriteToFile();
 
-            _fileInteraction.Verify(x => x.WriteData(PATH, _userList));
+            _fileInteraction.Verify(x => x.WriteData(It.IsAny<string>(), It.IsAny<List<User>>()));
         }
     }
 

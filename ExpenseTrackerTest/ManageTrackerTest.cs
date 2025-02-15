@@ -11,7 +11,7 @@ namespace ExpenseTrackerTest
     public class ManageTrackerTest
     {
         private User _currentUser;
-        private IManageTracker _manageTracker;
+        private ManageTracker _manageTracker;
         private Mock<IUserInteraction> _userInteraction;
         private Mock<IRepositoryInteraction> _repositoryInteraction;
         private List<IRecord> _recordList;
@@ -20,10 +20,12 @@ namespace ExpenseTrackerTest
         public void Setup()
         {
             _recordList = new List<IRecord>() { new Income(500, "FreeLancing"), new Expense(200, "Petrol") };
-            _currentUser = new User("Prasath") { Name = "Prasath", TotalExpense = 0, TotalIncome = 0, CurrentBalance = 0,TransactionList = new List<ExpenseTracker.UserData.Transaction>() { new ExpenseTracker.UserData.Transaction(DateTime.Parse("31-1-2025")) { TransactionDate = DateTime.Parse("31-1-2025"), RecordList = _recordList } } };
+            _currentUser = new User("Prasath") { Name = "Prasath", TotalExpense = 0, TotalIncome = 0, CurrentBalance = 0, TransactionList = new List<ExpenseTracker.UserData.Transaction>() { new ExpenseTracker.UserData.Transaction(DateTime.Parse("31-1-2025")) { TransactionDate = DateTime.Parse("31-1-2025"), RecordList = _recordList } } };
             _userInteraction = new Mock<IUserInteraction>();
             _repositoryInteraction = new Mock<IRepositoryInteraction>();
             _manageTracker = new ManageTracker(_userInteraction.Object, _repositoryInteraction.Object);
+            _manageTracker._currentUser = _currentUser;
+
         }
 
         [Test]
@@ -98,8 +100,7 @@ namespace ExpenseTrackerTest
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage("\nInvalid Date !\n"), Times.Once);
-            _userInteraction.Verify(x => x.DisplayMessage(It.IsAny<string>()));
+            _userInteraction.Verify(x => x.DisplayMessage("\nInvalid transaction !\n"));
         }
 
         [Test]
@@ -114,7 +115,6 @@ namespace ExpenseTrackerTest
             _manageTracker.Login();
 
             _userInteraction.Verify(x => x.DisplayMessage($"\nNo Transactions on {date.ToString()}\n"), Times.Once);
-            _userInteraction.Verify(x => x.DisplayMessage(It.IsAny<string>()));
         }
 
         [Test]
@@ -177,7 +177,7 @@ namespace ExpenseTrackerTest
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage($"No Transactions on date {dateTime.ToString()}"));
+            _userInteraction.Verify(x => x.DisplayMessage($"No Transactions on transaction {dateTime.ToString()}"));
         }
 
         [Test]
@@ -220,7 +220,7 @@ namespace ExpenseTrackerTest
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage($"No Transactions on date {date.ToString()}"));
+            _userInteraction.Verify(x => x.DisplayMessage($"No Transactions on transaction {date.ToString()}"));
         }
     }
 }
