@@ -29,7 +29,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayAllProducts_ShallPrintAllProductInList()
+        public void DisplayAllProducts_PrintAllProductInList()
         {
             string products = "";
             for (int i = 0; i < _productList.Count; i++)
@@ -47,7 +47,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayAllProducts_ShallPrintMessage_IFProductNotFoundInList()
+        public void DisplayAllProducts_PrintMessage_When_ProductNotFoundInList()
         {
             string message = "**** No products available ****\r\n";
             StringWriter stringWriter = new StringWriter();
@@ -60,7 +60,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayEditOptions_ShallPrintAllEditOptions()
+        public void DisplayEditOptions_PrintAllEditOptions()
         {
             string message = "\n[1] Name \n[2] Id\n[3] Quantity \n[4] Price\n\r\n";
 
@@ -71,7 +71,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayOptions_ShallPrintAllAvailableOptions()
+        public void DisplayOptions_PrintAllAvailableOptions()
         {
             string message = "\n[1] View \n[2] Add \n[3] Edit \n[4] Delete \n[5] Search \n[6] Clear \n[7] Exit\n\r\n";
             _userInteraction.DisplayMenuOptions();
@@ -82,8 +82,7 @@ namespace InventoryManagerTests
 
         [TestCase(3, "Vasanth", 10, 15)]
         [TestCase(4, "Nikil", 12, 10)]
-        [Test]
-        public void GetProductDetail_ShallReturnProduct_BasedOnUserInput(int id, string name, int quantity, int price)
+        public void GetProductDetail_ReturnProduct_When_UserInputProductDetails(int id, string name, int quantity, int price)
         {
             string input = $"{id}\n{name}\n{quantity}\n{price}";
             StringReader inputReader = new StringReader(input);
@@ -101,8 +100,7 @@ namespace InventoryManagerTests
 
         [TestCase("ABCD")]
         [TestCase("Prasath")]
-        [Test]
-        public void GetInputStringShallReturnString_BasedOnUserInput(string input)
+        public void GetInputString_ReturnString_When_UserInputString(string input)
         {
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
@@ -112,13 +110,11 @@ namespace InventoryManagerTests
             ClassicAssert.AreEqual(input, result);
         }
 
-
         [TestCase("1")]
         [TestCase("91283")]
         [TestCase("0003")]
         [TestCase("2323")]
-        [Test]
-        public void GetInputIntShallReturnInt_BasedOnUserInput(string input)
+        public void GetInputInt_ReturnInt_When_UserInputInt(string input)
         {
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
@@ -128,11 +124,10 @@ namespace InventoryManagerTests
             ClassicAssert.AreEqual(input, result);
         }
 
-        [Test]
         [TestCase(3)]
         [TestCase(4)]
         [TestCase(5)]
-        public void GetUniqueIdShallReturnIdIfInputIdIsUnique(int input)
+        public void GetUniqueId_ReturnId_When_InputIdIsUnique(int input)
         {
             string consoleinput = $"{input}";
             StringReader inputReader = new StringReader(consoleinput);
@@ -147,8 +142,7 @@ namespace InventoryManagerTests
 
         [TestCase("Vasanth")]
         [TestCase("Nikil")]
-        [Test]
-        public void GetUniqueNameShallReturnNameIfInputNameIsUnique(string input)
+        public void GetUniqueName_ReturnName_When_InputNameIsUnique(string input)
         {
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);

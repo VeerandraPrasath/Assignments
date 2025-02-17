@@ -24,9 +24,10 @@ namespace InventoryManagerTests
             _app = new App(_manageInventory.Object, _userInteraction.Object, _productRepository.Object);
         }
 
-        [TestCase("1")]
-        public void Run_ShallDisplayOptions_WhenInputIs1(string userOption)
+        [Test]
+        public void Run_DisplayOptions_When_InputIs1()
         {
+            string userOption = "1";
             _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
             _productRepository.Setup(mock => mock.GetAllProducts()).Returns(new List<Product>());
 
@@ -35,9 +36,10 @@ namespace InventoryManagerTests
             _userInteraction.Verify(mock => mock.DisplayAllProducts(new List<Product>()));
         }
 
-        [TestCase("2")]
-        public void Run_ShallAddNewProduct_WhenInputIs2(string userOption)
+        [Test]
+        public void Run_AddNewProduct_When_InputIs2()
         {
+            string userOption = "2";
             _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
 
             _app.Run();
@@ -45,9 +47,10 @@ namespace InventoryManagerTests
             _manageInventory.Verify(mock => mock.AddNewProduct());
         }
 
-        [TestCase("3")]
-        public void Run_ShallEditProduct_WhenInputIs3(string userOption)
+        [Test]
+        public void Run_EditProduct_When_InputIs3()
         {
+            string userOption = "3";
             _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
 
             _app.Run();
@@ -55,9 +58,10 @@ namespace InventoryManagerTests
             _manageInventory.Verify(mock => mock.EditExistingProduct());
         }
 
-        [TestCase("4")]
-        public void Run_ShallDeleteProduct_WhenInputIs4(string userOption)
+        [Test]
+        public void Run_DeleteProduct_When_InputIs4()
         {
+            string userOption = "4";
             _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
 
             _app.Run();
@@ -65,9 +69,10 @@ namespace InventoryManagerTests
             _manageInventory.Verify(mock => mock.DeleteExistingProduct());
         }
 
-        [TestCase("5")]
-        public void Run_ShallSearchProduct_WhenInputIs5(string userOption)
+        [Test]
+        public void Run_SearchProduct_When_InputIs5()
         {
+            string userOption = "5";
             _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
 
             _app.Run();
