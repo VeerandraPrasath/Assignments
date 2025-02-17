@@ -47,7 +47,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DisplayAllProducts_PrintMessage_When_ProductNotFoundInList()
+        public void DisplayAllProducts_PrintMessageOnEmptyProductList()
         {
             _productList.Clear();
             string message = "**** No products available ****\r\n";
@@ -83,7 +83,7 @@ namespace InventoryManagerTests
 
         [TestCase(3, "Vasanth", 10, 15)]
         [TestCase(4, "Nikil", 12, 10)]
-        public void GetProductDetail_ReturnProduct_When_UserInputProductDetails(int id, string name, int quantity, int price)
+        public void GetProductDetail_GetAllProductDetailsFromUser_ReturnsProduct(int id, string name, int quantity, int price)
         {
             string input = $"{id}\n{name}\n{quantity}\n{price}";
             StringReader inputReader = new StringReader(input);
@@ -101,7 +101,7 @@ namespace InventoryManagerTests
 
         [TestCase("ABCD")]
         [TestCase("Prasath")]
-        public void GetInputString_ReturnString_When_UserInputString(string inputString)
+        public void GetInputString_GetValidStringFromUser_ReturnsString(string inputString)
         {
             StringReader inputReader = new StringReader(inputString);
             Console.SetIn(inputReader);
@@ -115,7 +115,7 @@ namespace InventoryManagerTests
         [TestCase("91283")]
         [TestCase("0003")]
         [TestCase("2323")]
-        public void GetInputInt_ReturnInt_When_UserInputInt(string inputInt)
+        public void GetInputInt_GetValidIntFromUser_ReturnsInt(string inputInt)
         {
             StringReader inputReader = new StringReader(inputInt);
             Console.SetIn(inputReader);
@@ -128,7 +128,7 @@ namespace InventoryManagerTests
         [TestCase(3)]
         [TestCase(4)]
         [TestCase(5)]
-        public void GetUniqueId_ReturnId_When_InputIdIsUnique(int productId)
+        public void GetUniqueId_GetUniqueIdFromUser_ReturnId(int productId)
         {
             string consoleinput = $"{productId}";
             StringReader inputReader = new StringReader(consoleinput);
@@ -143,7 +143,7 @@ namespace InventoryManagerTests
 
         [TestCase("Vasanth")]
         [TestCase("Nikil")]
-        public void GetUniqueName_ReturnName_When_InputNameIsUnique(string productName)
+        public void GetUniqueName_GetUniqueNameFromUser_ReturnsName(string productName)
         {
             StringReader inputReader = new StringReader(productName);
             Console.SetIn(inputReader);

@@ -46,7 +46,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasath")]
         [TestCase("1")]
-        public void DeleteExistingProduct_DeleteProduct_When_ProductExist(string productDetail)
+        public void DeleteExistingProduct_DeleteProductIfExist(string productDetail)
         {
             _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
             _mockUserInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(productDetail);
@@ -59,7 +59,7 @@ namespace InventoryManagerTests
 
         [TestCase("Arun")]
         [TestCase("2")]
-        public void DeleteExistingProduct_NotDeleteProduct_When_ProductNotExist(string productDetail)
+        public void DeleteExistingProduct_NotDeleteProductIfNotExist(string productDetail)
         {
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -76,7 +76,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasath", "Veera", "1")]
         [TestCase("Arun", "Kumar", "1")]
-        public void EditExistingProduct_EditProductName_When_UserSelectName(string productDetail, string newProductName, string userOption)
+        public void EditExistingProduct_EditProductNameIfExist(string productDetail, string newProductName, string userOption)
         {
 
             _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
@@ -92,7 +92,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasath", 3, "2")]
         [TestCase("Arun", 5, "2")]
-        public void EditExistingProduct_EditProductId_When_UserSelectProductId(string productDetail, int newProductId, string userOption)
+        public void EditExistingProduct_EditProductIdIfExist(string productDetail, int newProductId, string userOption)
         {
             _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
             _mockUserInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(productDetail);
@@ -107,7 +107,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasath", 30, "3")]
         [TestCase("Arun", 40, "3")]
-        public void EditExistingProduct_EditProductQuantity_When_UserSelectQuantity(string productDetail, int newProductQuantity, string userOption)
+        public void EditExistingProduct_EditProductQuantityIfExist(string productDetail, int newProductQuantity, string userOption)
         {
             _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
             _mockUserInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(productDetail);
@@ -122,7 +122,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasath", 15, "4")]
         [TestCase("Arun", 20, "4")]
-        public void EditExistingProduct_EditProductPrice_When_UserSelectPrice(string productDetail, int newProductPrice, string userOption)
+        public void EditExistingProduct_EditProductPriceIfExist(string productDetail, int newProductPrice, string userOption)
         {
             _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
             _mockUserInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(productDetail);
@@ -137,7 +137,7 @@ namespace InventoryManagerTests
 
         [TestCase("1", true)]
         [TestCase("Arun", true)]
-        public void SearchProducts_ReturnProduct_When_ProductExist(string productDetail, bool expected)
+        public void SearchProducts_SearchProductFromList_ReturnsProductIfExist(string productDetail, bool expected)
         {
             _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
             _mockUserInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(productDetail);
@@ -150,7 +150,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasa", false)]
         [TestCase("xxzzyy", false)]
-        public void SearchProducts_ReturnNull_When_ProductNotExist(string productDetail, bool expected)
+        public void SearchProducts_SearchProductFromList_ReturnsNullIfNotExist(string productDetail, bool expected)
         {
             _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
             _mockUserInteraction.Setup(mock => mock.GetInputString("Product Name or Id ")).Returns(productDetail);

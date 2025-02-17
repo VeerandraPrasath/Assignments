@@ -36,7 +36,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void GetAllProducts_ReturnProductList_When_ProductListExist()
+        public void GetAllProducts_GetAllAvailableProducts_ReturnsProductListIfExist()
         {
             var result = _mockProductRepository.GetAllProducts();
 
@@ -45,7 +45,7 @@ namespace InventoryManagerTests
 
         [TestCase(3, true)]
         [TestCase(4, true)]
-        public void IsIdUnique_ReturnsTrue_When_IdUnique(int productId, bool expected)
+        public void IsIdUnique_ChecksIdIsUnique_ReturnsTrueIfUnique(int productId, bool expected)
         {
             var result = _mockProductRepository.IsIdUnique(productId);
 
@@ -54,7 +54,7 @@ namespace InventoryManagerTests
 
         [TestCase(1, false)]
         [TestCase(2, false)]
-        public void IsIdUnique_ReturnsFalse_When_IdNotUnique(int productId, bool expected)
+        public void IsIdUnique_ChecksIdIsUnique_ReturnsFalseIfNotUnique(int productId, bool expected)
         {
             var result = _mockProductRepository.IsIdUnique(productId);
 
@@ -62,7 +62,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void DeleteProduct_ReturnTrue_When_ProductDeleted()
+        public void DeleteProduct_DeleteProductFromList_ReturnsTrueIfRemoved()
         {
             var expected = true;
 
@@ -74,7 +74,7 @@ namespace InventoryManagerTests
 
         [TestCase("Nikil", true)]
         [TestCase("Bhai", true)]
-        public void IsNameUnique_ReturnsTrue_When_NameIsUnique(string productName, bool expected)
+        public void IsNameUnique_ChecksNameIsUnique_ReturnsTrueIfUnique(string productName, bool expected)
         {
             var result = _mockProductRepository.IsNameUnique(productName);
 
@@ -83,7 +83,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasath", false)]
         [TestCase("Arun", false)]
-        public void IsNameUnique_ReturnsFalse_When_NameIsNotUnique(string productName, bool expected)
+        public void IsNameUnique_ChecksNameIsUnique_ReturnsFalseIfNotUnique(string productName, bool expected)
         {
             var result = _mockProductRepository.IsNameUnique(productName);
 
@@ -93,7 +93,7 @@ namespace InventoryManagerTests
 
         [TestCase("Prasath", true)]
         [TestCase("Arun", true)]
-        public void FindProduct_ReturnProduct_When_ProductPresent(string productDetail, bool expected)
+        public void FindProduct_SearchProductInList_ReturnProductIfExist(string productDetail, bool expected)
         {
             var result = _mockProductRepository.FindProduct(productDetail);
 
@@ -102,7 +102,7 @@ namespace InventoryManagerTests
 
         [TestCase("Zyusa", false)]
         [TestCase("Zoyaa", false)]
-        public void FindProduct_ReturnNull_When_ProductNotPresent(string productDetail, bool expected)
+        public void FindProduct_SearchProductInList_ReturnNullIfNotExist(string productDetail, bool expected)
         {
             var result = _mockProductRepository.FindProduct(productDetail);
 

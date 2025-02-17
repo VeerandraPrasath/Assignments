@@ -27,7 +27,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void Run_DisplayOptions_When_UserSelectDisplayOptions()
+        public void Run_InvokeDisplayAllProducts()
         {
             string userOption = "1";
             _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
@@ -39,7 +39,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void Run_AddNewProduct_When_UserSelectAdd()
+        public void Run_InvokeAddNewProduct()
         {
             string userOption = "2";
             _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
@@ -50,7 +50,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void Run_EditProduct_When_UserSelectEdit()
+        public void Run_InvokeEditExistingProduct()
         {
             string userOption = "3";
             _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
@@ -61,7 +61,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void Run_DeleteProduct_When_UserSelectDelete()
+        public void Run_InvokeDeleteExistingProduct()
         {
             string userOption = "4";
             _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
@@ -72,7 +72,7 @@ namespace InventoryManagerTests
         }
 
         [Test]
-        public void Run_SearchProduct_When_UserSelectSearch()
+        public void Run_InvokeSearchProducts()
         {
             string userOption = "5";
             _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
