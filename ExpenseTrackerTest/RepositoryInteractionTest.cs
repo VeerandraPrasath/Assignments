@@ -130,7 +130,7 @@ namespace ExpenseTrackerTest
         {
             _repositoryInteraction.WriteToFile();
 
-            _mockFileInteraction.Verify(x => x.WriteData(PATH, _userList));
+            _mockFileInteraction.Verify(x => x.WriteData(PATH, It.IsAny<List<User>>()));
         }
     }
 

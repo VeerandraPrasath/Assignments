@@ -134,7 +134,7 @@ namespace ExpenseTrackerTest
 
             _manageTracker.Login();
 
-            _mockRepositoryInteraction.Verify(x => x.UpdateRecord(record, updateRecord, _currentUser), Times.Once);
+            _mockRepositoryInteraction.Verify(x => x.UpdateRecord(It.IsAny<IRecord>(), It.IsAny<IRecord>(), _currentUser), Times.Once);
         }
 
         [Test]

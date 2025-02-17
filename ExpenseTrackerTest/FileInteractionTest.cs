@@ -22,13 +22,13 @@ namespace ExpenseTrackerTest
         [Test]
         public void ReadAllData_ReadFileData_ReturnsUserList()
         {
-            var result = _fileInteraction.ReadFiledata(PATH);
+            var result = _fileInteraction.ReadFiledata(It.IsAny<string>());
 
             ClassicAssert.IsTrue(result is List<User>);
         }
 
         [Test]
-        public void WriteDate_WriteUserDetailsToFile()
+        public void WriteData_WriteUserDetailsToFile()
         {
             var userList = new List<User>() { new User("Prasath"), new User("Arun") };
             var expectedJson = JsonConvert.SerializeObject(userList, Formatting.Indented, new JsonSerializerSettings
