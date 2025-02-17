@@ -49,11 +49,12 @@ namespace InventoryManagerTests
         [Test]
         public void DisplayAllProducts_PrintMessage_When_ProductNotFoundInList()
         {
+            _productList.Clear();
             string message = "**** No products available ****\r\n";
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            _userInteraction.DisplayAllProducts(new List<Product>());
+            _userInteraction.DisplayAllProducts(_productList);
             string output = stringWriter.ToString();
 
             ClassicAssert.AreEqual(message, output);
@@ -146,7 +147,7 @@ namespace InventoryManagerTests
         {
             StringReader inputReader = new StringReader(productName);
             Console.SetIn(inputReader);
-            _mockProductRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>()))
+            _mockProductRepository.Setup(mock => mock.IsNameUnique(productName))
                   .Returns((string name) => !_productList.Any(p => p.Name.Equals(name)));
 
             var result = _userInteraction.GetUniqueName();

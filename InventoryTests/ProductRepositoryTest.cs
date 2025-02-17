@@ -26,9 +26,9 @@ namespace InventoryManagerTests
 
         [TestCase(3, "Vasanth", 23, 234)]
         [TestCase(4, "Nikil", 23, 22)]
-        public void AddProduct_ReturnTrue_When_ProductAdded(int id, string name, int quantity, int price)
+        public void AddProduct_ReturnTrue_When_ProductAdded(int productId, string productName, int productQuantity, int productPrice)
         {
-            var product = new Product(id, name, price, quantity);
+            var product = new Product(productId, productName, productPrice, productQuantity);
 
             _mockProductRepository.AddProduct(product);
 
@@ -45,18 +45,18 @@ namespace InventoryManagerTests
 
         [TestCase(3, true)]
         [TestCase(4, true)]
-        public void IsIdUnique_ReturnsTrue_When_IdUnique(int id, bool expected)
+        public void IsIdUnique_ReturnsTrue_When_IdUnique(int productId, bool expected)
         {
-            var result = _mockProductRepository.IsIdUnique(id);
+            var result = _mockProductRepository.IsIdUnique(productId);
 
             ClassicAssert.AreEqual(expected, result);
         }
 
         [TestCase(1, false)]
         [TestCase(2, false)]
-        public void IsIdUnique_ReturnsFalse_When_IdNotUnique(int id, bool expected)
+        public void IsIdUnique_ReturnsFalse_When_IdNotUnique(int productId, bool expected)
         {
-            var result = _mockProductRepository.IsIdUnique(id);
+            var result = _mockProductRepository.IsIdUnique(productId);
 
             ClassicAssert.AreEqual(expected, result);
         }
