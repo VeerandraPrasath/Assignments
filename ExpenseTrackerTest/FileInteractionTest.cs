@@ -20,7 +20,7 @@ namespace ExpenseTrackerTest
         }
 
         [Test]
-        public void ReadAllData_ShallReturnsUserList()
+        public void ReadAllData_ReadFileData_ReturnsUserList()
         {
             var result = _fileInteraction.ReadFiledata(PATH);
 
@@ -28,7 +28,7 @@ namespace ExpenseTrackerTest
         }
 
         [Test]
-        public void WriteDate_ShallWriteUserDetailsToFile()
+        public void WriteDate_WriteUserDetailsToFile()
         {
             var userList = new List<User>() { new User("Prasath"), new User("Arun") };
             var expectedJson = JsonConvert.SerializeObject(userList, Formatting.Indented, new JsonSerializerSettings

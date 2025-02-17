@@ -8,38 +8,38 @@ namespace ExpenseTrackerTest
 {
     public class AppTest
     {
-        private Mock<IManageTracker> _manageTracker;
-        private Mock<IRepositoryInteraction> _repositoryInteraction;
-        private Mock<IUserInteraction> _userInteraction;
+        private Mock<IManageTracker> _mockManageTracker;
+        private Mock<IRepositoryInteraction> _mockRepositoryInteraction;
+        private Mock<IUserInteraction> _mockUserInteraction;
         private App _app;
 
         [SetUp]
         public void Setup()
         {
-            _userInteraction = new Mock<IUserInteraction>();
-            _repositoryInteraction = new Mock<IRepositoryInteraction>();
-            _manageTracker = new Mock<IManageTracker>();
-            _app = new App(_userInteraction.Object, _manageTracker.Object, _repositoryInteraction.Object);
+            _mockUserInteraction = new Mock<IUserInteraction>();
+            _mockRepositoryInteraction = new Mock<IRepositoryInteraction>();
+            _mockManageTracker = new Mock<IManageTracker>();
+            _app = new App(_mockUserInteraction.Object, _mockManageTracker.Object, _mockRepositoryInteraction.Object);
         }
 
         [Test]
-        public void Run_InvokeCreateNewUser_WhenInput1()
+        public void Run_InvokeCreateNewUser()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("1").Returns("3");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("option")).Returns("1").Returns("3");
 
             _app.Run();
 
-            _repositoryInteraction.Verify(x => x.CreateNewUser());
+            _mockRepositoryInteraction.Verify(x => x.CreateNewUser(),Times.Once);
         }
 
         [Test]
-        public void Run_InvokeCheckExisitingUser_WhenInput2()
+        public void Run_InvokeCheckExisitingUser()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("2").Returns("3");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("option")).Returns("2").Returns("3");
 
             _app.Run();
 
-            _manageTracker.Verify(x => x.CheckExisitingUser());
+            _mockManageTracker.Verify(x => x.CheckExisitingUser());
         }
     }
 }
