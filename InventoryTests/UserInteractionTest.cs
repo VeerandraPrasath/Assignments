@@ -13,7 +13,7 @@ namespace InventoryManagerTests
     {
         private List<Product> _productList;
         private Product _product1;
-        private Mock<IProductRepository> _productRepository;
+        private Mock<IProductRepository> _mockProductRepository;
         private IUserInteraction _userInteraction;
         StringWriter stringWriter;
 
@@ -22,8 +22,8 @@ namespace InventoryManagerTests
         {
             _product1 = new Product(1, "Prasath", 10, 20);
             _productList = new List<Product>() { _product1, new Product(2, "Arun", 20, 30) };
-            _productRepository = new Mock<IProductRepository>();
-            _userInteraction = new UserInteraction(_productRepository.Object);
+            _mockProductRepository = new Mock<IProductRepository>();
+            _userInteraction = new UserInteraction(_mockProductRepository.Object);
             stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
         }
@@ -87,9 +87,9 @@ namespace InventoryManagerTests
             string input = $"{id}\n{name}\n{quantity}\n{price}";
             StringReader inputReader = new StringReader(input);
             Console.SetIn(inputReader);
-            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>()))
+            _mockProductRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>()))
                   .Returns((string name) => !_productList.Any(p => p.Name.Equals(name)));
-            _productRepository.Setup(mock => mock.IsIdUnique(It.IsAny<int>()))
+            _mockProductRepository.Setup(mock => mock.IsIdUnique(It.IsAny<int>()))
                       .Returns((int id) => !_productList.Any(p => p.Id == id));
 
 
@@ -100,58 +100,58 @@ namespace InventoryManagerTests
 
         [TestCase("ABCD")]
         [TestCase("Prasath")]
-        public void GetInputString_ReturnString_When_UserInputString(string input)
+        public void GetInputString_ReturnString_When_UserInputString(string inputString)
         {
-            StringReader inputReader = new StringReader(input);
+            StringReader inputReader = new StringReader(inputString);
             Console.SetIn(inputReader);
 
             var result = _userInteraction.GetInputString("Name");
 
-            ClassicAssert.AreEqual(input, result);
+            ClassicAssert.AreEqual(inputString, result);
         }
 
         [TestCase("1")]
         [TestCase("91283")]
         [TestCase("0003")]
         [TestCase("2323")]
-        public void GetInputInt_ReturnInt_When_UserInputInt(string input)
+        public void GetInputInt_ReturnInt_When_UserInputInt(string inputInt)
         {
-            StringReader inputReader = new StringReader(input);
+            StringReader inputReader = new StringReader(inputInt);
             Console.SetIn(inputReader);
 
             var result = _userInteraction.GetInputString("Id");
 
-            ClassicAssert.AreEqual(input, result);
+            ClassicAssert.AreEqual(inputInt, result);
         }
 
         [TestCase(3)]
         [TestCase(4)]
         [TestCase(5)]
-        public void GetUniqueId_ReturnId_When_InputIdIsUnique(int input)
+        public void GetUniqueId_ReturnId_When_InputIdIsUnique(int productId)
         {
-            string consoleinput = $"{input}";
+            string consoleinput = $"{productId}";
             StringReader inputReader = new StringReader(consoleinput);
             Console.SetIn(inputReader);
 
-            _productRepository.Setup(mock => mock.IsIdUnique(input))
+            _mockProductRepository.Setup(mock => mock.IsIdUnique(productId))
                        .Returns((int id) => !_productList.Any(p => p.Id == id));
 
             var result = _userInteraction.GetUniqueId();
-            ClassicAssert.AreEqual(input, result);
+            ClassicAssert.AreEqual(productId, result);
         }
 
         [TestCase("Vasanth")]
         [TestCase("Nikil")]
-        public void GetUniqueName_ReturnName_When_InputNameIsUnique(string input)
+        public void GetUniqueName_ReturnName_When_InputNameIsUnique(string productName)
         {
-            StringReader inputReader = new StringReader(input);
+            StringReader inputReader = new StringReader(productName);
             Console.SetIn(inputReader);
-            _productRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>()))
+            _mockProductRepository.Setup(mock => mock.IsNameUnique(It.IsAny<string>()))
                   .Returns((string name) => !_productList.Any(p => p.Name.Equals(name)));
 
             var result = _userInteraction.GetUniqueName();
 
-            ClassicAssert.AreEqual(input, result);
+            ClassicAssert.AreEqual(productName, result);
         }
     }
 }

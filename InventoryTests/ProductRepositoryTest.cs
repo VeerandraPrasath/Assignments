@@ -9,7 +9,7 @@ namespace InventoryManagerTests
     public class ProductRepositoryTest
     {
         private List<Product> _productList;
-        private IProductRepository _productRepository;
+        private IProductRepository _mockProductRepository;
         private Product _product1;
         private Product _product2;
 
@@ -19,9 +19,9 @@ namespace InventoryManagerTests
             _product1 = new Product(1, "Prasath", 10, 20);
             _product2 = new Product(2, "Arun", 10, 15);
             _productList = new List<Product>() { _product1, _product2 };
-            _productRepository = new ProductRepository();
-            _productRepository.AddProduct(_product1);
-            _productRepository.AddProduct(_product2);
+            _mockProductRepository = new ProductRepository();
+            _mockProductRepository.AddProduct(_product1);
+            _mockProductRepository.AddProduct(_product2);
         }
 
         [TestCase(3, "Vasanth", 23, 234)]
@@ -30,15 +30,15 @@ namespace InventoryManagerTests
         {
             var product = new Product(id, name, price, quantity);
 
-            _productRepository.AddProduct(product);
+            _mockProductRepository.AddProduct(product);
 
-            ClassicAssert.IsTrue(_productRepository.GetAllProducts().Contains(product));
+            ClassicAssert.IsTrue(_mockProductRepository.GetAllProducts().Contains(product));
         }
 
         [Test]
         public void GetAllProducts_ReturnProductList_When_ProductListExist()
         {
-            var result = _productRepository.GetAllProducts();
+            var result = _mockProductRepository.GetAllProducts();
 
             ClassicAssert.AreEqual(_productList, result);
         }
@@ -47,7 +47,7 @@ namespace InventoryManagerTests
         [TestCase(4, true)]
         public void IsIdUnique_ReturnsTrue_When_IdUnique(int id, bool expected)
         {
-            var result = _productRepository.IsIdUnique(id);
+            var result = _mockProductRepository.IsIdUnique(id);
 
             ClassicAssert.AreEqual(expected, result);
         }
@@ -56,7 +56,7 @@ namespace InventoryManagerTests
         [TestCase(2, false)]
         public void IsIdUnique_ReturnsFalse_When_IdNotUnique(int id, bool expected)
         {
-            var result = _productRepository.IsIdUnique(id);
+            var result = _mockProductRepository.IsIdUnique(id);
 
             ClassicAssert.AreEqual(expected, result);
         }
@@ -66,7 +66,7 @@ namespace InventoryManagerTests
         {
             var expected = true;
 
-            var result = _productRepository.DeleteProduct(_product2);
+            var result = _mockProductRepository.DeleteProduct(_product2);
 
             ClassicAssert.AreEqual(expected, result);
         }
@@ -74,18 +74,18 @@ namespace InventoryManagerTests
 
         [TestCase("Nikil", true)]
         [TestCase("Bhai", true)]
-        public void IsNameUnique_ReturnsTrue_When_NameIsUnique(string name, bool expected)
+        public void IsNameUnique_ReturnsTrue_When_NameIsUnique(string productName, bool expected)
         {
-            var result = _productRepository.IsNameUnique(name);
+            var result = _mockProductRepository.IsNameUnique(productName);
 
             ClassicAssert.AreEqual(expected, result);
         }
 
         [TestCase("Prasath", false)]
         [TestCase("Arun", false)]
-        public void IsNameUnique_ReturnsFalse_When_NameIsNotUnique(string name, bool expected)
+        public void IsNameUnique_ReturnsFalse_When_NameIsNotUnique(string productName, bool expected)
         {
-            var result = _productRepository.IsNameUnique(name);
+            var result = _mockProductRepository.IsNameUnique(productName);
 
             ClassicAssert.AreEqual(expected, result);
         }
@@ -95,7 +95,7 @@ namespace InventoryManagerTests
         [TestCase("Arun", true)]
         public void FindProduct_ReturnProduct_When_ProductPresent(string productDetail, bool expected)
         {
-            var result = _productRepository.FindProduct(productDetail);
+            var result = _mockProductRepository.FindProduct(productDetail);
 
             ClassicAssert.AreEqual(result is not null, expected);
         }
@@ -104,7 +104,7 @@ namespace InventoryManagerTests
         [TestCase("Zoyaa", false)]
         public void FindProduct_ReturnNull_When_ProductNotPresent(string productDetail, bool expected)
         {
-            var result = _productRepository.FindProduct(productDetail);
+            var result = _mockProductRepository.FindProduct(productDetail);
 
             ClassicAssert.AreEqual(result is not null, expected);
         }

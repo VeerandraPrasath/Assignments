@@ -11,73 +11,75 @@ namespace InventoryManagerTests
     public class AppTest
     {
         private App _app;
-        private Mock<IManageInventory> _manageInventory;
-        private Mock<IUserInteraction> _userInteraction;
-        private Mock<IProductRepository> _productRepository;
+        private Mock<IManageInventory> _mockManageInventory;
+        private Mock<IUserInteraction> _mockUserInteraction;
+        private Mock<IProductRepository> _mockProductRepository;
+        private List<Product> _productList;
 
         [SetUp]
         public void SetUp()
         {
-            _manageInventory = new Mock<IManageInventory>();
-            _userInteraction = new Mock<IUserInteraction>();
-            _productRepository = new Mock<IProductRepository>();
-            _app = new App(_manageInventory.Object, _userInteraction.Object, _productRepository.Object);
+            _productList=new List<Product>();
+            _mockManageInventory = new Mock<IManageInventory>();
+            _mockUserInteraction = new Mock<IUserInteraction>();
+            _mockProductRepository = new Mock<IProductRepository>();
+            _app = new App(_mockManageInventory.Object, _mockUserInteraction.Object, _mockProductRepository.Object);
         }
 
         [Test]
-        public void Run_DisplayOptions_When_InputIs1()
+        public void Run_DisplayOptions_When_UserSelectDisplayOptions()
         {
             string userOption = "1";
-            _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
-            _productRepository.Setup(mock => mock.GetAllProducts()).Returns(new List<Product>());
-
+            _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
+            _mockProductRepository.Setup(mock => mock.GetAllProducts()).Returns(_productList);
+                       
             _app.Run();
 
-            _userInteraction.Verify(mock => mock.DisplayAllProducts(new List<Product>()));
+            _mockUserInteraction.Verify(mock => mock.DisplayAllProducts(_productList),Times.Once);
         }
 
         [Test]
-        public void Run_AddNewProduct_When_InputIs2()
+        public void Run_AddNewProduct_When_UserSelectAdd()
         {
             string userOption = "2";
-            _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
+            _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
 
             _app.Run();
 
-            _manageInventory.Verify(mock => mock.AddNewProduct());
+            _mockManageInventory.Verify(mock => mock.AddNewProduct(), Times.Once);
         }
 
         [Test]
-        public void Run_EditProduct_When_InputIs3()
+        public void Run_EditProduct_When_UserSelectEdit()
         {
             string userOption = "3";
-            _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
+            _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
 
             _app.Run();
 
-            _manageInventory.Verify(mock => mock.EditExistingProduct());
+            _mockManageInventory.Verify(mock => mock.EditExistingProduct(), Times.Once);
         }
 
         [Test]
-        public void Run_DeleteProduct_When_InputIs4()
+        public void Run_DeleteProduct_When_UserSelectDelete()
         {
             string userOption = "4";
-            _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
+            _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
 
             _app.Run();
 
-            _manageInventory.Verify(mock => mock.DeleteExistingProduct());
+            _mockManageInventory.Verify(mock => mock.DeleteExistingProduct(), Times.Once);
         }
 
         [Test]
-        public void Run_SearchProduct_When_InputIs5()
+        public void Run_SearchProduct_When_UserSelectSearch()
         {
             string userOption = "5";
-            _userInteraction.SetupSequence(mock => mock.GetInputString(It.IsAny<string>())).Returns(userOption).Returns("7");
+            _mockUserInteraction.SetupSequence(mock => mock.GetInputString("option")).Returns(userOption).Returns("7");
 
             _app.Run();
 
-            _manageInventory.Verify(mock => mock.SearchProducts());
+            _mockManageInventory.Verify(mock => mock.SearchProducts(), Times.Once);
         }
     }
 }
