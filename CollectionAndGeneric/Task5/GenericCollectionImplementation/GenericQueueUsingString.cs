@@ -9,54 +9,48 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
 {
     public class GenericQueueUsingString
     {
-        public GenericQueueImplementation<string> PeopleQueue { get; set; }
+        public GenericQueueImplementation<string> StringQueue { get; set; }
+        public GenericQueueImplementation<int>  IntQueue { get; set; }
 
         public GenericQueueUsingString()
         {
-            PeopleQueue = new GenericQueueImplementation<string>();
+            StringQueue= new GenericQueueImplementation<string>();
+            IntQueue= new GenericQueueImplementation<int>();
         }
+
 
         public void Run()
         {
-            AddPeopleToQueue();
-            ServePeople();
-            DisplayPeopleInQueue();
+            QueueImplementationUsingString();
+            QueueImplementationUsingInt();
         }
 
-        public void AddPeopleToQueue()
+        public void QueueImplementationUsingString()
         {
-            Console.WriteLine("Enter the number of people to add to the queue: ");
-            int numberOfPeople = int.Parse(Console.ReadLine());
-            for (int i = 0; i < numberOfPeople; i++)
-            {
-                Console.Write("Enter the name of person " + (i + 1) + ": ");
-                string name = Console.ReadLine();
-                PeopleQueue.Enqueue(name);
-            }
+            Console.WriteLine("Queue implementation using string ");
+            StringQueue.Enqueue("First");
+            Console.WriteLine("Added First to Queue ");
+            StringQueue.Enqueue("Second");
+            Console.WriteLine("Added Second to Queue ");
+            StringQueue.Enqueue("Third");
+            Console.WriteLine("Added Third to Queue ");
+            Console.WriteLine($"Removed {StringQueue.Dequeue()}");
+            Console.WriteLine($"Number of  element :{StringQueue.Count}");
+            StringQueue.DisplayAll();
         }
 
-        public void ServePeople()
+        public void QueueImplementationUsingInt()
         {
-            if (PeopleQueue.Count == 0)
-            {
-                Console.WriteLine("No people in the queue.");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Enter the number of people to serve: ");
-                int numberOfPeople = int.Parse(Console.ReadLine());
-                for (int i = 0; i < numberOfPeople; i++)
-                {
-                    Console.WriteLine($"Served {PeopleQueue.Dequeue()} in the queue: ");
-                }
-            }
-        }
-
-        public void DisplayPeopleInQueue()
-        {
-            Console.WriteLine("People in the queue: ");
-            PeopleQueue.DisplayAll();
+            Console.WriteLine("Queue implementation using int");
+            IntQueue.Enqueue(1);
+            Console.WriteLine("Added 1 to Queue ");
+            IntQueue.Enqueue(2);
+            Console.WriteLine("Added 2 to Queue ");
+            IntQueue.Enqueue(3);
+            Console.WriteLine("Added 3 to Queue ");
+            Console.WriteLine($"Removed {IntQueue.Dequeue()}");
+            Console.WriteLine($"Number of  element :{IntQueue.Count}");
+            StringQueue.DisplayAll();
         }
     }
 }

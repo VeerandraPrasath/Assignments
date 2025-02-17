@@ -5,11 +5,12 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
     public class GenericStackUsingChar
     {
         public GenericStackImplementation<char> charStack { get; set; }
-        public string StringToReverse { get; set; }
+        public GenericStackImplementation<int>   intStack { get; set; }
 
         public GenericStackUsingChar()
         {
             charStack = new GenericStackImplementation<char>();
+            intStack = new GenericStackImplementation<int>();
         }
 
         public void Run()
