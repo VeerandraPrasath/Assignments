@@ -7,7 +7,7 @@ namespace InventoryManager.Manager
     /// <summary>
     /// Implements <see cref="IManageInventory"/>
     /// </summary>
-    class ManageInventory : IManageInventory
+    public class ManageInventory : IManageInventory
     {
         private readonly IProductRepository _productRepository;
         private readonly IUserInteraction _userInteraction;
