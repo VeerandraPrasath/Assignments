@@ -10,7 +10,7 @@ namespace ExpenseTracker.Manager
     /// </summary>
     public class ManageTracker : IManageTracker
     {
-        private User _currentUser;
+        public User _currentUser { get; set; }
 
         private readonly IUserInteraction _userInteraction;
         private readonly IRepositoryInteraction _repositoryInteraction;
@@ -31,7 +31,7 @@ namespace ExpenseTracker.Manager
             _currentUser = _repositoryInteraction.FindByUsername(userName);
             if (_currentUser != null)
             {
-                Console.Clear();
+                //Console.Clear();
             }
             _userInteraction.DisplayMessage("________________________________________________");
             string message = _currentUser != null ? $"Logged into {userName}" : "Invalid User !";
