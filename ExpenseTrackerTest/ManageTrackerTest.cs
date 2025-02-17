@@ -12,8 +12,8 @@ namespace ExpenseTrackerTest
     {
         private User _currentUser;
         private ManageTracker _manageTracker;
-        private Mock<IUserInteraction> _userInteraction;
-        private Mock<IRepositoryInteraction> _repositoryInteraction;
+        private Mock<IUserInteraction> _mockUserInteraction;
+        private Mock<IRepositoryInteraction> _mockRepositoryInteraction;
         private List<IRecord> _recordList;
 
         [SetUp]
@@ -21,206 +21,205 @@ namespace ExpenseTrackerTest
         {
             _recordList = new List<IRecord>() { new Income(500, "FreeLancing"), new Expense(200, "Petrol") };
             _currentUser = new User("Prasath") { Name = "Prasath", TotalExpense = 0, TotalIncome = 0, CurrentBalance = 0, TransactionList = new List<ExpenseTracker.UserData.Transaction>() { new ExpenseTracker.UserData.Transaction(DateTime.Parse("31-1-2025")) { TransactionDate = DateTime.Parse("31-1-2025"), RecordList = _recordList } } };
-            _userInteraction = new Mock<IUserInteraction>();
-            _repositoryInteraction = new Mock<IRepositoryInteraction>();
-            _manageTracker = new ManageTracker(_userInteraction.Object, _repositoryInteraction.Object);
+            _mockUserInteraction = new Mock<IUserInteraction>();
+            _mockRepositoryInteraction = new Mock<IRepositoryInteraction>();
+            _manageTracker = new ManageTracker(_mockUserInteraction.Object, _mockRepositoryInteraction.Object);
             _manageTracker._currentUser = _currentUser;
-
         }
 
         [Test]
-        public void CheckExisitingUser_ShallValidateUser()
+        public void CheckExisitingUser_ValidateUser()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("Prasath").Returns("7");
-            _repositoryInteraction.Setup(x => x.FindByUsername(It.IsAny<string>())).Returns(new User("Prasath"));
+            string userName = "Prasath";
+            _mockUserInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns(userName).Returns("7");
+            _mockRepositoryInteraction.Setup(x => x.FindByUsername(userName)).Returns(new User(userName));
 
             _manageTracker.CheckExisitingUser();
 
-            _userInteraction.Verify(x => x.DisplayMainMenu());
-
+            _mockUserInteraction.Verify(x => x.DisplayMainMenu(), Times.Once);
         }
 
         [Test]
-        public void Login_ShallDisplayRecords_WhenInputIs1()
+        public void ViewTransactionRecords_DisplayAvailableTransactions()
         {
             _currentUser.TransactionList.Clear();
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("1").Returns("7");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("1").Returns("7");
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage(It.IsAny<string>()));
+            _mockUserInteraction.Verify(x => x.DisplayMessage(It.IsAny<string>()), Times.Exactly(6));
         }
 
         [Test]
-        public void AddIncomeRecord_ShallAddNewRecord_WhenInputIs2()
+        public void AddIncomeRecord_AddNewIncomeRecord()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("2").Returns("7");
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(DateTime.Parse("31-1-2025"));
-            _repositoryInteraction.Setup(x => x.FindByTransactionDate(It.IsAny<DateTime>(), It.IsAny<User>())).Returns((Transaction)null);
-            _userInteraction.Setup(x => x.GetIncomeDetails()).Returns(new Income(10000, "Salary"));
+            Income incomeRecord = new Income(10000, "Salary");
+            DateTime userInputDate = DateTime.Parse("31-1-2025");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("2").Returns("7");
+            _mockUserInteraction.Setup(x => x.GetValidDate("to add Income record")).Returns(userInputDate);
+            _mockRepositoryInteraction.Setup(x => x.FindByTransactionDate(userInputDate, _currentUser)).Returns((Transaction)null);
+            _mockUserInteraction.Setup(x => x.GetIncomeDetails()).Returns(incomeRecord);
 
             _manageTracker.Login();
 
-            _repositoryInteraction.Verify(x => x.AddRecord(It.IsAny<IRecord>(), It.IsAny<Transaction>(), It.IsAny<User>()));
+            _mockRepositoryInteraction.Verify(x => x.AddRecord(incomeRecord, It.IsAny<Transaction>(), _currentUser), Times.Once);
         }
 
         [Test]
-        public void AddExpenseRecord_ShallAddNewRecord_WhenInputIs3()
+        public void AddExpenseRecord_AddNewExpenseRecord()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("3").Returns("7");
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(DateTime.Parse("31-1-2025"));
-            _repositoryInteraction.Setup(x => x.FindByTransactionDate(It.IsAny<DateTime>(), It.IsAny<User>())).Returns((Transaction)null);
-            _userInteraction.Setup(x => x.GetExpenseDetails()).Returns(new Expense(1000, "Gym"));
+            Expense expenseRecord = new Expense(1000, "Gym");
+            DateTime userInputDate = DateTime.Parse("31-1-2025");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("3").Returns("7");
+            _mockUserInteraction.Setup(x => x.GetValidDate("to add Expense record")).Returns(userInputDate);
+            _mockRepositoryInteraction.Setup(x => x.FindByTransactionDate(userInputDate, _currentUser)).Returns((Transaction)null);
+            _mockUserInteraction.Setup(x => x.GetExpenseDetails()).Returns(expenseRecord);
 
             _manageTracker.Login();
 
-            _repositoryInteraction.Verify(x => x.AddRecord(It.IsAny<IRecord>(), It.IsAny<Transaction>(), It.IsAny<User>()));
+            _mockRepositoryInteraction.Verify(x => x.AddRecord(expenseRecord, It.IsAny<Transaction>(), _currentUser), Times.Once);
         }
 
         [Test]
-        public void EditRecord_ShallDisplaysNoTransactionsMessage_IfNoTransactions_()
-        {
-            _currentUser.TransactionList.Clear();
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("4").Returns("7");
-
-            _manageTracker.Login();
-
-            _userInteraction.Verify(x => x.DisplayMessage("___________________________________"));
-            _userInteraction.Verify(x => x.DisplayMessage("\n   No Transactions found "));
-            _userInteraction.Verify(x => x.DisplayMessage("___________________________________"));
-        }
-
-        [Test]
-        public void EditRecord_ShallDisplaysInvalidDateMessage_IfInvalidDate()
-        {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("4").Returns("7");
-            _currentUser.TransactionList.Add(new Transaction(DateTime.Parse("31-1-2025")));
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(DateTime.Now);
-            _repositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns((Transaction)null);
-
-            _manageTracker.Login();
-
-            _userInteraction.Verify(x => x.DisplayMessage("\nInvalid transaction !\n"));
-        }
-
-        [Test]
-        public void EditRecord_ShallDisplaysNoTransactionsMessage_IfValidDateNoRecords()
-        {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("4").Returns("7");
-            var date = new Transaction(DateTime.Parse("31-1-2025")) { RecordList = new List<IRecord>() };
-            _currentUser.TransactionList.Add(date);
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(DateTime.Now);
-            _repositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns(date);
-
-            _manageTracker.Login();
-
-            _userInteraction.Verify(x => x.DisplayMessage($"\nNo Transactions on {date.ToString()}\n"), Times.Once);
-        }
-
-        [Test]
-        public void EditRecord_ShallUpdatesRecord_IfValidDateWithRecords()
-        {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("4").Returns("7");
-            var record = new Income(100000, "Salary");
-            var date = new Transaction(DateTime.Parse("31-1-2025")) { RecordList = new List<IRecord> { record } };
-            _currentUser.TransactionList.Add(date);
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(DateTime.Now);
-            _repositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns(date);
-            _userInteraction.Setup(x => x.GetValidInt(It.IsAny<string>())).Returns(1);
-            _userInteraction.Setup(x => x.GetIncomeDetails()).Returns(new Income(10000, "Salary"));
-
-            _manageTracker.Login();
-
-            _repositoryInteraction.Verify(x => x.UpdateRecord(It.IsAny<IRecord>(), It.IsAny<IRecord>(), _currentUser));
-        }
-
-        [Test]
-        public void DeleteRecord_ShallDisplaysNoTransactionsMessage_IfNoTransactions()
+        public void EditRecord_DisplaysNoTransactionsOnEmptyTransaction()
         {
             _currentUser.TransactionList.Clear();
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("5").Returns("7");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("4").Returns("7");
 
             _manageTracker.Login();
 
-
-            _userInteraction.Verify(x => x.DisplayMessage("___________________________________"));
-            _userInteraction.Verify(x => x.DisplayMessage("\n   No Transactions found "));
-            _userInteraction.Verify(x => x.DisplayMessage("___________________________________"));
+            _mockUserInteraction.Verify(x => x.DisplayMessage("\n   No Transactions found "), Times.Once);
         }
 
         [Test]
-        public void DeleteRecord_ShallUpdatesRecord_IfValidDateWithRecords()
+        public void EditRecord_DisplaysInvalidDateOnInvalidDate()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("5").Returns("7");
-            var record = new Income(100000, "Salary");
-            var date = new Transaction(DateTime.Parse("31-1-2025")) { RecordList = new List<IRecord> { record } };
-            _currentUser.TransactionList.Add(date);
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(DateTime.Now);
-            _repositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns(date);
-            _userInteraction.Setup(x => x.GetValidInt(It.IsAny<string>())).Returns(1);
+            DateTime userInputDate = DateTime.Parse("31-1-2025");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("4").Returns("7");
+            _currentUser.TransactionList.Add(new Transaction(userInputDate));
+            _mockUserInteraction.Setup(x => x.GetValidDate("to edit record")).Returns(DateTime.Now);
+            _mockRepositoryInteraction.Setup(ri => ri.FindByTransactionDate(DateTime.Now, _currentUser)).Returns((Transaction)null);
 
             _manageTracker.Login();
 
-            _repositoryInteraction.Verify(ri => ri.DeleteRecord(It.IsAny<List<IRecord>>(), It.IsAny<int>(), _currentUser));
+            _mockUserInteraction.Verify(x => x.DisplayMessage("\nInvalid transaction !\n"), Times.Once);
         }
 
         [Test]
-        public void DeleteRecord_ShallDisplayNoTransactionOnDateMessage_IfInvalidDate()
+        public void EditRecord_DisplaysNoTransactionsMessageOnEmptyRecords()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("5").Returns("7");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("4").Returns("7");
+            var transaction = new Transaction(DateTime.Parse("31-1-2025")) { RecordList = new List<IRecord>() };
+            _currentUser.TransactionList.Add(transaction);
+            _mockUserInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(DateTime.Now);
+            _mockRepositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns(transaction);
+
+            _manageTracker.Login();
+
+            _mockUserInteraction.Verify(x => x.DisplayMessage($"\nNo Transactions on {transaction.ToString()}\n"), Times.Once);
+        }
+
+        [Test]
+        public void EditRecord_UpdatesRecordOnValidDateWithRecords()
+        {
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("4").Returns("7");
             var record = new Income(100000, "Salary");
-            Transaction date = null;
+            var updateRecord = new Income(10000, "Salary");
+            var transaction = new Transaction(DateTime.Parse("31-1-2025")) { RecordList = new List<IRecord> { record } };
+            _currentUser.TransactionList.Add(transaction);
+            _mockUserInteraction.Setup(x => x.GetValidDate("to edit record")).Returns(DateTime.Now);
+            _mockRepositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns(transaction);
+            _mockUserInteraction.Setup(x => x.GetValidInt("Index of Record to edit")).Returns(1);
+            _mockUserInteraction.Setup(x => x.GetIncomeDetails()).Returns(updateRecord);
+
+            _manageTracker.Login();
+
+            _mockRepositoryInteraction.Verify(x => x.UpdateRecord(record, updateRecord, _currentUser), Times.Once);
+        }
+
+        [Test]
+        public void DeleteRecord_DisplaysNoTransactionsOnEmptyTransactions()
+        {
+            _currentUser.TransactionList.Clear();
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("5").Returns("7");
+
+            _manageTracker.Login();
+
+            _mockUserInteraction.Verify(x => x.DisplayMessage("\n   No Transactions found "), Times.Once);
+        }
+
+        [Test]
+        public void DeleteRecord_UpdatesRecordOnValidDateWithRecords()
+        {
+            int recordIndex = 0;
+            DateTime userInputDate = DateTime.Parse("31-1-2025");
+            var record = new Income(100000, "Salary");
+            var transaction = new Transaction(userInputDate) { RecordList = new List<IRecord> { record } };
+            _currentUser.TransactionList.Add(transaction);
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("5").Returns("7");
+            _mockUserInteraction.Setup(x => x.GetValidDate("to delete Income record")).Returns(DateTime.Now);
+            _mockRepositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns(transaction);
+            _mockUserInteraction.Setup(x => x.GetValidInt("Index of Record to delete")).Returns(recordIndex + 1);
+
+            _manageTracker.Login();
+
+            _mockRepositoryInteraction.Verify(ri => ri.DeleteRecord(transaction.RecordList, recordIndex, _currentUser), Times.Once);
+        }
+
+        [Test]
+        public void DeleteRecord_DisplayNoTransactionOnInvalidDate()
+        {
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("5").Returns("7");
+            var record = new Income(100000, "Salary");
+            Transaction transaction = null;
             DateTime dateTime = DateTime.Now;
-            _currentUser.TransactionList.Add(date);
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>())).Returns(dateTime);
-            _repositoryInteraction.Setup(ri => ri.FindByTransactionDate(It.IsAny<DateTime>(), _currentUser)).Returns(date);
+            _currentUser.TransactionList.Add(transaction);
+            _mockUserInteraction.Setup(x => x.GetValidDate("to delete Income record")).Returns(dateTime);
+            _mockRepositoryInteraction.Setup(ri => ri.FindByTransactionDate(dateTime, _currentUser)).Returns(transaction);
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage($"No Transactions on transaction {dateTime.ToString()}"));
+            _mockUserInteraction.Verify(x => x.DisplayMessage($"No Transactions on transaction {dateTime.ToString()}"), Times.Once);
         }
 
         [Test]
-        public void FinancialSummary_ShallDisplaysNoTransactionsMessage_IfNoTransactions()
+        public void FinancialSummary_DisplaysNoTransactionsOnEmptyTransactions()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("6").Returns("7");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString("Option ")).Returns("6").Returns("7");
             _currentUser.TransactionList.Clear();
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage("___________________________________"));
-            _userInteraction.Verify(x => x.DisplayMessage("\n   No Transactions found "), Times.Once);
-            _userInteraction.Verify(x => x.DisplayMessage("___________________________________"));
+            _mockUserInteraction.Verify(x => x.DisplayMessage("\n   No Transactions found "), Times.Once);
         }
 
         [Test]
-        public void FinancialSummary_ShallDisplaysSummary_IfPresent()
+        public void FinancialSummary_DisplaysSummaryDetails()
         {
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("6").Returns("1").Returns("7");
+            _mockUserInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("6").Returns("1").Returns("7");
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage("--------------------------------------------"));
-            _userInteraction.Verify(x => x.DisplayMessage($"     OverAll Summary of {_currentUser.Name}"), Times.Once);
-            _userInteraction.Verify(x => x.DisplayMessage($"Balance       : {_currentUser.CurrentBalance}\n"), Times.Once);
-            _userInteraction.Verify(x => x.DisplayMessage($"Total income  : {_currentUser.TotalIncome}\n"), Times.Once);
-            _userInteraction.Verify(x => x.DisplayMessage($"Total expense : {_currentUser.TotalExpense}\n"), Times.Once);
+            _mockUserInteraction.Verify(x => x.DisplayMessage($"     OverAll Summary of {_currentUser.Name}"), Times.Once);
+            _mockUserInteraction.Verify(x => x.DisplayMessage($"Balance       : {_currentUser.CurrentBalance}\n"), Times.Once);
+            _mockUserInteraction.Verify(x => x.DisplayMessage($"Total income  : {_currentUser.TotalIncome}\n"), Times.Once);
+            _mockUserInteraction.Verify(x => x.DisplayMessage($"Total expense : {_currentUser.TotalExpense}\n"), Times.Once);
         }
 
         [Test]
-        public void FinancialSummary_ShallDisplaysNoTransactionsMessage_IfNotPreseentOnSpecificDate()
+        public void FinancialSummary_DisplaysNoTransactionsOnInvalidDate()
         {
 
             DateTime date = DateTime.Parse("1-2-2025");
-            _userInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("6").Returns("2").Returns("7");
-            _userInteraction.Setup(x => x.GetValidDate(It.IsAny<string>()))
+            _mockUserInteraction.SetupSequence(x => x.GetValidString(It.IsAny<string>())).Returns("6").Returns("2").Returns("7");
+            _mockUserInteraction.Setup(x => x.GetValidDate("to view Summary"))
                                .Returns(date);
-            _repositoryInteraction.Setup(x => x.FindByTransactionDate(It.IsAny<DateTime>(), It.IsAny<User>()))
+            _mockRepositoryInteraction.Setup(x => x.FindByTransactionDate(date, _currentUser))
                                       .Returns((Transaction)null);
 
             _manageTracker.Login();
 
-            _userInteraction.Verify(x => x.DisplayMessage($"No Transactions on transaction {date.ToString()}"));
+            _mockUserInteraction.Verify(x => x.DisplayMessage($"No Transactions on transaction {date.ToString()}"), Times.Once);
         }
     }
 }

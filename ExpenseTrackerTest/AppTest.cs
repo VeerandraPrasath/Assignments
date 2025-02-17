@@ -29,7 +29,7 @@ namespace ExpenseTrackerTest
 
             _app.Run();
 
-            _mockRepositoryInteraction.Verify(x => x.CreateNewUser(),Times.Once);
+            _mockRepositoryInteraction.Verify(x => x.CreateNewUser(), Times.Once);
         }
 
         [Test]

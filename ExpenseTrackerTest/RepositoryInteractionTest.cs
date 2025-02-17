@@ -12,8 +12,8 @@ namespace ExpenseTrackerTest
     public class RespositoryInteractionTest
     {
         private IRepositoryInteraction _repositoryInteraction;
-        private Mock<IUserInteraction> _userInteraction;
-        private Mock<IFileInteraction> _fileInteraction;
+        private Mock<IUserInteraction> _mockUserInteraction;
+        private Mock<IFileInteraction> _mockFileInteraction;
         private const string PATH = "UserList.json";
         private List<User> _userList;
         private User _user1;
@@ -29,18 +29,17 @@ namespace ExpenseTrackerTest
             _user1 = new User("Prasath") { Name = "Prasath", TotalExpense = 0, TotalIncome = 0, CurrentBalance = 0, TransactionList = new List<Transaction>() { _date1 } };
             _user2 = new User("Arun") { Name = "Arun", TotalExpense = 0, TotalIncome = 0, CurrentBalance = 0, TransactionList = new List<Transaction>() { new Transaction(DateTime.Parse("30-1-2025")) { TransactionDate = DateTime.Parse("30-1-2025"), RecordList = new List<IRecord>() { new Income(25000, "Salary"), new Expense(300, "Movie") } } } };
             _userList = new List<User>() { _user1, _user2 };
-            _userInteraction = new Mock<IUserInteraction>();
-            _fileInteraction = new Mock<IFileInteraction>();
-            _repositoryInteraction = new RepositoryInteraction(_userInteraction.Object, _fileInteraction.Object, PATH);
-
+            _mockUserInteraction = new Mock<IUserInteraction>();
+            _mockFileInteraction = new Mock<IFileInteraction>();
+            _repositoryInteraction = new RepositoryInteraction(_mockUserInteraction.Object, _mockFileInteraction.Object, PATH);
         }
 
         [TestCase("Prasath")]
         [TestCase("Arun")]
-        public void IsUserPresent_ShallReturnsUser_IfPresent(string userName)
+        public void FindByUsername_SearchUser_ReturnsUserIfExist(string userName)
         {
-            _userInteraction.Setup(x => x.GetValidString(It.IsAny<string>())).Returns(userName);
-            _repositoryInteraction.CreateNewUser();   
+            _mockUserInteraction.Setup(x => x.GetValidString("New Username")).Returns(userName);
+            _repositoryInteraction.CreateNewUser();
 
             var result = _repositoryInteraction.FindByUsername(userName);
 
@@ -49,7 +48,7 @@ namespace ExpenseTrackerTest
 
         [TestCase("Nikil", null)]
         [TestCase("Vasanth", null)]
-        public void IsUserPresent_ShallReturnsNull_IfNotPresent(string userName, User expected)
+        public void FindByUsername_SearchUser_ReturnsNullIfNotExist(string userName, User expected)
         {
             var result = _repositoryInteraction.FindByUsername(userName);
 
@@ -58,25 +57,25 @@ namespace ExpenseTrackerTest
 
         [TestCase("Nikil", true)]
         [TestCase("Vasanth", true)]
-        public void CreateNewUser_ShallReturnsTrue_IfUserCreated(string userName, bool expected)
+        public void CreateNewUser_CreatesNewUserAccount_ReturnsTrueIfCreated(string userName, bool expected)
         {
-            _userInteraction.Setup(x => x.GetValidString(It.IsAny<string>())).Returns(userName);
+            _mockUserInteraction.Setup(x => x.GetValidString("New Username")).Returns(userName);
 
             _repositoryInteraction.CreateNewUser();
 
-            _userInteraction.Verify(x=>x.DisplayMessage("\nAccount created successfully ! please Login !\n"));
+            _mockUserInteraction.Verify(x => x.DisplayMessage("\nAccount created successfully ! please Login !\n"), Times.Once);
         }
 
         [Test]
-        public void LoadAllData_ShallReadAllData()
+        public void LoadAllData_ReadAllDataFromFile()
         {
             _repositoryInteraction.LoadData();
 
-            _fileInteraction.Verify(x => x.ReadFiledata(PATH));
+            _mockFileInteraction.Verify(x => x.ReadFiledata(PATH), Times.Once);
         }
 
         [Test]
-        public void IsDatePresent_ShallReturnDate_IfExist()
+        public void FindByTransactionDate_SearchTransactionDate_ReturnDateIfExist()
         {
             DateTime date = DateTime.Parse("31-1-2025");
 
@@ -86,7 +85,7 @@ namespace ExpenseTrackerTest
         }
 
         [Test]
-        public void IsDatePresent_ShallReturnNull_IfNotExist()
+        public void FindByTransactionDate_SearchTransactionDate_ReturnsNullIfNotExist()
         {
             DateTime date = DateTime.Parse("30-1-2025");
 
@@ -97,7 +96,7 @@ namespace ExpenseTrackerTest
 
         [TestCase(1, true)]
         [TestCase(0, true)]
-        public void DeleteRecord_ShallReturnTrue_IfRemoved(int index, bool expected)
+        public void DeleteRecord_DeleteRecordFromTransaction_ReturnsTrueIfRemoved(int index, bool expected)
         {
             int count = _recordList.Count;
             _repositoryInteraction.DeleteRecord(_recordList, index, _user1);
@@ -106,7 +105,7 @@ namespace ExpenseTrackerTest
         }
 
         [Test]
-        public void AddRecord_ShallAddNewRecord()
+        public void AddRecord_AddNewRecord()
         {
             IRecord record = new Expense(100, "Food");
 
@@ -116,7 +115,7 @@ namespace ExpenseTrackerTest
         }
 
         [Test]
-        public void UpdateRecord_ShallEditRecord()
+        public void UpdateRecord_EditAlreadyExistingRecord()
         {
             IRecord oldRecord = new Expense(100, "Food");
             IRecord newRecord = new Expense(200, "Petrol")
@@ -127,11 +126,11 @@ namespace ExpenseTrackerTest
         }
 
         [Test]
-        public void WriteToFile_ShallWriteAllDetailsToFile()
+        public void WriteToFile_WriteAllTransactionDetailsToFile()
         {
             _repositoryInteraction.WriteToFile();
 
-            _fileInteraction.Verify(x => x.WriteData(It.IsAny<string>(), It.IsAny<List<User>>()));
+            _mockFileInteraction.Verify(x => x.WriteData(PATH, _userList));
         }
     }
 
