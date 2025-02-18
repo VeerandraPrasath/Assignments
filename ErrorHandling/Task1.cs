@@ -17,10 +17,6 @@
             {
                 Console.WriteLine("Input days cannot be zero !.Divide by zero exception");
             }
-            catch (FormatException ex)
-            {
-                Console.WriteLine("Invalid input !.Format exception");
-            }
             finally
             {
                 Console.WriteLine("Applicaton Executed Successfully !");

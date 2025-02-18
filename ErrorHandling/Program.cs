@@ -12,7 +12,6 @@ task2.Run();
 Task3 task3 = new Task3();
 task3.Run();
 
-
 AppDomain currentDomain = AppDomain.CurrentDomain;
 currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
 
