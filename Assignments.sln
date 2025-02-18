@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5A2B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPs", "OOPs\OOPs.csproj", "{22D2F965-A5A4-472D-8035-9D8FF3FB642E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager", "InventoryManager\InventoryManager.csproj", "{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker", "ExpenseTracker\ExpenseTracker.csproj", "{BA206D79-35E3-4E75-97E5-DAE8E684EF36}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandling", "ErrorHandling\ErrorHandling.csproj", "{68335F62-E293-437F-9CC0-24E344C7C9A7}"
 EndProject
 Global
@@ -28,6 +32,14 @@ Global
 		{22D2F965-A5A4-472D-8035-9D8FF3FB642E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22D2F965-A5A4-472D-8035-9D8FF3FB642E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22D2F965-A5A4-472D-8035-9D8FF3FB642E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA0CBB29-66CF-4FDA-9D3E-3C368B8D4CB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA206D79-35E3-4E75-97E5-DAE8E684EF36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{68335F62-E293-437F-9CC0-24E344C7C9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68335F62-E293-437F-9CC0-24E344C7C9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68335F62-E293-437F-9CC0-24E344C7C9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
