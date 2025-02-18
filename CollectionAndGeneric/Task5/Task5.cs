@@ -5,17 +5,12 @@ namespace CollectionAndGeneric.Task5
 {
     public class Task5
     {
-        public Task5()
-        {
-            
-        }
-
         public void Run()
         {
             Console.WriteLine("Generic List operations");
             new ListImplementation().Run();
             Console.WriteLine("Generic Stack operations");
-            new GenericStackUsingChar().Run();
+            new StackImplementation().Run();
             Console.WriteLine("Generic Queue operations");
             new QueueImplementation().Run();
             Console.WriteLine("Generic Dictionary operations");

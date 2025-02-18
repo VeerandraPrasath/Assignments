@@ -2,12 +2,12 @@
 
 namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
 {
-    public class GenericStackUsingChar
+    public class StackImplementation
     {
         public GenericStack<char> charStack { get; set; }
         public GenericStack<int>   intStack { get; set; }
 
-        public GenericStackUsingChar()
+        public StackImplementation()
         {
             charStack = new GenericStack<char>();
             intStack = new GenericStack<int>();
