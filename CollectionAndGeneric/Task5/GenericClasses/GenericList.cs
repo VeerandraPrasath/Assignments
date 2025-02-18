@@ -1,9 +1,9 @@
 ﻿namespace CollectionAndGeneric.Task5.GenericClasses
 {
-    public class GenericListImplementation<T>
+    public class GenericList<T>
     {
         private List<T> _list;
-        public GenericListImplementation()
+        public GenericList()
         {
             _list = new List<T>();
         }

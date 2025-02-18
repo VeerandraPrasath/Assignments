@@ -7,15 +7,15 @@ using CollectionAndGeneric.Task5.GenericClasses;
 
 namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
 {
-    public class GenericQueueUsingString
+    public class QueueImplementation
     {
-        public GenericQueueImplementation<string> StringQueue { get; set; }
-        public GenericQueueImplementation<int>  IntQueue { get; set; }
+        public GenericQueue<string> StringQueue { get; set; }
+        public GenericQueue<int>  IntQueue { get; set; }
 
-        public GenericQueueUsingString()
+        public QueueImplementation()
         {
-            StringQueue= new GenericQueueImplementation<string>();
-            IntQueue= new GenericQueueImplementation<int>();
+            StringQueue= new GenericQueue<string>();
+            IntQueue= new GenericQueue<int>();
         }
 
 

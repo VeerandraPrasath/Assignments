@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CollectionAndGeneric.Task5.GenericClasses
 {
-    public class GenericStackImplementation<T>
+    public class GenericStack<T>
     {
-        public GenericStackImplementation() { }
+        public GenericStack() { }
 
         private Stack<T> _stack = new Stack<T>();
 

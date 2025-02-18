@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CollectionAndGeneric.Task5.GenericClasses
 {
-    public class GenericDictionaryImplementation<T1, T2>
+    public class GenericDictionary<T1, T2>
     {
         private Dictionary<T1, T2> _dictionary;
-        public GenericDictionaryImplementation()
+        public GenericDictionary()
         {
 
             _dictionary = new Dictionary<T1, T2>();

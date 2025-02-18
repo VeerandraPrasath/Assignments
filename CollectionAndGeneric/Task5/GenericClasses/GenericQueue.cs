@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CollectionAndGeneric.Task5.GenericClasses
 {
-    public class GenericQueueImplementation<T>
+    public class GenericQueue<T>
     {
        private Queue<T> _queue;
-        public GenericQueueImplementation()
+        public GenericQueue()
         {
             _queue = new Queue<T>();
         }

@@ -4,41 +4,47 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
 {
     public class GenericStackUsingChar
     {
-        public GenericStackImplementation<char> charStack { get; set; }
-        public GenericStackImplementation<int>   intStack { get; set; }
+        public GenericStack<char> charStack { get; set; }
+        public GenericStack<int>   intStack { get; set; }
 
         public GenericStackUsingChar()
         {
-            charStack = new GenericStackImplementation<char>();
-            intStack = new GenericStackImplementation<int>();
+            charStack = new GenericStack<char>();
+            intStack = new GenericStack<int>();
         }
-
         public void Run()
         {
-            GetStringInput();
-            ReverseString();
+            StackImplementationUsingChar();
+            StackImplementationUsingInt();
         }
 
-        public void GetStringInput()
+        public void StackImplementationUsingChar()
         {
-            Console.WriteLine("Enter a string to reverse: ");
-            StringToReverse = Console.ReadLine();
+            Console.WriteLine("Stack Implementation using char \n");
+            charStack.Push('a');
+            Console.WriteLine("a is pushed to stack ");
+            charStack.Push('e');
+            Console.WriteLine("e is pushed to stack");
+            charStack.Push('i');
+            Console.WriteLine("i is pushed to stack");
+            Console.WriteLine($"{charStack.Pop()} removed from stack");
+            Console.WriteLine($"Peek element in stack is {charStack.Peek()}");
         }
 
-        public void ReverseString()
+        public void StackImplementationUsingInt()
         {
-            string reversedString = "";
-            foreach (char c in StringToReverse)
-            {
-                charStack.Push(c);
-            }
-            Console.WriteLine("Reversed string: ");
-            while (charStack.Count > 0)
-            {
-                reversedString += charStack.Pop();
-            }
-
-            Console.WriteLine(reversedString);
+            Console.WriteLine("Stack Implementation using int\n");
+            intStack.Push(1);
+            Console.WriteLine("1 is pushed to stack ");
+            intStack.Push(2);
+            Console.WriteLine("2 is pushed to stack");
+            intStack.Push(3);
+            Console.WriteLine("3 is pushed to stack");
+            Console.WriteLine($"{intStack.Pop()} removed from stack");
+            Console.WriteLine($"Peek element in stack is {intStack.Peek()}");
         }
+
+
+
     }
 }

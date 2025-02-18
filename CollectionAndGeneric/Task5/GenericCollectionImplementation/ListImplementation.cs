@@ -2,17 +2,17 @@
 
 namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
 {
-    public class GenericListUsingString
+    public class ListImplementation
     {
 
 
-        public GenericListImplementation<string> _genericStringList;
-        public GenericListImplementation<int> _genericIntList;
+        public GenericList<string> _genericStringList;
+        public GenericList<int> _genericIntList;
 
-        public GenericListUsingString()
+        public ListImplementation()
         {
-            _genericStringList = new GenericListImplementation<string>();
-            _genericIntList = new GenericListImplementation<int>();
+            _genericStringList = new GenericList<string>();
+            _genericIntList = new GenericList<int>();
         }
 
         public void Run()
