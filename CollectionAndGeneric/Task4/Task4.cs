@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CollectionAndGeneric
+namespace CollectionAndGeneric.Task4
 {
     public class Task4
     {
-        public Dictionary<string,int> StudentDictionary { get; set; }
-        public Task4() { 
-           StudentDictionary = new Dictionary<string, int>();
+        public Dictionary<string, int> StudentDictionary { get; set; }
+        public Task4()
+        {
+            StudentDictionary = new Dictionary<string, int>();
         }
 
         public void Run()

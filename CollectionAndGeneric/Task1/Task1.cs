@@ -1,4 +1,4 @@
-﻿namespace CollectionAndGeneric
+﻿namespace CollectionAndGeneric.Task1
 {
     public class Task1
     {

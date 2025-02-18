@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CollectionAndGeneric
+namespace CollectionAndGeneric.Task2
 {
     public class Task2
     {
@@ -30,7 +30,7 @@ namespace CollectionAndGeneric
 
         public void ReverseString()
         {
-            string reversedString = ""; 
+            string reversedString = "";
             foreach (char c in StringToReverse)
             {
                 charStack.Push(c);

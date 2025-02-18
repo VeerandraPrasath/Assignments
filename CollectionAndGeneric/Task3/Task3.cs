@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CollectionAndGeneric
+namespace CollectionAndGeneric.Task3
 {
     public class Task3
     {
@@ -43,8 +43,8 @@ namespace CollectionAndGeneric
             }
             else
             {
-              Console.WriteLine("Enter the number of people to serve: ");
-              int numberOfPeople = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the number of people to serve: ");
+                int numberOfPeople = int.Parse(Console.ReadLine());
                 for (int i = 0; i < numberOfPeople; i++)
                 {
                     Console.WriteLine($"Served {PeopleQueue.Dequeue()} in the queue: ");
