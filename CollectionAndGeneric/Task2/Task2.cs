@@ -1,33 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CollectionAndGeneric.Task2
+﻿namespace CollectionAndGeneric.Task2
 {
+    /// <summary>
+    /// Class to implement task2
+    /// </summary>
     public class Task2
     {
+        /// <summary>
+        /// Stack to store character
+        /// </summary>
         public Stack<char> charStack { get; set; }
+
+        /// <summary>
+        /// String to reverse
+        /// </summary>
         public string StringToReverse { get; set; }
 
+        /// <summary>
+        /// Constructor to initialize values
+        /// </summary>
         public Task2()
         {
             charStack = new Stack<char>();
         }
 
+        /// <summary>
+        /// Invoke all the methods
+        /// </summary>
         public void Run()
         {
             GetStringInput();
             ReverseString();
         }
 
+        /// <summary>
+        /// Get string from the user
+        /// </summary>
         public void GetStringInput()
         {
             Console.WriteLine("Enter a string to reverse: ");
             StringToReverse = Console.ReadLine();
         }
 
+        /// <summary>
+        /// Reverse the string
+        /// </summary>
         public void ReverseString()
         {
             string reversedString = "";
@@ -40,9 +56,7 @@ namespace CollectionAndGeneric.Task2
             {
                 reversedString += charStack.Pop();
             }
-
             Console.WriteLine(reversedString);
         }
-
     }
 }

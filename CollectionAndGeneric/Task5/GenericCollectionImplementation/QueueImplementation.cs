@@ -1,56 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CollectionAndGeneric.Task5.GenericClasses;
+﻿using CollectionAndGeneric.Task5.GenericClasses;
 
 namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
 {
+    /// <summary>
+    /// Class implements GenericQueue operations
+    /// </summary>
     public class QueueImplementation
     {
-        public GenericQueue<string> StringQueue { get; set; }
-        public GenericQueue<int>  IntQueue { get; set; }
+        private GenericQueue<string> _stringQueue { get; set; }
+        private GenericQueue<int> _intQueue { get; set; }
 
+        /// <summary>
+        /// Constructor initialize value
+        /// </summary>
         public QueueImplementation()
         {
-            StringQueue= new GenericQueue<string>();
-            IntQueue= new GenericQueue<int>();
+            _stringQueue = new GenericQueue<string>();
+            _intQueue = new GenericQueue<int>();
         }
 
-
+        /// <summary>
+        /// Invoke all methods
+        /// </summary>
         public void Run()
         {
             QueueImplementationUsingString();
             QueueImplementationUsingInt();
         }
 
+        /// <summary>
+        /// Method implements _queue using string
+        /// </summary>
         public void QueueImplementationUsingString()
         {
             Console.WriteLine("Queue implementation using string ");
-            StringQueue.Enqueue("First");
+            _stringQueue.Enqueue("First");
             Console.WriteLine("Added First to Queue ");
-            StringQueue.Enqueue("Second");
+            _stringQueue.Enqueue("Second");
             Console.WriteLine("Added Second to Queue ");
-            StringQueue.Enqueue("Third");
+            _stringQueue.Enqueue("Third");
             Console.WriteLine("Added Third to Queue ");
-            Console.WriteLine($"Removed {StringQueue.Dequeue()}");
-            Console.WriteLine($"Number of  element :{StringQueue.Count}");
-            StringQueue.DisplayAll();
+            Console.WriteLine($"Removed {_stringQueue.Dequeue()}");
+            Console.WriteLine($"Number of  element :{_stringQueue.Count}");
+            _stringQueue.DisplayAll();
         }
 
+        /// <summary>
+        /// Method implements _queue using int
+        /// </summary>
         public void QueueImplementationUsingInt()
         {
             Console.WriteLine("Queue implementation using int");
-            IntQueue.Enqueue(1);
+            _intQueue.Enqueue(1);
             Console.WriteLine("Added 1 to Queue ");
-            IntQueue.Enqueue(2);
+            _intQueue.Enqueue(2);
             Console.WriteLine("Added 2 to Queue ");
-            IntQueue.Enqueue(3);
+            _intQueue.Enqueue(3);
             Console.WriteLine("Added 3 to Queue ");
-            Console.WriteLine($"Removed {IntQueue.Dequeue()}");
-            Console.WriteLine($"Number of  element :{IntQueue.Count}");
-            StringQueue.DisplayAll();
+            Console.WriteLine($"Removed {_intQueue.Dequeue()}");
+            Console.WriteLine($"Number of  element :{_intQueue.Count}");
+            _stringQueue.DisplayAll();
         }
     }
 }

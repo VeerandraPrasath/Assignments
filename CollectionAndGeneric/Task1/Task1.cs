@@ -1,14 +1,26 @@
 ﻿namespace CollectionAndGeneric.Task1
 {
+    /// <summary>
+    /// Class to implement task1
+    /// </summary>
     public class Task1
     {
+        /// <summary>
+        /// List to store titles
+        /// </summary>
         public List<string> TitleList { get; set; }
 
+        /// <summary>
+        /// Constructor to initialize values
+        /// </summary>
         public Task1()
         {
             TitleList = new List<string>();
         }
 
+        /// <summary>
+        /// Invoke all the methods
+        /// </summary>
         public void Run()
         {
             Add();
@@ -16,6 +28,10 @@
             CheckBookTitle();
             DisplayAllTitle();
         }
+
+        /// <summary>
+        /// Add titles to the _list
+        /// </summary>
         public void Add()
         {
             int n = 5;
@@ -27,6 +43,9 @@
             Console.WriteLine("Titles added Successfully !");
         }
 
+        /// <summary>
+        /// Remove title from the _list
+        /// </summary>
         public void Remove()
         {
             Console.WriteLine("Enter the Book title to remove :");
@@ -42,6 +61,9 @@
             }
         }
 
+        /// <summary>
+        /// Check title exist
+        /// </summary>
         public void CheckBookTitle()
         {
             Console.WriteLine("Enter the title to check :");
@@ -49,14 +71,17 @@
             bool result = TitleList.Contains(titleTocheck);
             if (result)
             {
-                Console.WriteLine($"Title {titleTocheck} present in the list ");
+                Console.WriteLine($"Title {titleTocheck} present in the _list ");
             }
             else
             {
-                Console.WriteLine("Title not found in the list");
+                Console.WriteLine("Title not found in the _list");
             }
         }
 
+        /// <summary>
+        /// Display titles in the _list
+        /// </summary>
         public void DisplayAllTitle()
         {
             Console.WriteLine("All Titles :");

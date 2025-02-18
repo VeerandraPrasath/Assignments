@@ -1,32 +1,43 @@
 ﻿namespace CollectionAndGeneric.Task6
 {
+    /// <summary>
+    /// Class to understand IEnumerable
+    /// </summary>
     public class UnderstandIEnumerable
     {
-        public List<int> list { get; set; }
-        public Stack<int> stack { get; set; }
-        public Queue<int> queue { get; set; }
+        private List<int> _list;
+        private Stack<int> _stack;
+        private Queue<int> _queue;
 
         public UnderstandIEnumerable()
         {
-            list = new List<int>{ 1,2,3,4,5};
-            stack = new Stack<int>();
-            queue = new Queue<int>();
-            stack.Push(1);
-            stack.Push(2);
-            stack.Push(3);
-            queue.Enqueue(4);
-            queue.Enqueue(5);
-            queue.Enqueue(6);
+            _list = new List<int> { 1, 2, 3, 4, 5 };
+            _stack = new Stack<int>();
+            _queue = new Queue<int>();
+            _stack.Push(1);
+            _stack.Push(2);
+            _stack.Push(3);
+            _queue.Enqueue(4);
+            _queue.Enqueue(5);
+            _queue.Enqueue(6);
         }
 
-       public void Run()
+        /// <summary>
+        /// Invoke the flow
+        /// </summary>
+        public void Run()
         {
             Console.WriteLine("Understandiung IEnumerable \n");
-            Console.WriteLine($"Sum of List is {SumOfElements(list)}");
-            Console.WriteLine($"Sum of Stack is {SumOfElements(stack)}");
-            Console.WriteLine($"Sum of Queue is {SumOfElements(queue)}");
+            Console.WriteLine($"Sum of List is {SumOfElements(_list)}");
+            Console.WriteLine($"Sum of Stack is {SumOfElements(_stack)}");
+            Console.WriteLine($"Sum of Queue is {SumOfElements(_queue)}");
         }
 
+        /// <summary>
+        /// Add all the elements
+        /// </summary>
+        /// <param name="elements">Elements to add</param>
+        /// <returns>Returns the sum of the elements</returns>
         public int SumOfElements(IEnumerable<int> elements)
         {
             return elements.Sum(i => i);

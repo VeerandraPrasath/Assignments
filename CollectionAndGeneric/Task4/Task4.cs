@@ -1,19 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CollectionAndGeneric.Task4
+﻿namespace CollectionAndGeneric.Task4
 {
+    /// <summary>
+    /// Class to implement task4
+    /// </summary>
     public class Task4
     {
+        /// <summary>
+        /// Dictionary to store string ,int as key value pair
+        /// </summary>
         public Dictionary<string, int> StudentDictionary { get; set; }
+
+        /// <summary>
+        /// Constructor to initialize values
+        /// </summary>
         public Task4()
         {
             StudentDictionary = new Dictionary<string, int>();
         }
 
+        /// <summary>
+        /// Invoke all the methods
+        /// </summary>
         public void Run()
         {
             AddStudents();
@@ -21,6 +28,9 @@ namespace CollectionAndGeneric.Task4
             DisplayStudents();
         }
 
+        /// <summary>
+        /// Add student detail to the dictionary
+        /// </summary>
         public void AddStudents()
         {
             int numberOfStudents = 5;
@@ -34,6 +44,9 @@ namespace CollectionAndGeneric.Task4
             }
         }
 
+        /// <summary>
+        /// Remove student from the dictionary
+        /// </summary>
         public void RemoveStudent()
         {
             Console.WriteLine("Enter the name of student to remove: ");
@@ -49,6 +62,9 @@ namespace CollectionAndGeneric.Task4
             }
         }
 
+        /// <summary>
+        /// Display students in the dictionary
+        /// </summary>
         public void DisplayStudents()
         {
             Console.WriteLine("Students in the dictionary: ");
