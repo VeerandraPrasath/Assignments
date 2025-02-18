@@ -26,6 +26,8 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("Generic Dictionary Implementation");
+            Console.WriteLine("______________________");
             DictionaryImplementationUsingStringAndInt();
             DictionaryImplementationUsingIntAndBool();
         }
@@ -36,6 +38,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         public void DictionaryImplementationUsingStringAndInt()
         {
             Console.WriteLine("Dictionary Implementation using String and Int \n");
+            Console.WriteLine("______________________");
             _stringIntDictionary.Add("Prasath", 21);
             Console.WriteLine("Added Name : Prasath ,Age :21");
             _stringIntDictionary.Add("Arun", 20);
@@ -46,6 +49,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
             Console.WriteLine("Removed Pirai from Dictionary");
             Console.WriteLine($"Age of Arun is { _stringIntDictionary.GetValue("Arun")}");
             Console.WriteLine($"Is Prasath Contains in Dictionary ? {_stringIntDictionary.Contains("Prasath")}");
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -53,7 +57,9 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         /// </summary>
         public void DictionaryImplementationUsingIntAndBool()
         {
+            Console.WriteLine("______________________");
             Console.WriteLine("Dictionary Implementation using Int and Bool \n");
+            Console.WriteLine("______________________");
             _intBoolDictionary.Add(1, true);
             Console.WriteLine("Added Roll no : 1 ,Cleared all subjects :true");
             _intBoolDictionary.Add(2, true);
@@ -64,6 +70,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
             Console.WriteLine("Removed roll no 2 from Dictionary");
             Console.WriteLine($"Is roll no 1 passed in all subjects ? {_intBoolDictionary.GetValue(1)}");
             Console.WriteLine($"Is roll no 2 Contains in Dictionary ? {_intBoolDictionary.Contains(2)}");
+            Console.WriteLine("______________________");
         }
     }
 }

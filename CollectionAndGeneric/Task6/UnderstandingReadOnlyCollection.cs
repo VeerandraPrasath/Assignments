@@ -10,8 +10,11 @@
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("ReadOnly Collection understanding");
+            Console.WriteLine("______________________");
             PrintDictionary(GenerateDictionary());
             ModifyDictionary();
+            Console.WriteLine("***********************");
         }
 
         /// <summary>

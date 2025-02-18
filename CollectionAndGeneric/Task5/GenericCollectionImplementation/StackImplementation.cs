@@ -24,8 +24,11 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("Generic stack implementation");
+            Console.WriteLine("______________________");
             StackImplementationUsingChar();
             StackImplementationUsingInt();
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -34,6 +37,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         public void StackImplementationUsingChar()
         {
             Console.WriteLine("Stack Implementation using char \n");
+            Console.WriteLine("______________________");
             _charStack.Push('a');
             Console.WriteLine("a is pushed to _stack ");
             _charStack.Push('e');
@@ -42,6 +46,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
             Console.WriteLine("i is pushed to _stack");
             Console.WriteLine($"{_charStack.Pop()} removed from _stack");
             Console.WriteLine($"Peek element in _stack is {_charStack.Peek()}");
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -50,6 +55,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         public void StackImplementationUsingInt()
         {
             Console.WriteLine("Stack Implementation using int\n");
+            Console.WriteLine("______________________");
             _intStack.Push(1);
             Console.WriteLine("1 is pushed to _stack ");
             _intStack.Push(2);
@@ -58,6 +64,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
             Console.WriteLine("3 is pushed to _stack");
             Console.WriteLine($"{_intStack.Pop()} removed from _stack");
             Console.WriteLine($"Peek element in _stack is {_intStack.Peek()}");
+            Console.WriteLine("______________________");
         }
     }
 }

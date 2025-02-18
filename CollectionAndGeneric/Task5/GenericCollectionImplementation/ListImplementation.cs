@@ -24,8 +24,11 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("Generic list implementation ");
+            Console.WriteLine("______________________");
             ListImplementationUsingString();
             ListImplementationUsingInteger();
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -34,6 +37,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         public void ListImplementationUsingString()
         {
             Console.WriteLine("List Implementation using strings\n");
+            Console.WriteLine("______________________");
             _genericStringList.Add("Atomic Habits");
             Console.WriteLine("ADDED : Atomic Habits");
             _genericStringList.Add("Psychology of money");
@@ -44,6 +48,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
             Console.WriteLine($"Is Atomic Habits present in List : {_genericStringList.Contains("Atomic Habits")}");
             Console.WriteLine($"Is Rich Dad poor Dad present in List : {_genericStringList.Contains("Rich Dad poor Dad")}");
             _genericStringList.DisplayAll();
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -52,6 +57,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
         public void ListImplementationUsingInteger()
         {
             Console.WriteLine("List Implementation using integer\n");
+            Console.WriteLine("______________________");
             _genericIntList.Add(1);
             Console.WriteLine("ADDED : 1");
             _genericIntList.Add(2);
@@ -62,6 +68,7 @@ namespace CollectionAndGeneric.Task5.GenericCollectionImplementation
             Console.WriteLine($"Is 1 in List : {_genericIntList.Contains(1)}");
             Console.WriteLine($"Is 2 present in List : {_genericIntList.Contains(2)}");
             _genericIntList.DisplayAll();
+            Console.WriteLine("______________________");
         }
     }
 }

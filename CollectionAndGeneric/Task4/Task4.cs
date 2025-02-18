@@ -23,9 +23,12 @@
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("Dictionary implementation");
+            Console.WriteLine("______________________");
             AddStudents();
             RemoveStudent();
             DisplayStudents();
+            Console.WriteLine("***********************");
         }
 
         /// <summary>
@@ -41,6 +44,7 @@
                 Console.Write("Enter the grade of student " + (i + 1) + ": ");
                 int grade = int.Parse(Console.ReadLine());
                 StudentDictionary.Add(name, grade);
+                Console.WriteLine("______________________");
             }
         }
 
@@ -60,6 +64,7 @@
             {
                 Console.WriteLine("Student not found.");
             }
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -68,10 +73,12 @@
         public void DisplayStudents()
         {
             Console.WriteLine("Students in the dictionary: ");
+            Console.WriteLine("______________________");
             foreach (KeyValuePair<string, int> student in StudentDictionary)
             {
                 Console.WriteLine(student.Key + " - " + student.Value);
             }
+            Console.WriteLine("______________________");
         }
     }
 }

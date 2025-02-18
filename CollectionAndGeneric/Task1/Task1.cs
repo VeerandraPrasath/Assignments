@@ -23,10 +23,13 @@
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("List implementation");
+            Console.WriteLine("______________________");
             Add();
             Remove();
             CheckBookTitle();
             DisplayAllTitle();
+            Console.WriteLine("***********************");
         }
 
         /// <summary>
@@ -41,6 +44,8 @@
                 TitleList.Add(Console.ReadLine());
             }
             Console.WriteLine("Titles added Successfully !");
+            Console.WriteLine("______________________");
+           
         }
 
         /// <summary>
@@ -59,6 +64,7 @@
             {
                 Console.WriteLine("Title not found to remove");
             }
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -77,6 +83,7 @@
             {
                 Console.WriteLine("Title not found in the _list");
             }
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -85,10 +92,12 @@
         public void DisplayAllTitle()
         {
             Console.WriteLine("All Titles :");
+            Console.WriteLine("______________________");
             foreach (var title in TitleList)
             {
                 Console.WriteLine(title);
             }
+            Console.WriteLine("______________________");
         }
     }
 }

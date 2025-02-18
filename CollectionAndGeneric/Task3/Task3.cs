@@ -24,9 +24,12 @@ namespace CollectionAndGeneric.Task3
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("Queue implementation");
+            Console.WriteLine("______________________");
             AddPeopleToQueue();
             ServePeople();
             DisplayPeopleInQueue();
+            Console.WriteLine("***********************");
         }
 
         /// <summary>
@@ -36,12 +39,15 @@ namespace CollectionAndGeneric.Task3
         {
             Console.WriteLine("Enter the number of people to add to the _queue: ");
             int numberOfPeople = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the values :");
+            Console.WriteLine("______________________");
             for (int i = 0; i < numberOfPeople; i++)
             {
                 Console.Write("Enter the name of person " + (i + 1) + ": ");
                 string name = Console.ReadLine();
                 PeopleQueue.Enqueue(name);
             }
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -63,6 +69,7 @@ namespace CollectionAndGeneric.Task3
                     Console.WriteLine($"Served {PeopleQueue.Dequeue()} in the _queue: ");
                 }
             }
+            Console.WriteLine("______________________");
         }
 
         /// <summary>
@@ -71,10 +78,12 @@ namespace CollectionAndGeneric.Task3
         public void DisplayPeopleInQueue()
         {
             Console.WriteLine("People in the _queue: ");
+
             foreach (string person in PeopleQueue)
             {
                 Console.WriteLine(person);
             }
+            Console.WriteLine("______________________");
         }
     }
 }

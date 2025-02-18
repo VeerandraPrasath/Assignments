@@ -28,9 +28,11 @@
         public void Run()
         {
             Console.WriteLine("Understandiung IEnumerable \n");
+            Console.WriteLine("______________________");
             Console.WriteLine($"Sum of List is {SumOfElements(_list)}");
             Console.WriteLine($"Sum of Stack is {SumOfElements(_stack)}");
             Console.WriteLine($"Sum of Queue is {SumOfElements(_queue)}");
+            Console.WriteLine("***********************");
         }
 
         /// <summary>

@@ -28,8 +28,11 @@
         /// </summary>
         public void Run()
         {
+            Console.WriteLine("Stack implementation");
+            Console.WriteLine("______________________");
             GetStringInput();
             ReverseString();
+            Console.WriteLine("***********************");
         }
 
         /// <summary>
@@ -57,6 +60,7 @@
                 reversedString += charStack.Pop();
             }
             Console.WriteLine(reversedString);
+            Console.WriteLine("______________________");
         }
     }
 }
