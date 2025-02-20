@@ -3,12 +3,12 @@
 /// <summary>
 /// Implements <see cref="IRecord"/>
 /// </summary>
-public class Income : IRecord
+public class Income :IRecord
 {
     /// <summary>
     /// Amount of the record
     /// </summary>
-    public int Amount { get; set; }
+    public decimal Amount { get; set; }
 
     /// <summary>
     /// Category of the record
@@ -20,7 +20,7 @@ public class Income : IRecord
     /// </summary>
     /// <param name="amount">Amount of the income</param>
     /// <param name="category">Category of the income</param>
-    public Income(int amount, string category)
+    public Income(decimal amount, string category)
     {
         Amount = amount;
         Category = category;
