@@ -30,21 +30,35 @@ namespace Linq
         /// <summary>
         /// Initialize the methods
         /// </summary>
-        public void Run()
+        public void ExecuteTask1Queries()
         {
-            GetProductByCategoryAndPriceGreaterThan500("Electronics");
+            Task1Queries("Electronics", 500);
         }
 
         /// <summary>
         /// Get Product based on the given category and price greater than 500 and calculate the average price
         /// </summary>
         /// <param name="category">Category of the product</param>
-        public void GetProductByCategoryAndPriceGreaterThan500(string category)
+        private void Task1Queries(string category, decimal price)
         {
-            List<Product> filteredProductsByCategoryAndPriceGreaterThan500 = ProductList.Where(p => p.Category == category && p.Price > 500).ToList();
-            var objectListOnlyWithNameAndPrice = filteredProductsByCategoryAndPriceGreaterThan500.Select(p => new { p.ProductName, p.Price }).OrderByDescending((a) => a.Price);
-            decimal averagePrice = objectListOnlyWithNameAndPrice.Average(p => p.Price);
-            Console.WriteLine($"\nAverage Price of {category} is {averagePrice}");
+            //Query 1.1
+            List<Product> filteredProductsByCategoryAndPrice = ProductList
+            .Where(p => p.Category == category && p.Price > price)
+            .ToList();
+            var ListWithProductNameAndPrice = filteredProductsByCategoryAndPrice
+            .Select(p => new { p.ProductName, p.Price })
+            .ToList();
+
+            //Query 1.2
+            var orderListByDescending = ListWithProductNameAndPrice
+                .OrderByDescending(p => p.Price)
+                .ToList();
+
+            //Query 1.3
+            decimal averagePrice = orderListByDescending
+                .Average(p => p.Price);
+
+            Console.WriteLine($"\nAverage Price  is {averagePrice}");
         }
     }
 }
