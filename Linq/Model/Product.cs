@@ -32,7 +32,6 @@
         /// <param name="id">Id of the Product</param>
         /// <param name="category">Category of the Product</param>
         /// <param name="price">Price of </param>
-        /// <param name="suppilerId">Id of the Supplier</param>
         public Product(string name, int id, string category, decimal price)
         {
             ProductName = name;

@@ -10,7 +10,7 @@ while(!Exit)
     {
         case "1":
             Task1 task = new Task1();
-            //task.ExecuteTask4Queries();
+            task.ExecuteTask1Queries();
             break;
         case "2":
             Task2 task2 = new Task2();
