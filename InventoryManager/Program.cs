@@ -3,17 +3,22 @@ using InventoryManager.ConsoleInteraction;
 using InventoryManager.Manager;
 using InventoryManager.Model;
 
-internal class Program
+namespace InventoryManager
 {
-    private static void Main(string[] args)
+    /// <summary>
+    /// Main Program
+    /// </summary>
+    public class Program
     {
-        ProductRepository productRepository = new ProductRepository();
-        UserInteraction userInteraction = new UserInteraction(productRepository);
-        ManageInventory inventoryManager = new ManageInventory(productRepository, userInteraction);
-        App app = new App(inventoryManager, userInteraction, productRepository);
-        app.Run();
+        private static void Main(string[] args)
+        {
+            ProductRepository productRepository = new ProductRepository();
+            UserInteraction userInteraction = new UserInteraction(productRepository);
+            ManageInventory inventoryManager = new ManageInventory(productRepository, userInteraction);
+            App app = new App(inventoryManager, userInteraction, productRepository);
+            app.Run();
+        }
     }
-
     /// <summary>
     /// Starts the main flow
     /// </summary>
@@ -61,7 +66,7 @@ internal class Program
                         _inventoryManager.DeleteExistingProduct();
                         break;
                     case "5":
-                        Product product=_inventoryManager.SearchProducts();
+                        Product product = _inventoryManager.SearchProducts();
                         if (product is not null)
                         {
                             Console.WriteLine(product);
@@ -84,7 +89,7 @@ internal class Program
             }
         }
     }
-  }
+}
 
 
 
