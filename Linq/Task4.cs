@@ -18,37 +18,52 @@ namespace Linq
         public Task4()
         {
             ProductList = new List<Product>() {
-                 new Product("Laptop",1,"Electronics",50000,1),
-                new Product("Mobile",2,"Electronics",20000,3),
-                new Product("Shirt",3,"Clothing",1000,5),
-                new Product("Trousers",4,"Clothing",1500,7),
-                new Product("Shoes",5,"Footwear",3000,8),
-                new Product("Sneakers",6,"Footwear",2500,9),
-                new Product("Headphones",7,"Electronics",1500,10),
-                new Product("Psychology of money",8,"Books",500,11),
-                new Product("T-Shirt",9,"Clothing",500,12),
-                new Product("Rich Dad ,Poor Dad",10,"Books",2000,13),
-                new Product("Sandals",11,"Footwear",1000,14),
+                 new Product("Laptop",1,"Electronics",50000),
+                new Product("Mobile",2,"Electronics",20000),
+                new Product("Shirt",3,"Clothing",1000),
+                new Product("Trousers",4,"Clothing",1500),
+                new Product("Shoes",5,"Footwear",3000),
+                new Product("Sneakers",6,"Footwear",2500),
+                new Product("Headphones",7,"Electronics",1500),
+                new Product("Psychology of money",8,"Books",500),
+                new Product("T-Shirt",9,"Clothing",500),
+                new Product("Rich Dad ,Poor Dad",10,"Books",2000),
+                new Product("Sandals",11,"Footwear",1000)
             };
         }
 
         /// <summary>
         /// Initialize the methods
         /// </summary>
-        public void Run()
+        public void ExecuteTask4Queries()
         {
+            //Query 4.1
             GetProductByCategoryAndOrderByDescendingBasedOnPrice("Books");
+            //Query 4.2
+            OptimalSolution("Books");
         }
 
-        /// <summary>
-        /// Get the products based on category and order by descending based on product price
-        /// </summary>
-        /// <param name="category"></param>
-        public void GetProductByCategoryAndOrderByDescendingBasedOnPrice(string category)
+        private void GetProductByCategoryAndOrderByDescendingBasedOnPrice(string category)
         {
             Console.WriteLine($"\nProducts in {category} Category Ordered by  Descending  based on Product Price\n");
-            List<Product> OrderBooksByPrice = ProductList.Where(p => p.Category == category).OrderByDescending(x => x.Price).ToList();
-            OrderBooksByPrice.ForEach(p => Console.WriteLine(p));
+            List<Product> OrderBooksByPrice = ProductList
+                          .Where(p => p.Category == category)
+                          .OrderByDescending(x => x.Price)
+                          .ToList();
+            OrderBooksByPrice
+            .ForEach(p => Console.WriteLine(p));
+        }
+
+        private void OptimalSolution(string category)
+        {
+            Console.WriteLine($"\nProducts in {category} Category Ordered by  Descending  based on Product Price in optimal way\n");
+            List<Product> OrderBooksByPrice = ProductList
+                          .AsParallel()
+                          .Where(p => p.Category == category)
+                          .OrderByDescending(x => x.Price)
+                          .ToList();
+            OrderBooksByPrice
+           .ForEach(p => Console.WriteLine(p));
         }
     }
 }

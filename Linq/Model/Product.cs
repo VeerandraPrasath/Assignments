@@ -26,11 +26,6 @@
         public decimal Price { get; set; }
 
         /// <summary>
-        /// Id of the Supplier
-        /// </summary>
-        public int SupplierId { get; set; }
-
-        /// <summary>
         /// Constructor for Product
         /// </summary>
         /// <param name="name">Name of the Product</param>
@@ -38,13 +33,12 @@
         /// <param name="category">Category of the Product</param>
         /// <param name="price">Price of </param>
         /// <param name="suppilerId">Id of the Supplier</param>
-        public Product(string name, int id, string category, decimal price, int suppilerId)
+        public Product(string name, int id, string category, decimal price)
         {
             ProductName = name;
             ProductId = id;
             Category = category;
             Price = price;
-            SupplierId = suppilerId;
         }
 
         /// <summary>

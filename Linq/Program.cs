@@ -10,23 +10,23 @@ while(!Exit)
     {
         case "1":
             Task1 task = new Task1();
-            task.Run();
+            //task.ExecuteTask4Queries();
             break;
         case "2":
             Task2 task2 = new Task2();
-            task2.Run();
+            task2.ExecuteTask2Queries();
             break;
         case "3":
             Task3 task3 = new Task3();
-            task3.Run();
+            task3.ExecuteTask3Queries();
             break;
         case "4":
             Task4 task4 = new Task4();
-            task4.Run();
+            task4.ExecuteTask4Queries();
             break;
         case "5":
             Task5 task5 = new Task5();
-            task5.Run();
+            task5.ExecuteTask5Queries();
             break;
         case "6":
             Exit = true;

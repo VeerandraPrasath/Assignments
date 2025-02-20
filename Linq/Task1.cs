@@ -18,12 +18,12 @@ namespace Linq
         public Task1()
         {
             ProductList = new List<Product>() {
-                new Product("Laptop",1,"Electronics",50000,1),
-                new Product("Mobile",2,"Electronics",20000,3),
-                new Product("Shirt",3,"Clothing",1000,5),
-                new Product("Trousers",4,"Clothing",1500,7),
-                new Product("Shoes",5,"Footwear",3000,8),
-                new Product("Sneakers",6,"Footwear",2500,9)
+                new Product("Laptop",1,"Electronics",50000),
+                new Product("Mobile",2,"Electronics",20000),
+                new Product("Shirt",3,"Clothing",1000),
+                new Product("Trousers",4,"Clothing",1500),
+                new Product("Shoes",5,"Footwear",3000),
+                new Product("Sneakers",6,"Footwear",2500)
             };
         }
 
@@ -43,20 +43,20 @@ namespace Linq
         {
             //Query 1.1
             List<Product> filteredProductsByCategoryAndPrice = ProductList
-            .Where(p => p.Category == category && p.Price > price)
-            .ToList();
+                          .Where(p => p.Category == category && p.Price > price)
+                          .ToList();
             var ListWithProductNameAndPrice = filteredProductsByCategoryAndPrice
-            .Select(p => new { p.ProductName, p.Price })
-            .ToList();
+               .Select(p => new { p.ProductName, p.Price })
+               .ToList();
 
             //Query 1.2
             var orderListByDescending = ListWithProductNameAndPrice
-                .OrderByDescending(p => p.Price)
-                .ToList();
+               .OrderByDescending(p => p.Price)
+               .ToList();
 
             //Query 1.3
             decimal averagePrice = orderListByDescending
-                .Average(p => p.Price);
+                    .Average(p => p.Price);
 
             Console.WriteLine($"\nAverage Price  is {averagePrice}");
         }
