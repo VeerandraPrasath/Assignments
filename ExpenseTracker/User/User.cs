@@ -28,7 +28,7 @@
         /// <summary>
         /// List of dates
         /// </summary>
-        public List<Transaction> Dates { get; set; }
+        public List<Transaction> TransactionList { get; set; }
 
         /// <summary>
         /// Constructor for User
@@ -37,7 +37,7 @@
         public User(string name)
         {
             Name = name;
-            Dates = new List<Transaction>();
+            TransactionList = new List<Transaction>();
         }
     }
 }
