@@ -34,7 +34,7 @@ namespace CollectionAndGeneric.Task3
 
         private void AddPeopleToQueue()
         {
-            Console.WriteLine("Enter the number of people to add to the _queue: ");
+            Console.WriteLine("Enter the number of people to add to the queue: ");
             int numberOfPeople = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter the values :");
             Console.WriteLine("______________________");
@@ -51,7 +51,7 @@ namespace CollectionAndGeneric.Task3
         {
             if (PeopleQueue.Count == 0)
             {
-                Console.WriteLine("No people in the _queue.");
+                Console.WriteLine("No people in the queue.");
                 return;
             }
             else
@@ -60,7 +60,7 @@ namespace CollectionAndGeneric.Task3
                 int numberOfPeople = int.Parse(Console.ReadLine());
                 for (int i = 0; i < numberOfPeople; i++)
                 {
-                    Console.WriteLine($"Served {PeopleQueue.Dequeue()} in the _queue: ");
+                    Console.WriteLine($"Served {PeopleQueue.Dequeue()} in the queue: ");
                 }
             }
             Console.WriteLine("______________________");
@@ -68,7 +68,7 @@ namespace CollectionAndGeneric.Task3
 
         private void DisplayPeopleInQueue()
         {
-            Console.WriteLine("People in the _queue: ");
+            Console.WriteLine("People in the queue: ");
 
             foreach (string person in PeopleQueue)
             {
