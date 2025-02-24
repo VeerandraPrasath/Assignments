@@ -43,20 +43,21 @@ namespace Linq
         {
             //Query 1.1
             List<Product> filteredProductsByCategoryAndPrice = ProductList
-                          .Where(p => p.Category == category && p.Price > price)
-                          .ToList();
+                .Where(p => p.Category == category && p.Price > price)
+                .ToList();
+
             var ListWithProductNameAndPrice = filteredProductsByCategoryAndPrice
-               .Select(p => new { p.ProductName, p.Price })
-               .ToList();
+                .Select(p => new { p.ProductName, p.Price })
+                .ToList();
 
             //Query 1.2
             var orderListByDescending = ListWithProductNameAndPrice
-               .OrderByDescending(p => p.Price)
-               .ToList();
+                .OrderByDescending(p => p.Price)
+                .ToList();
 
             //Query 1.3
             decimal averagePrice = orderListByDescending
-                    .Average(p => p.Price);
+                .Average(p => p.Price);
 
             Console.WriteLine($"\nAverage Price  is {averagePrice}");
         }

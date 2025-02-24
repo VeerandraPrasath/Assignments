@@ -18,7 +18,7 @@ namespace Linq
         public Task4()
         {
             ProductList = new List<Product>() {
-                 new Product("Laptop",1,"Electronics",50000),
+                new Product("Laptop",1,"Electronics",50000),
                 new Product("Mobile",2,"Electronics",20000),
                 new Product("Shirt",3,"Clothing",1000),
                 new Product("Trousers",4,"Clothing",1500),
@@ -47,23 +47,25 @@ namespace Linq
         {
             Console.WriteLine($"\nProducts in {category} Category Ordered by  Descending  based on Product Price\n");
             List<Product> OrderBooksByPrice = ProductList
-                          .Where(p => p.Category == category)
-                          .OrderByDescending(x => x.Price)
-                          .ToList();
+                .Where(p => p.Category == category)
+                .OrderByDescending(x => x.Price)
+                .ToList();
+
             OrderBooksByPrice
-            .ForEach(p => Console.WriteLine(p));
+                .ForEach(p => Console.WriteLine(p));
         }
 
         private void OptimalSolution(string category)
         {
             Console.WriteLine($"\nProducts in {category} Category Ordered by  Descending  based on Product Price in optimal way\n");
             List<Product> OrderBooksByPrice = ProductList
-                          .AsParallel()
-                          .Where(p => p.Category == category)
-                          .OrderByDescending(x => x.Price)
-                          .ToList();
+                .AsParallel()
+                .Where(p => p.Category == category)
+                .OrderByDescending(x => x.Price)
+                .ToList();
+
             OrderBooksByPrice
-           .ForEach(p => Console.WriteLine(p));
+                .ForEach(p => Console.WriteLine(p));
         }
     }
 }

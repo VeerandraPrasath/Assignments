@@ -39,11 +39,11 @@
         {
             Console.WriteLine($"\nUnique Pairs with sum equal to {target}\n");
             intArray
-            .Distinct()
-            .SelectMany((x, index) => intArray.Skip(index + 1).Where(y => x + y == target).Select(y => new { x, y }))
-            .Distinct()
-            .ToList()
-            .ForEach(pair => Console.WriteLine($"Pair : {pair.x} , {pair.y}"));
+                .Distinct()
+                .SelectMany((x, index) => intArray.Skip(index + 1).Where(y => x + y == target).Select(y => new { x, y }))
+                .Distinct()
+                .ToList()
+                .ForEach(pair => Console.WriteLine($"Pair : {pair.x} , {pair.y}"));
         }
     }
 }

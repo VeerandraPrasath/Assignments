@@ -25,28 +25,45 @@ namespace Linq
         {
             Console.WriteLine("\nProducts with price greater than 100 and sorted by price and performed Inner join with Supplier using Supplier ID");
             Console.WriteLine("_________________________________________________________________________________________________________________");
-            var ProductsPriceGreaterThan100 = queryBuilder.Filter(p => p.Price > 100).SortBy(func => func.Price).Join((p, s) => p.ProductId == s.ProductId).Execute();
+            var ProductsPriceGreaterThan100 = queryBuilder
+                .Filter(p => p.Price > 100)
+                .SortBy(func => func.Price)
+                .Join((p, s) => p.ProductId == s.ProductId)
+                .Execute();
+
             foreach (var item in ProductsPriceGreaterThan100)
             {
                 Console.WriteLine(item.ToString());
             }
             Console.WriteLine("\nProducts with price lesser than 100 and sorted by price");
             Console.WriteLine("__________________________________________________________");
-            var ProductsPriceLessThan100 = queryBuilder.Filter(p => p.Price < 100).Execute();
+            var ProductsPriceLessThan100 = queryBuilder
+                .Filter(p => p.Price < 100)
+                .Execute();
+
             foreach (var item in ProductsPriceLessThan100)
             {
                 Console.WriteLine(item.ToString());
             }
             Console.WriteLine("\nProducts Name starts with S");
             Console.WriteLine("_____________________________");
-            var ProductsNameStartWithA = queryBuilder.Filter(p => p.ProductName.StartsWith('S')).SortBy(func => func.Price).Execute();
+            var ProductsNameStartWithA = queryBuilder
+                .Filter(p => p.ProductName
+                .StartsWith('S'))
+                .SortBy(func => func.Price)
+                .Execute();
+
             foreach (var item in ProductsNameStartWithA)
             {
                 Console.WriteLine(item.ToString());
             }
             Console.WriteLine("\nProduct Name contains e");
             Console.WriteLine("_________________________");
-            var ProductsNameContainsA = queryBuilder.Filter(p => p.ProductName.Contains('e')).SortBy(func => func.Price).Execute();
+            var ProductsNameContainsA = queryBuilder
+                .Filter(p => p.ProductName.Contains('e'))
+                .SortBy(func => func.Price)
+                .Execute();
+
             foreach (var item in ProductsNameContainsA)
             {
                 Console.WriteLine(item.ToString());
@@ -179,6 +196,7 @@ namespace Linq
             return result;
         }
     }
+
     public enum QUERYTYPE
     {
         SORTBY,
