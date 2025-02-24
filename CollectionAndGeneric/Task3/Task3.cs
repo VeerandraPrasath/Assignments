@@ -22,7 +22,7 @@ namespace CollectionAndGeneric.Task3
         /// <summary>
         /// Invoke all the methods
         /// </summary>
-        public void Run()
+        public void ExecuteQueueOperations()
         {
             Console.WriteLine("Queue implementation");
             Console.WriteLine("______________________");
@@ -32,10 +32,7 @@ namespace CollectionAndGeneric.Task3
             Console.WriteLine("***********************");
         }
 
-        /// <summary>
-        /// Add people to the _queue
-        /// </summary>
-        public void AddPeopleToQueue()
+        private void AddPeopleToQueue()
         {
             Console.WriteLine("Enter the number of people to add to the _queue: ");
             int numberOfPeople = int.Parse(Console.ReadLine());
@@ -50,10 +47,7 @@ namespace CollectionAndGeneric.Task3
             Console.WriteLine("______________________");
         }
 
-        /// <summary>
-        /// Remove people from the _queue
-        /// </summary>
-        public void ServePeople()
+        private void ServePeople()
         {
             if (PeopleQueue.Count == 0)
             {
@@ -72,10 +66,7 @@ namespace CollectionAndGeneric.Task3
             Console.WriteLine("______________________");
         }
 
-        /// <summary>
-        /// Display peoples in the _queue
-        /// </summary>
-        public void DisplayPeopleInQueue()
+        private void DisplayPeopleInQueue()
         {
             Console.WriteLine("People in the _queue: ");
 

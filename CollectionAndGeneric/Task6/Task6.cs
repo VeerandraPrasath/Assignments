@@ -20,10 +20,10 @@
         /// <summary>
         /// Invoke all methods
         /// </summary>
-        public void Run()
+        public void ExecuteTask6()
         {
-            _understandIEnumerable.Run();
-            _understandReadOnlyCollection.Run();
+            _understandIEnumerable.ExecuteIEnumerableOperations();
+            _understandReadOnlyCollection.ExecuteReadOnlyCollectionOperations();
         }
     }
 }

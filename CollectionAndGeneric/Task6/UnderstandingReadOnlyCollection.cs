@@ -8,7 +8,7 @@
         /// <summary>
         /// Invoke all the methods
         /// </summary>
-        public void Run()
+        public void ExecuteReadOnlyCollectionOperations()
         {
             Console.WriteLine("ReadOnly Collection understanding");
             Console.WriteLine("______________________");

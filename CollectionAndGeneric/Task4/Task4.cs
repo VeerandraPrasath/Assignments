@@ -21,7 +21,7 @@
         /// <summary>
         /// Invoke all the methods
         /// </summary>
-        public void Run()
+        public void ExecuteDictionaryOperations()
         {
             Console.WriteLine("Dictionary implementation");
             Console.WriteLine("______________________");
@@ -31,10 +31,7 @@
             Console.WriteLine("***********************");
         }
 
-        /// <summary>
-        /// Add student detail to the dictionary
-        /// </summary>
-        public void AddStudents()
+        private void AddStudents()
         {
             int numberOfStudents = 5;
             for (int i = 0; i < numberOfStudents; i++)
@@ -48,10 +45,7 @@
             }
         }
 
-        /// <summary>
-        /// Remove student from the dictionary
-        /// </summary>
-        public void RemoveStudent()
+        private void RemoveStudent()
         {
             Console.WriteLine("Enter the name of student to remove: ");
             string name = Console.ReadLine();
@@ -67,10 +61,7 @@
             Console.WriteLine("______________________");
         }
 
-        /// <summary>
-        /// Display students in the dictionary
-        /// </summary>
-        public void DisplayStudents()
+        private void DisplayStudents()
         {
             Console.WriteLine("Students in the dictionary: ");
             Console.WriteLine("______________________");

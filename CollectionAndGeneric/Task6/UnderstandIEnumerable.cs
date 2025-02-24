@@ -25,7 +25,7 @@
         /// <summary>
         /// Invoke the flow
         /// </summary>
-        public void Run()
+        public void ExecuteIEnumerableOperations()
         {
             Console.WriteLine("Understandiung IEnumerable \n");
             Console.WriteLine("______________________");

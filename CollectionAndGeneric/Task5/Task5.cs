@@ -10,7 +10,7 @@ namespace CollectionAndGeneric.Task5
         /// <summary>
         /// Invoke all the collections
         /// </summary>
-        public void Run()
+        public void ExecuteGenericOperations()
         {
             Console.WriteLine("Generic List operations");
             new ListImplementation().Run();

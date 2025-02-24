@@ -21,7 +21,7 @@
         /// <summary>
         /// Invoke all the methods
         /// </summary>
-        public void Run()
+        public void ExecuteListOperations()
         {
             Console.WriteLine("List implementation");
             Console.WriteLine("______________________");
@@ -32,10 +32,7 @@
             Console.WriteLine("***********************");
         }
 
-        /// <summary>
-        /// Add titles to the _list
-        /// </summary>
-        public void Add()
+        private void Add()
         {
             int n = 5;
             Console.WriteLine("Enter five book titles to add :");
@@ -48,10 +45,7 @@
            
         }
 
-        /// <summary>
-        /// Remove title from the _list
-        /// </summary>
-        public void Remove()
+        private void Remove()
         {
             Console.WriteLine("Enter the Book title to remove :");
             string titleToRemove = Console.ReadLine();
@@ -67,10 +61,7 @@
             Console.WriteLine("______________________");
         }
 
-        /// <summary>
-        /// Check title exist
-        /// </summary>
-        public void CheckBookTitle()
+        private  void CheckBookTitle()
         {
             Console.WriteLine("Enter the title to check :");
             string titleTocheck = Console.ReadLine();
@@ -86,10 +77,7 @@
             Console.WriteLine("______________________");
         }
 
-        /// <summary>
-        /// Display titles in the _list
-        /// </summary>
-        public void DisplayAllTitle()
+        private void DisplayAllTitle()
         {
             Console.WriteLine("All Titles :");
             Console.WriteLine("______________________");
