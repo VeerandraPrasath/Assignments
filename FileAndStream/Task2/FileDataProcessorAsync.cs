@@ -1,8 +1,9 @@
 ﻿
 using System.Diagnostics;
 using System.Text;
+using FileAndStream.Task1;
 
-namespace FileAndStream
+namespace FileAndStream.Task2
 {
     public class FileDataProcessorAsync
     {
@@ -27,7 +28,7 @@ namespace FileAndStream
 
         public static async Task ProcessMultipleFilesAsync(string[] inputFiles)
         {
-            var semaphore = new System.Threading.SemaphoreSlim(4);
+            var semaphore = new SemaphoreSlim(4);
             var tasks = new Task[inputFiles.Length];
 
             for (int i = 0; i < inputFiles.Length; i++)

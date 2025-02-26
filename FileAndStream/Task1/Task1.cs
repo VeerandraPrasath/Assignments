@@ -1,7 +1,7 @@
 ﻿
 using System.Diagnostics;
 
-namespace FileAndStream
+namespace FileAndStream.Task1
 {
     public class Task1
     {
@@ -10,7 +10,7 @@ namespace FileAndStream
 
         const string InputFile = "input.txt";
         const string OutputFile = "output.txt";
-       
+
         public void Run()
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -25,7 +25,7 @@ namespace FileAndStream
 
             //Write1GBData(); 
             Console.WriteLine("File processing complete.");
-        
+
         }
 
         public void Write1GBData()
@@ -55,15 +55,15 @@ namespace FileAndStream
             {
                 return "";
             }
-          return File.ReadAllText(filePath);
+            return File.ReadAllText(filePath);
         }
 
         public static void WriteData(string filePath, string data)
         {
-            
-            File.AppendAllText(filePath,data);
+
+            File.AppendAllText(filePath, data);
         }
-         public  static long GetFileSize(string FilePath)
+        public static long GetFileSize(string FilePath)
         {
             if (File.Exists(FilePath))
             {

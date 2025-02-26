@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace FileAndStream
+namespace FileAndStream.Task1
 {
-    public  class FileDataProcessor
- {
+    public class FileDataProcessor
+    {
         public static double ReadFileUsingFileStream(string filePath)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -20,7 +20,7 @@ namespace FileAndStream
             return stopwatch.Elapsed.TotalMilliseconds;
         }
 
-       public static double ReadFileUsingBufferedStream(string filePath)
+        public static double ReadFileUsingBufferedStream(string filePath)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
 

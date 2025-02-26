@@ -1,5 +1,4 @@
-﻿
-namespace FileAndStream
+﻿namespace FileAndStream.Task2
 {
     internal class Task2
     {
