@@ -2,7 +2,7 @@
 
 namespace FileAndStream.Task4
 {
-    internal class SubTask2
+    public class SubTask2
     {
 
         private static readonly string _logFilePath = "log.txt";
