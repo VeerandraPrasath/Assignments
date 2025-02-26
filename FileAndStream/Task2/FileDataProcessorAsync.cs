@@ -34,7 +34,8 @@ namespace FileAndStream.Task2
             for (int i = 0; i < inputFiles.Length; i++)
             {
                 string inputFile = inputFiles[i];
-                string outputFile = Path.Combine(Path.GetFileName(inputFile) + "_async.txt");
+                string fileName = inputFile.Substring(0, inputFile.LastIndexOf('.'));
+                string outputFile =Path.Combine(fileName+ "_async.txt");
 
                 //tasks[i] = ProcessFileAsync(inputFile, outputFile);
                 await semaphore.WaitAsync();

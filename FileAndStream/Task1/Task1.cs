@@ -1,6 +1,5 @@
 ﻿
 using System.Diagnostics;
-
 namespace FileAndStream.Task1
 {
     public class Task1
@@ -10,22 +9,22 @@ namespace FileAndStream.Task1
 
         const string InputFile = "input.txt";
         const string OutputFile = "output.txt";
-
+       
         public void Run()
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            double fileStreamTime = FileDataProcessor.ReadFileUsingFileStream(InputFile);
+            double fileStreamTime =FileDataProcessor.ReadFileUsingFileStream(InputFile);
             Console.WriteLine($"FileStream read time: {fileStreamTime} ms");
 
-            double bufferedStreamTime = FileDataProcessor.ReadFileUsingBufferedStream(InputFile);
+            double bufferedStreamTime =FileDataProcessor.ReadFileUsingBufferedStream(InputFile);
             Console.WriteLine($"BufferedStream read time: {bufferedStreamTime} ms");
 
             FileDataProcessor.ProcessAndWriteFile(InputFile, OutputFile);
 
             //Write1GBData(); 
             Console.WriteLine("File processing complete.");
-
+        
         }
 
         public void Write1GBData()
@@ -55,15 +54,15 @@ namespace FileAndStream.Task1
             {
                 return "";
             }
-            return File.ReadAllText(filePath);
+          return File.ReadAllText(filePath);
         }
 
         public static void WriteData(string filePath, string data)
         {
-
-            File.AppendAllText(filePath, data);
+            
+            File.AppendAllText(filePath,data);
         }
-        public static long GetFileSize(string FilePath)
+         public  static long GetFileSize(string FilePath)
         {
             if (File.Exists(FilePath))
             {
