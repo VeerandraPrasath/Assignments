@@ -28,7 +28,7 @@ namespace FileAndStreamTest
         }
 
         [Test]
-        public void LogError_ShouldWriteErrorMessageToLogFile()
+        public void LogError_WriteErrorMessageToLogFile()
         {
             string errorMessage = "An error occurred";
 

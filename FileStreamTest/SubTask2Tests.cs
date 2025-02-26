@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileAndStream.Task4;
+﻿using FileAndStream.Task4;
 using NUnit.Framework.Legacy;
 using NUnit.Framework;
 
@@ -33,7 +28,7 @@ namespace FileAndStreamTest
         }
 
         [Test]
-        public void LogError_ShouldWriteErrorMessageToLogFile()
+        public void LogError_WriteErrorMessageToLogFile()
         {
             string errorMessage = "An error occurred";
             string expectedLogEntry = $"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss}: {errorMessage}{Environment.NewLine}";

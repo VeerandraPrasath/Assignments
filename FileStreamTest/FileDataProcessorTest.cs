@@ -30,25 +30,25 @@ namespace FileStreamTest
         }
 
         [Test]
-        public void ReadFileUsingFileStream_ShouldReturnElapsedTime()
-        { 
-            double elapsedTime = FileDataProcessor.ReadFileUsingFileStream(TestInputFile);
+        public void ReadFileUsingFileStream_ReadDataFromFile_ReturnElapsedTime()
+        {
+            double elapsedTime = FileDataProcessorSync.ReadFileUsingFileStream(TestInputFile);
 
             ClassicAssert.Greater(elapsedTime, 0);
         }
 
         [Test]
-        public void ReadFileUsingBufferedStream_ShouldReturnElapsedTime()
+        public void ReadFileUsingBufferedStream_ReadDataFromFile_ReturnElapsedTime()
         {
-            double elapsedTime = FileDataProcessor.ReadFileUsingBufferedStream(TestInputFile);
+            double elapsedTime = FileDataProcessorSync.ReadFileUsingBufferedStream(TestInputFile);
 
             ClassicAssert.Greater(elapsedTime, 0);
         }
 
         [Test]
-        public void ProcessAndWriteFile_ShouldCreateOutputFile()
+        public void ProcessAndWriteFile_CreateOutputFile()
         {
-            FileDataProcessor.ProcessAndWriteFile(TestInputFile, TestOutputFile);
+            FileDataProcessorSync.ProcessAndWriteFile(TestInputFile, TestOutputFile);
 
             ClassicAssert.IsTrue(File.Exists(TestOutputFile));
 
@@ -57,11 +57,11 @@ namespace FileStreamTest
         }
 
         [Test]
-        public void ProcessFileData_ShouldReturnUpperCaseString()
+        public void ProcessFileData_ProcessDataToUpper_ReturnUpperCaseString()
         {
             string input = "test";
 
-            string result = FileDataProcessor.ProcessFileData(input);
+            string result = FileDataProcessorSync.ProcessFileData(input);
 
             ClassicAssert.AreEqual("TEST", result);
         }

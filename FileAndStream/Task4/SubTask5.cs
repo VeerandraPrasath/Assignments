@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace FileAndStream.Task4
 {
-    internal class SubTask5
+    /// <summary>
+    /// Implements the need of subTask5
+    /// </summary>
+    public class SubTask5
     {
+        /// <summary>
+        /// Test the performance
+        /// </summary>
         public static void LoadTest()
         {
             int numberOfUsers = 20;
@@ -22,8 +23,7 @@ namespace FileAndStream.Task4
             }
             Task.WaitAll(task3);
             stopwatch.Stop();
-            Console.WriteLine("Logging completed in"+ stopwatch.ElapsedMilliseconds+" ms");
-
+            Console.WriteLine("Logging completed in" + stopwatch.ElapsedMilliseconds + " ms");
 
             stopwatch.Reset();
             Console.WriteLine("Starting multiple user using s file");

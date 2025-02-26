@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace FileAndStream.Task4
 {
-
+    /// <summary>
+    /// Given started code
+    /// </summary>
     public class Logger
     {
         private static string _logFilePath = "log.txt";

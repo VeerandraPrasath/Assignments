@@ -35,7 +35,8 @@ namespace FileAndStreamTest
         }
 
         [Test]
-        public async Task ProcessAndWriteFileAsync_ShouldCreateOutputFile()
+        public async Task ComparePerformance_ComparePerformanceBetweenSyncAndAsync
+            ()
         {
             string[] files = { TestInputFile };
 
@@ -49,7 +50,7 @@ namespace FileAndStreamTest
         }
 
         [Test]
-        public async Task ProcessFileAsync_ShouldProcessFileCorrectly()
+        public async Task ProcessFileAsync_ProcessFileAsyncCorrectly()
         {
             string inputFile = TestInputFile;
             string outputFile = TestOutputFileAsync;
@@ -63,9 +64,9 @@ namespace FileAndStreamTest
         }
 
         [Test]
-        public async Task ProcessMultipleFilesAsync_ShouldProcessAllFiles()
+        public async Task ProcessMultipleFilesAsync_ProcessAllFilesCorrectly()
         {
-            string[] files = { TestInputFile, TestInputFile }; 
+            string[] files = { TestInputFile, TestInputFile };
 
             await FileDataProcessorAsync.ProcessMultipleFilesAsync(files);
 

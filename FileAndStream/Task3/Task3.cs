@@ -3,13 +3,15 @@ using System.IO;
 using System.Text;
 namespace FileAndStream.Task3
 {
+    /// <summary>
+    /// Implements requirement for the Task3
+    /// </summary>
     public class Task3
     {
-
-    }
-
-    public class Program
-    {
+        /// <summary>
+        /// Given code
+        /// </summary>
+        /// <param name="args">String array</param>
         public static void GivenCode(string[] args)
         {
             string path = "path -to-your-file";
@@ -40,6 +42,11 @@ namespace FileAndStream.Task3
                 }
             }
         }
+
+        /// <summary>
+        /// Optimized code
+        /// </summary>
+        /// <param name="args">String array</param>
         public static void OptimizedCode(string[] args)
         {
             string path = "path-to-your-file";

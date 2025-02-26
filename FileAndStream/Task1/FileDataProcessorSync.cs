@@ -4,8 +4,16 @@ using System.Text;
 
 namespace FileAndStream.Task1
 {
-    public class FileDataProcessor
+    /// <summary>
+    /// Process file data synchronously
+    /// </summary>
+    public class FileDataProcessorSync
     {
+        /// <summary>
+        /// Read file data using file stream
+        /// </summary>
+        /// <param name="filePath">File path</param>
+        /// <returns>Returns millisecond</returns>
         public static double ReadFileUsingFileStream(string filePath)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -20,6 +28,11 @@ namespace FileAndStream.Task1
             return stopwatch.Elapsed.TotalMilliseconds;
         }
 
+        /// <summary>
+        /// Read file data using Bufferstream
+        /// </summary>
+        /// <param name="filePath">FilePath</param>
+        /// <returns>Returns millisecond</returns>
         public static double ReadFileUsingBufferedStream(string filePath)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -35,6 +48,11 @@ namespace FileAndStream.Task1
             return stopwatch.Elapsed.TotalMilliseconds;
         }
 
+        /// <summary>
+        /// Read data from file and write to another file
+        /// </summary>
+        /// <param name="inputFile">File to read</param>
+        /// <param name="outputFile">File to write</param>
         public static void ProcessAndWriteFile(string inputFile, string outputFile)
         {
             Console.WriteLine(inputFile + " started processing and write to " + outputFile);
@@ -66,6 +84,11 @@ namespace FileAndStream.Task1
             }
         }
 
+        /// <summary>
+        /// Convert data to upper
+        /// </summary>
+        /// <param name="data">Data to process</param>
+        /// <returns>Returns string result</returns>
         public static string ProcessFileData(string data)
         {
             return data.ToUpper();
