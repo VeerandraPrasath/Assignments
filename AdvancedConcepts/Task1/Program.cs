@@ -15,12 +15,19 @@
         }
     }
 
+    /// <summary>
+    /// Notify message
+    /// </summary>
     public class Notifier
     {
         public delegate void Notify(string message);
 
         public event Notify OnAction;
 
+        /// <summary>
+        /// Invoke the event
+        /// </summary>
+        /// <param name="actionMessage">Message to notify</param>
         public void PerformAction(string actionMessage)
         {
             OnAction?.Invoke(actionMessage);

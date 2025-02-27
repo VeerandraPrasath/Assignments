@@ -17,7 +17,6 @@
             {
                 DisplayShapeDetails(shape);
             }
-
             Console.ReadLine();
         }
 
@@ -44,47 +43,99 @@
         }
     }
 
+    /// <summary>
+    /// Abstract class for all shapes
+    /// </summary>
     public abstract class Shape
     {
         public abstract double CalculateArea();
     }
 
+    /// <summary>
+    /// Circle class
+    /// </summary>
     public class Circle : Shape
     {
+        /// <summary>
+        /// Radius of circle
+        /// </summary>
         public double Radius { get; set; }
 
+        /// <summary>
+        /// Constructor to initialize values
+        /// </summary>
+        /// <param name="radius">Radius</param>
         public Circle(double radius)
         {
             Radius = radius;
         }
 
+        /// <summary>
+        /// Calculate the area
+        /// </summary>
+        /// <returns>Return area</returns>
         public override double CalculateArea()
         {
             return Math.PI * Radius * Radius;
         }
     }
 
+    /// <summary>
+    /// Rectangle class
+    /// </summary>
     public class Rectangle : Shape
     {
+        /// <summary>
+        /// Width of the rectangle
+        /// </summary>
         public double Width { get; set; }
+
+        /// <summary>
+        /// Height of the reactangle
+        /// </summary>
         public double Height { get; set; }
 
+        /// <summary>
+        /// Constructor to initialize the value
+        /// </summary>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
         public Rectangle(double width, double height)
         {
             Width = width;
             Height = height;
         }
 
+        /// <summary>
+        /// Calculate the area
+        /// </summary>
+        /// <returns>Returns area</returns>
         public override double CalculateArea()
         {
             return Width * Height;
         }
     }
 
+    /// <summary>
+    /// Triangle class
+    /// </summary>
     public class Triangle : Shape
     {
+        /// <summary>
+        /// Base of the triangle
+        /// </summary>
         public double Base { get; set; }
+
+        /// <summary>
+        /// Height of the triangle
+        /// </summary>
         public double Height { get; set; }
+
+        /// <summary>
+        /// Constructor to initialize values
+        /// </summary>
+        /// <param name="baseLength">Base</param>
+        /// <param name="height">Height</param>
 
         public Triangle(double baseLength, double height)
         {
@@ -92,6 +143,10 @@
             Height = height;
         }
 
+        /// <summary>
+        /// Calculate the area
+        /// </summary>
+        /// <returns>Returns area</returns>
         public override double CalculateArea()
         {
             return 0.5 * Base * Height;

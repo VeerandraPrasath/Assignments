@@ -55,12 +55,32 @@
         }
     }
 
+    /// <summary>
+    /// Model of the Product
+    /// </summary>
     public class Product
     {
+        /// <summary>
+        /// Product Name
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Product category
+        /// </summary>
         public string Category { get; set; }
+
+        /// <summary>
+        /// Product price
+        /// </summary>
         public decimal Price { get; set; }
 
+        /// <summary>
+        /// Constructor to initialize values
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <param name="category">Category</param>
+        /// <param name="price">Price</param>
         public Product(string name, string category, decimal price)
         {
             Name = name;
@@ -68,6 +88,10 @@
             Price = price;
         }
 
+        /// <summary>
+        /// Ovveride the ToString method
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"Name : {Name},Category : {Category},Price : ${Price}";
