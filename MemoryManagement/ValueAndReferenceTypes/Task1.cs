@@ -6,9 +6,9 @@
     public class Task1
     {
         /// <summary>
-        /// Run the task1
+        /// ExecuteTask1 the task1
         /// </summary>
-        public void Run()
+        public void ExecuteTask1()
         {
             ValueType valueType = new ValueType(10);
             ReferenceType referenceType = new ReferenceType(10);
@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="valueType">struct as value type</param>
         /// <param name="referenceType">class as reference type</param>
-        void changeValues(ValueType valueType, ReferenceType referenceType)
+        private void changeValues(ValueType valueType, ReferenceType referenceType)
         {
             valueType.Value = 20;
             referenceType.Value = 20;

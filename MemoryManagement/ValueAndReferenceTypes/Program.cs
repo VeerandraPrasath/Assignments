@@ -1,9 +1,9 @@
 ﻿using ValueAndReferenceTypes;
 
 Task1 task1 = new Task1();
-task1.Run();
+task1.ExecuteTask1();
 Task2 task2 = new Task2();
-task2.Run();
+task2.ExecuteTask2();
 Console.ReadKey();
 
 public struct ValueType

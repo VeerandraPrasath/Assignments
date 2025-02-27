@@ -6,9 +6,9 @@
     public class Task2
     {
         /// <summary>
-        /// Run the task2
+        /// ExecuteTask1 the task2
         /// </summary>
-        public void Run()
+        public void ExecuteTask2()
         {
             LargeNumberOfReferenceType();
             LargeNumberOfValueType();
@@ -17,7 +17,7 @@
         /// <summary>
         /// Create large number of value type
         /// </summary>
-        public void LargeNumberOfValueType()
+        private void LargeNumberOfValueType()
         {
             for (int i = 0; i < 1000; i++)
             {
@@ -28,7 +28,7 @@
         /// <summary>
         /// Create large number of reference type
         /// </summary>
-        public void LargeNumberOfReferenceType()
+        private void LargeNumberOfReferenceType()
         {
             for (int i = 0; i < 1000; i++)
             {
