@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionAndGeneric", "CollectionAndGeneric\CollectionAndGeneric.csproj", "{1CE9A2E7-3AA6-4ED1-BCD9-0DD723B24453}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assignment16", "Assignment16", "{0B546684-FF2B-4D18-AFBB-6867696DAA7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1", "Task1\Task1.csproj", "{3A629FF1-31E5-4480-BC26-756699123A3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,8 +60,15 @@ Global
 		{1CE9A2E7-3AA6-4ED1-BCD9-0DD723B24453}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CE9A2E7-3AA6-4ED1-BCD9-0DD723B24453}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CE9A2E7-3AA6-4ED1-BCD9-0DD723B24453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A629FF1-31E5-4480-BC26-756699123A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A629FF1-31E5-4480-BC26-756699123A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A629FF1-31E5-4480-BC26-756699123A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A629FF1-31E5-4480-BC26-756699123A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A629FF1-31E5-4480-BC26-756699123A3C} = {0B546684-FF2B-4D18-AFBB-6867696DAA7D}
 	EndGlobalSection
 EndGlobal
