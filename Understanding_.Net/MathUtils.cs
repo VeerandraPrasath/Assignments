@@ -29,7 +29,7 @@
         /// <summary>
         /// Initialize all the methods
         /// </summary>
-        public void Run()
+        public void ExecuteOperations()
         {
             Add(A, B);
             Subtract(A, B);
@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="a">First number</param>
         /// <param name="b">Second number</param>
-        public void Add(int a, int b)
+        private void Add(int a, int b)
         {
             Console.WriteLine($"Addition of {a} and {b} is {a + b}");
         }
@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="a">First number</param>
         /// <param name="b">Second number</param>
-        public void Subtract(int a, int b)
+        private void Subtract(int a, int b)
         {
             Console.WriteLine($"Subtraction of {a} and {b} is {a - b}");
         }
@@ -62,7 +62,7 @@
         /// </summary>
         /// <param name="a">First number</param>
         /// <param name="b">Second number</param>
-        public void Multiply(int a, int b)
+        private void Multiply(int a, int b)
         {
             Console.WriteLine($"Multiplication of {a} and {b} is {a * b}");
         }
@@ -72,7 +72,7 @@
         /// </summary>
         /// <param name="a">First number</param>
         /// <param name="b">Second number</param>
-        public void Divide(int a, int b)
+        private void Divide(int a, int b)
         {
             try
             {
