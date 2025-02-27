@@ -8,19 +8,19 @@
         /// <summary>
         /// Number of elements to allocate
         /// </summary>
-        public int N { get; set; }
+        public int NumberOfElement { get; set; }
 
         /// <summary>
         /// Stores the list of integer array
         /// </summary>
-        public List<int[]> memalloc { get; set; }
+        public List<int[]> IntegerArrayList { get; set; }
 
         /// <summary>
         /// Constructor to initialize the list
         /// </summary>
         public Task2()
         {
-            memalloc = new List<int[]>();
+            IntegerArrayList = new List<int[]>();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@
         public void GetValuesFromUser()
         {
             Console.WriteLine("Enter the number of elements to allocate");
-            N = Convert.ToInt32(Console.ReadLine());
+            NumberOfElement = Convert.ToInt32(Console.ReadLine());
         }
 
         /// <summary>
@@ -37,11 +37,11 @@
         /// </summary>
         public void Allocate()
         {
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < NumberOfElement; i++)
             {
                 Console.WriteLine($"Enter the size for element {i + 1} :");
                 int size = Convert.ToInt32(Console.ReadLine());
-                memalloc.Add(new int[size]);
+                IntegerArrayList.Add(new int[size]);
                 Thread.Sleep(100);
             }
         }
@@ -51,7 +51,7 @@
         /// </summary>
         public void Dispose()
         {
-            memalloc.Clear();
+            IntegerArrayList.Clear();
         }
     }
 }

@@ -13,4 +13,3 @@
 &nbsp;&nbsp;In the above code ,there is a issue with the memory and also the working of the method "Allocate".In that method,There is a while loop which allows to add a integer array to a list and  pause the flow of execution for 0.1 second. 
 ## Issue
 &nbsp;&nbsp;The issue with the code is that the while loop will not terminate at any time so that it will keep on adding the integer array to the list and it will keep on consuming the memory and it will lead to the memory leak.
-
