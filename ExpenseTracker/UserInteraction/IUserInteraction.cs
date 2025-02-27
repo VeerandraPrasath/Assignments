@@ -1,7 +1,7 @@
 ﻿using ExpenseTracker.Record;
 using ExpenseTracker.UserData;
 
-namespace ExpenseTracker.ConsoleInteraction
+namespace ExpenseTracker.UserInteraction
 {
     /// <summary>
     /// Handles interaction with User
@@ -19,24 +19,24 @@ namespace ExpenseTracker.ConsoleInteraction
         /// </summary>
         /// <param name="message">Message</param>
         /// <returns>returns string</returns>
-        public string GetStringInput(string message);
+        public string GetValidString(string message);
 
         /// <summary>
-        /// <see cref="GetIntInput(string)"/> get integer as input
+        /// <see cref="GetValidInt(string)"/> get integer as input
         /// </summary>
         /// <param name="message">message to be printed</param>
         /// <returns>returns integer</returns>
-        public int GetIntInput(string message);
+        public int GetValidInt(string message);
 
         /// <summary>
         /// Gets dateTime input
         /// </summary>
         /// <param name="message">Message</param>
         /// <returns>returns dateTime</returns>
-        public DateTime GetDateInput(string message);
+        public DateTime GetValidDate(string message);
 
         /// <summary>
-        /// Displays features
+        /// Displays main menu
         /// </summary>
         public void DisplayMainMenu();
 
@@ -55,13 +55,13 @@ namespace ExpenseTracker.ConsoleInteraction
         /// <summary>
         /// Displays all RecordList
         /// </summary>
-        /// <param name="dates">List of Dates</param>
-        public void DisplayAllRecords(List<Transaction> dates);
+        /// <param name="transactionList">List of TransactionList</param>
+        public void DisplayAllRecords(List<Transaction> transactionList);
 
         /// <summary>
-        /// Display RecordList on Transaction
+        /// Display Records on given transaction
         /// </summary>
-        /// <param name="date">Transaction</param>
-        public void DisplayRecordsByDate(Transaction date);
+        /// <param name="transaction">Transaction</param>
+        public void DisplayRecordsByDate(Transaction transaction);
     }
 }

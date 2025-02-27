@@ -1,14 +1,14 @@
 ﻿using ExpenseTracker.Record;
 using ExpenseTracker.UserData;
 
-namespace ExpenseTracker.ConsoleInteraction
+namespace ExpenseTracker.UserInteraction
 {
     /// <summary>
     /// Implements <see cref="IUserInteraction"/>
     /// </summary>
     public class UserInteraction : IUserInteraction
     {
-        public string GetStringInput(string message)
+        public string GetValidString(string message)
         {
             string userInput;
             do
@@ -24,33 +24,33 @@ namespace ExpenseTracker.ConsoleInteraction
             return userInput;
         }
 
-        public int GetIntInput(string message)
+        public int GetValidInt(string message)
         {
             bool isValidDigit = false;
             int intValue;
             do
             {
-                isValidDigit = int.TryParse(GetStringInput(message), out intValue);
+                isValidDigit = int.TryParse(GetValidString(message), out intValue);
                 if (!isValidDigit)
                 {
-                    Console.WriteLine("Input should be number !");
+                    Console.WriteLine("   Input should be number !");
                 }
             } while (!isValidDigit);
 
             return intValue;
         }
 
-        public DateTime GetDateInput(string message)
+        public DateTime GetValidDate(string message)
         {
             bool isValidDate = false;
             DateTime date;
             do
             {
-                string userInput = GetStringInput($"date(format: yyyy - MM - dd) {message}");
+                string userInput = GetValidString($"transaction(format: yyyy - MM - dd) {message}");
                 isValidDate = DateTime.TryParse(userInput, out date);
                 if (!isValidDate)
                 {
-                    Console.WriteLine("Invalid date format. Please try again !.");
+                    Console.WriteLine("Invalid transaction format. Please try again !.");
                 }
             } while (!isValidDate);
 
@@ -64,7 +64,7 @@ namespace ExpenseTracker.ConsoleInteraction
 
         public void DisplayMainMenu()
         {
-            Console.WriteLine("\n[1] View Records \n[2] Add Income Record \n[3] Add Expense Record \n[4] Log out\n");
+            Console.WriteLine("\n[1] View Records \n[2] Add Income Record \n[3] Add Expense Record \n[4] Modify Record \n[5] Delete \n[6] Financial summary\n[7] Log out\n");
         }
 
         public Income GetIncomeDetails()
@@ -72,13 +72,13 @@ namespace ExpenseTracker.ConsoleInteraction
             int amount;
             do
             {
-                amount = GetIntInput("amount");
+                amount = GetValidInt("amount");
                 if (amount <= 0)
                 {
                     Console.WriteLine("Amount should be greater than 0 !\n");
                 }
             } while (amount <= 0);
-            string category = GetStringInput("the category ");
+            string category = GetValidString("the category ");
 
             return new Income(amount, category);
         }
@@ -88,31 +88,31 @@ namespace ExpenseTracker.ConsoleInteraction
             int amount;
             do
             {
-                amount = GetIntInput("amount");
+                amount = GetValidInt("amount");
                 if (amount <= 0)
                 {
                     Console.WriteLine("Amount should be greater than 0 !\n");
                 }
             } while (amount <= 0);
-            string category = GetStringInput("the category ");
+            string category = GetValidString("the category ");
 
             return new Expense(amount, category);
         }
 
-        public void DisplayAllRecords(List<Transaction> dates)
+        public void DisplayAllRecords(List<Transaction> transactionList)
         {
             int count = 1;
-            if (dates.Count == 0)
+            if (transactionList.Count == 0)
             {
                 Console.WriteLine("\nNo Transactions !!!\n");
 
                 return;
             }
-            foreach (Transaction date in dates)
+            foreach (Transaction transaction in transactionList)
             {
-                foreach (IRecord record in date.RecordList)
+                foreach (IRecord record in transaction.RecordList)
                 {
-                    Console.WriteLine($"{count}.{date.TransactionDate.ToString()} {record}");
+                    Console.WriteLine($"{count}.{transaction.TransactionDate.ToString()} {record}");
                     count++;
                 }
             }
