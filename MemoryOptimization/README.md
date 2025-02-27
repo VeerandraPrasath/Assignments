@@ -13,3 +13,8 @@
 ## Task4
 &nbsp;&nbsp;In this task,we need to share the reflection on the assignment and also need to share the code analysis and memory profiling and optimized code implementation.
 
+![before_optimization](https://github.com/user-attachments/assets/e6020e30-0c11-420b-a80a-cdc658060756)
+
+![after_optimization](https://github.com/user-attachments/assets/01f1db44-aaad-4b08-874c-23e67386b2b0)
+&nbsp;&nbsp;In this task,we need to share the reflection on the assignment and also need to share the code analysis and memory profiling and optimized code implementation.
+
