@@ -6,22 +6,3 @@ Task2 task2 = new Task2();
 task2.ExecuteTask2();
 Console.ReadKey();
 
-public struct ValueType
-{
-    public int Value { get; set; }
-
-    public ValueType(int value)
-    {
-        Value = value;
-    }
-}
-
-public class ReferenceType
-{
-    public int Value { get; set; }
-
-    public ReferenceType(int value)
-    {
-        Value = value;
-    }
-}

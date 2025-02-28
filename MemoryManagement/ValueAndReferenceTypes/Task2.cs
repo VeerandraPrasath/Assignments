@@ -1,16 +1,27 @@
-﻿namespace ValueAndReferenceTypes
+﻿using ValueAndReferenceLibrary;
+
+namespace ValueAndReferenceTypes
 {
     /// <summary>
     /// Used to implement the task2
     /// </summary>
     public class Task2
     {
+        private ValueReferenceLibrary _valueReferenceLibrary;
+
+        /// <summary>
+        /// Constructor to initialize value
+        /// </summary>
+        public Task2()
+        {
+            _valueReferenceLibrary = new ValueReferenceLibrary();
+        }
         /// <summary>
         /// ExecuteTask1 the task2
         /// </summary>
         public void ExecuteTask2()
         {
-            LargeNumberOfReferenceType();
+            //LargeNumberOfReferenceType();
             LargeNumberOfValueType();
         }
 
@@ -19,9 +30,9 @@
         /// </summary>
         private void LargeNumberOfValueType()
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 100000000; i++)
             {
-                ValueType valueType = new ValueType(i);
+                _valueReferenceLibrary.CreateValueType(i);
             }
         }
 
@@ -30,10 +41,11 @@
         /// </summary>
         private void LargeNumberOfReferenceType()
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 1000000; i++)
             {
-                int[] referenceType = new int[i];
+                _valueReferenceLibrary.CreateReferenceType(i);
             }
+           
         }
     }
 }

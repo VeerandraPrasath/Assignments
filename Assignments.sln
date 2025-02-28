@@ -27,6 +27,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDisposableDemo", "MemoryMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceTypes", "MemoryManagement\ValueAndReferenceTypes\ValueAndReferenceTypes.csproj", "{709C78D6-0B8F-4ED7-B02A-20E62A600A86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceLibrary", "ValueAndReferenceLibrary\ValueAndReferenceLibrary.csproj", "{AE4BA262-098C-4580-9E1E-CE5BFAD471C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{FB656B20-8F0D-47D7-891F-75FF65087E49}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\Assignment11_Images\ReferenceType.png = ..\..\..\Desktop\Assignment11_Images\ReferenceType.png
+		..\..\..\Desktop\Assignment11_Images\ValueType.png = ..\..\..\Desktop\Assignment11_Images\ValueType.png
+		..\..\..\Desktop\Assignment11_Images\WithoutGC.png = ..\..\..\Desktop\Assignment11_Images\WithoutGC.png
+		..\..\..\Desktop\Assignment11_Images\WithGC.png = ..\..\..\Desktop\Assignment11_Images\WithGC.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +71,10 @@ Global
 		{709C78D6-0B8F-4ED7-B02A-20E62A600A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709C78D6-0B8F-4ED7-B02A-20E62A600A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709C78D6-0B8F-4ED7-B02A-20E62A600A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE4BA262-098C-4580-9E1E-CE5BFAD471C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4BA262-098C-4580-9E1E-CE5BFAD471C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4BA262-098C-4580-9E1E-CE5BFAD471C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4BA262-098C-4580-9E1E-CE5BFAD471C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +83,7 @@ Global
 		{180030CA-00C4-4908-B4CB-CB59B4F5518D} = {D66DEE5F-06D7-4A7B-992F-F79E7793DD6A}
 		{D064EADE-BE27-49F6-9022-CCFA21D73A29} = {D66DEE5F-06D7-4A7B-992F-F79E7793DD6A}
 		{709C78D6-0B8F-4ED7-B02A-20E62A600A86} = {D66DEE5F-06D7-4A7B-992F-F79E7793DD6A}
+		{AE4BA262-098C-4580-9E1E-CE5BFAD471C3} = {D66DEE5F-06D7-4A7B-992F-F79E7793DD6A}
+		{FB656B20-8F0D-47D7-891F-75FF65087E49} = {D66DEE5F-06D7-4A7B-992F-F79E7793DD6A}
 	EndGlobalSection
 EndGlobal
