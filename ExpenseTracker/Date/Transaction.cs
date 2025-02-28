@@ -20,10 +20,10 @@ namespace ExpenseTracker.UserData
         /// <summary>
         /// Constructor for Transaction
         /// </summary>
-        /// <param name="date">Transaction and Time</param>
-        public Transaction(DateTime date)
+        /// <param name="transactionDate">Transaction and Time</param>
+        public Transaction(DateTime transactionDate)
         {
-            TransactionDate = date;
+            TransactionDate = transactionDate;
             RecordList = new List<IRecord>();
         }
     }
