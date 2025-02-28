@@ -18,16 +18,16 @@ In this projects ,understand the importance of reference and value types and how
 ## Memory Observations
 ### ReferenceType
 On working with reference types , the Garbage collector collects the unused referenced objects at some times.Because GC only checks the heap memory which only contains the reference type objects for unused references .It checks and remove those objects which was shown in the below figure.<br>
-https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/ReferenceType.png
+![ReferenceType](https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/ReferenceType.png)
 ### ValueType
 On working with value types ,the Garbage collector does not collects the unused values types because GC only acts on the heap but these value types are stored in the stack of the memory.Therefore ,the memory will not clear and increase gradually for large use of value types.<br>
-https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/ValueType.png
+![ValueType](https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/ValueType.png)
 ### Garbage Collector 
 The Garbage collector can be manually invoke using the GC.Collect method which will checks and clear the unused references in the heap memory.<br>
-https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/WithGC.png
 #### Without GC Collect
 Without the use of GC collect,the GC can also invoke on some times automatically and clear the objects .<br>
+![WithGC](https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/WithGC.png)
 
 #### With GC Collect
 With the use of GC collect,it manually invoke the GC when the execution control reaches the line.But it will not reflect a lot if no more objects are cleared because viewing those result in the Visual Studio cost some memory.<br>
-https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/WithoutGC.png
+![WithoutGC](https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/WithoutGC.png)
