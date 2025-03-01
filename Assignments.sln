@@ -26,6 +26,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Understanding_.Net", "Under
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryOptimization", "MemoryOptimization\MemoryOptimization.csproj", "{94F76C0B-45D0-4A20-80B0-31921EA6797D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reflection", "Reflection", "{1A4A060C-5908-4197-B822-C31124C671B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyModel", "Reflection\AssemblyModel\AssemblyModel.csproj", "{DC35FD51-4937-4AB4-A853-6092B791F2DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1", "Reflection\Task1\Task1.csproj", "{61423F57-3852-4038-B95D-4F1F6F36E490}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,8 +74,20 @@ Global
 		{94F76C0B-45D0-4A20-80B0-31921EA6797D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94F76C0B-45D0-4A20-80B0-31921EA6797D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94F76C0B-45D0-4A20-80B0-31921EA6797D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC35FD51-4937-4AB4-A853-6092B791F2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC35FD51-4937-4AB4-A853-6092B791F2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC35FD51-4937-4AB4-A853-6092B791F2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC35FD51-4937-4AB4-A853-6092B791F2DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61423F57-3852-4038-B95D-4F1F6F36E490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61423F57-3852-4038-B95D-4F1F6F36E490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61423F57-3852-4038-B95D-4F1F6F36E490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61423F57-3852-4038-B95D-4F1F6F36E490}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC35FD51-4937-4AB4-A853-6092B791F2DD} = {1A4A060C-5908-4197-B822-C31124C671B7}
+		{61423F57-3852-4038-B95D-4F1F6F36E490} = {1A4A060C-5908-4197-B822-C31124C671B7}
 	EndGlobalSection
 EndGlobal
