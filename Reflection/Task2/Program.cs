@@ -13,32 +13,33 @@ namespace Task2
                 Age = 30,
                 Email = "prasath@gmail.com"
             };
-
             DynamicObjectInspector inspector = new DynamicObjectInspector();
-
             inspector.InspectObject(person);
         }
     }
 
+    /// <summary>
+    /// Dynamic object inspector class
+    /// </summary>
     public class DynamicObjectInspector
     {
+        /// <summary>
+        /// Inspect object properties and update the property value
+        /// </summary>
+        /// <param name="obj">Object to modify</param>
         public void InspectObject(object obj)
         {
             Type type = obj.GetType();
             Console.WriteLine($"Inspecting object of type: {type.FullName}\n");
-
             PropertyInfo[] properties = type.GetProperties();
-
             foreach (var property in properties)
             {
                 object value = property.GetValue(obj);
                 Console.WriteLine($"Property: {property.Name}, Value: {value}");
             }
-
             Console.WriteLine("\nEnter the property name to change or type 'exit' to quit):");
             string propertyName = Console.ReadLine();
-
-            if(propertyName.ToLower() != "exit")
+            if (propertyName.ToLower() != "exit")
             {
                 Console.WriteLine("Enter the new value:");
                 string newValue = Console.ReadLine();
@@ -51,12 +52,11 @@ namespace Task2
         {
             Type type = obj.GetType();
             PropertyInfo property = type.GetProperty(propertyName);
-
             if (property != null && property.CanWrite)
             {
-                    object convertedValue = Convert.ChangeType(newValue, property.PropertyType);
-                    property.SetValue(obj, convertedValue);
-                    Console.WriteLine($"Property '{propertyName}' updated to: {convertedValue}");
+                object convertedValue = Convert.ChangeType(newValue, property.PropertyType);
+                property.SetValue(obj, convertedValue);
+                Console.WriteLine($"Property '{propertyName}' updated to: {convertedValue}");
             }
             else
             {
@@ -64,10 +64,25 @@ namespace Task2
             }
         }
     }
-        public class Person
-        {
-            public string Name { get; set; }
-            public int Age { get; set; }
-            public string Email { get; set; }
-        }
+
+    /// <summary>
+    /// Person model
+    /// </summary>
+    public class Person
+    {
+        /// <summary>
+        /// Person Name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Person Age  
+        /// </summary>
+        public int Age { get; set; }
+
+        /// <summary>
+        /// Person Email
+        /// </summary>
+        public string Email { get; set; }
     }
+}

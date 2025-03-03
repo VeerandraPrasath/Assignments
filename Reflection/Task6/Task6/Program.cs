@@ -13,8 +13,16 @@ namespace Task6
         }
     }
 
+    /// <summary>
+    /// Build mock objects
+    /// </summary>
     public class MockBuilder
     {
+        /// <summary>
+        /// Create mock object
+        /// </summary>
+        /// <param name="interfaceType">Interface type</param>
+        /// <returns>Returns the type</returns>
         public Type CreateMock(Type interfaceType)
         {
             AssemblyName assemblyName = new AssemblyName("DynamicMockAssembly");
@@ -47,7 +55,6 @@ namespace Task6
                 {
                     il.Emit(OpCodes.Ldnull);
                 }
-
                 il.Emit(OpCodes.Ret);
             }
 
@@ -55,9 +62,25 @@ namespace Task6
         }
     }
 
+    /// <summary>
+    /// Math operations interface
+    /// </summary>
     public interface IMathOperations
     {
+        /// <summary>
+        /// Add two numbers
+        /// </summary>
+        /// <param name="a">Number 1</param>
+        /// <param name="b">Number 2</param>
+        /// <returns>Returns the sum</returns>
         int Add(int a, int b);
+
+        /// <summary>
+        /// Subtract two numbers
+        /// </summary>
+        /// <param name="a">Number 1</param>
+        /// <param name="b">Number 2</param>
+        /// <returns>Returns the difference</returns>
         int Subtract(int a, int b);
     }
 }

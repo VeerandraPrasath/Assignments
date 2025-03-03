@@ -21,8 +21,19 @@ namespace Task4
         }
     }
 
+    /// <summary>
+    /// Dynamic type builder class
+    /// </summary>
     public class DynamicTypeBuilder
     {
+        /// <summary>
+        /// Create dynamic types
+        /// </summary>
+        /// <param name="typeName">Name of the type</param>
+        /// <param name="propertyName">Name of the property</param>
+        /// <param name="propertyType">Name of the PropertyType</param>
+        /// <param name="methodName">Name of the method</param>
+        /// <returns></returns>
         public Type CreateDynamicType(string typeName, string propertyName, Type propertyType, string methodName)
         {
             AssemblyName assemblyName = new AssemblyName("DynamicAssembly");
@@ -55,9 +66,10 @@ namespace Task4
             MethodBuilder methodBuilder = typeBuilder.DefineMethod(methodName, MethodAttributes.Public, null, null);
             ILGenerator methodIL = methodBuilder.GetILGenerator();
             methodIL.EmitWriteLine($"Method '{methodName}' called.");
-            methodIL.Emit(OpCodes.Ret); 
+            methodIL.Emit(OpCodes.Ret);
 
             Type dynamicType = typeBuilder.CreateType();
+
             return dynamicType;
         }
     }

@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Reflection;
 using System.Reflection.Emit;
 using Newtonsoft.Json;
 
+/// <summary>
+/// Emit serializer class
+/// </summary>
 public class EmitSerializer
 {
     private delegate string SerializeDelegate(object obj);
     private readonly Dictionary<Type, SerializeDelegate> _serializeMethods = new Dictionary<Type, SerializeDelegate>();
 
+    /// <summary>
+    /// Serialize the object
+    /// </summary>
+    /// <param name="obj">Object to serialize</param>
+    /// <returns>Returns the serialize string</returns>
     public string Serialize(object obj)
     {
         if (obj == null) return "null";
-
         Type type = obj.GetType();
         if (!_serializeMethods.TryGetValue(type, out var serializeMethod))
         {
@@ -78,10 +83,8 @@ public class EmitSerializer
             var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             var dictionary = il.DeclareLocal(typeof(Dictionary<string, object>));
             var addMethod = typeof(Dictionary<string, object>).GetMethod("Add");
-
             il.Emit(OpCodes.Newobj, typeof(Dictionary<string, object>).GetConstructor(Type.EmptyTypes));
             il.Emit(OpCodes.Stloc, dictionary);
-
             foreach (var property in properties)
             {
                 il.Emit(OpCodes.Ldloc, dictionary);
@@ -103,5 +106,4 @@ public class EmitSerializer
 
         return (SerializeDelegate)dynamicMethod.CreateDelegate(typeof(SerializeDelegate));
     }
-
 }

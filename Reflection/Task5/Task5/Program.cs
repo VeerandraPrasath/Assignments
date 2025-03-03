@@ -12,17 +12,12 @@ namespace Task5
             var files = Directory.GetFiles(binDir, "*.dll").ToList();
             Bitmap image = new Bitmap("image.bmp");
             List<IImageProcessor> imageProcessors = PluginLoader.LoadPluginsFromFile(files);
-
-
             int count = 0;
             Console.WriteLine("Available plugins are : ");
-
             foreach (var imageProcessor in imageProcessors)
             {
                 Console.WriteLine($"{++count}.{imageProcessor.GetType().Name}");
-
             }
-
             Console.WriteLine("Enter the option :");
             int userOption = int.Parse(Console.ReadLine());
             if (userOption > 0 && userOption <= count)
@@ -38,29 +33,35 @@ namespace Task5
                 else
                 {
                     Console.Write("Discard changes");
-
                 }
             }
             else
             {
                 Console.WriteLine("Invalid Option !");
             }
-
             Console.ReadKey();
         }
     }
-        public static class PluginLoader
+
+    /// <summary>
+    /// Loads the plugins
+    /// </summary>
+    public static class PluginLoader
+    {
+        /// <summary>
+        /// Loads all the plugins from the file
+        /// </summary>
+        /// <param name="files">File names</param>
+        /// <returns>List of IImageProcessor interface</returns>
+        public static List<IImageProcessor> LoadPluginsFromFile(List<string> files)
         {
-            public static List<IImageProcessor> LoadPluginsFromFile(List<string> files)
+            List<IImageProcessor> pluginList = new List<IImageProcessor>();
+            foreach (string assembly in files)
             {
-                List<IImageProcessor> pluginList = new List<IImageProcessor>();
-                foreach (string assembly in files)
-                {
-                    Assembly.LoadFrom(assembly).GetTypes().Where(t => typeof(IImageProcessor).IsAssignableFrom(t) && !t.IsInterface).ToList().ForEach(t => pluginList.Add((IImageProcessor)Activator.CreateInstance(t)));
-                }
-                return pluginList;
+                Assembly.LoadFrom(assembly).GetTypes().Where(t => typeof(IImageProcessor).IsAssignableFrom(t) && !t.IsInterface).ToList().ForEach(t => pluginList.Add((IImageProcessor)Activator.CreateInstance(t)));
             }
 
+            return pluginList;
         }
-    
+    }
 }
