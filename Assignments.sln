@@ -27,6 +27,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryOptimization", "MemoryOptimization\MemoryOptimization.csproj", "{94F76C0B-45D0-4A20-80B0-31921EA6797D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reflection", "Reflection", "{1A4A060C-5908-4197-B822-C31124C671B7}"
+	ProjectSection(SolutionItems) = preProject
+		Reflection\README.md = Reflection\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task2", "Reflection\Task2\Task2.csproj", "{2B5D0C3B-8133-462D-9C4A-D8D64960D4F5}"
 EndProject
