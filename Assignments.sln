@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task6", "Reflection\Task6\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockingFrameWorkTest", "Reflection\Task6\MockingFrameWorkTest\MockingFrameWorkTest.csproj", "{419815D0-BF60-4521-9F34-EAE3A4AEA114}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task7", "Reflection\Task7\Task7.csproj", "{5D07C169-BB89-44DD-A9FF-FBFC55B6060C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{419815D0-BF60-4521-9F34-EAE3A4AEA114}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{419815D0-BF60-4521-9F34-EAE3A4AEA114}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{419815D0-BF60-4521-9F34-EAE3A4AEA114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D07C169-BB89-44DD-A9FF-FBFC55B6060C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D07C169-BB89-44DD-A9FF-FBFC55B6060C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D07C169-BB89-44DD-A9FF-FBFC55B6060C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D07C169-BB89-44DD-A9FF-FBFC55B6060C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,5 +151,6 @@ Global
 		{C9F024DA-0CF7-4D43-82B7-FC26C41CB0CB} = {1A4A060C-5908-4197-B822-C31124C671B7}
 		{7BEBE834-5E26-44FC-BC9E-C50BD66DAE86} = {1A4A060C-5908-4197-B822-C31124C671B7}
 		{419815D0-BF60-4521-9F34-EAE3A4AEA114} = {1A4A060C-5908-4197-B822-C31124C671B7}
+		{5D07C169-BB89-44DD-A9FF-FBFC55B6060C} = {1A4A060C-5908-4197-B822-C31124C671B7}
 	EndGlobalSection
 EndGlobal
