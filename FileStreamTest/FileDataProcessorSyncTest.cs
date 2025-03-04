@@ -5,7 +5,7 @@ using NUnit.Framework.Legacy;
 namespace FileStreamTest
 {
     [TestFixture]
-    public class FileDataProcessorTests
+    public class FileDataProcessorSyncTests
     {
         private const string TestInputFile = "testInput.txt";
         private const string TestOutputFile = "testOutput.txt";

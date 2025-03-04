@@ -26,8 +26,6 @@ namespace FileAndStream.Task1
             Console.WriteLine($"BufferedStream read time: {bufferedStreamTime} ms");
 
             FileDataProcessorSync.ProcessAndWriteFile(InputFile, OutputFile);
-
-            //Write1GBData(); 
             Console.WriteLine("File processing complete.");
 
         }
@@ -35,7 +33,7 @@ namespace FileAndStream.Task1
         /// <summary>
         /// Write one gigabyte data to file
         /// </summary>
-        public void Write1GBData()
+        private void Write1GBData()
         {
             FileCommunication.WriteData(Path, data);
             while (FileCommunication.GetFileSize(Path) / 1000000000 != 1)
