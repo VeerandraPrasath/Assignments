@@ -10,4 +10,7 @@
 * When the solution is built, the order of building the project starts from the project with no dependencies. Before building a project, all its dependencies are built. If Project A depends on Project B, Project B depends on Project C, and Project C depends on Project D, the project build starts from Project D, then proceed by building Project C, then Project B, and then finally Project A. 
 Once the dependencies are added, the Build Order of the Solution is: UtilityApp --> DisplayApp --> MathApp --> GreetingApp
 * Created a new project Project E in the Solution. After adding the new project,the build order of the Solution becomes: UtilityApp -->ProjectE --> DisplayApp --> MathApp --> GreetingApp.
+ *![after_projectE](https://github.com/user-attachments/assets/5b428310-5343-417e-9419-2f6158d79aad)
+
 * If we want to change the Project Build Order, we need to change the dependencies accordingly to ensure that the build order is as per our requirement. To ensure that Project E is built after Project C - DisplayApp, added Project C as a dependency to Project E. After modifying the dependencies, the Build Order becomes: UtilityApp --> DisplayApp --> ProjectE --> MathApp --> GreetingApp.
+* ![buildOrder_after_ref_added](https://github.com/user-attachments/assets/40e8ac0b-6a7b-47e7-9f13-1aa399b698c4)
