@@ -25,7 +25,7 @@ On working with value types ,the Garbage collector does not collects the unused 
 ### Garbage Collector 
 The Garbage collector can be manually invoke using the GC.Collect method which will checks and clear the unused references in the heap memory.<br>
 #### Without GC Collect
-Without the use of GC collect,the GC can also invoke on some times automatically and clear the objects .<br>
+Without the use of GC collect,the GC can also invoke on some times automatically and clear the objects.<br>
 ![WithGC](https://github.com/VeerandraPrasath/Assignments/blob/assignment11/MemoryManagement/Images/WithGC.png)
 
 #### With GC Collect
