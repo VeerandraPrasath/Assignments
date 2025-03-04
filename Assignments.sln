@@ -61,6 +61,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectE", "CSharpConsoleSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityApp", "CSharpConsoleSolution\UtilityApp\UtilityApp.csproj", "{62500337-B642-4C6D-99BB-D29B1574CAF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileAndStream", "FileAndStream\FileAndStream.csproj", "{968108B2-4F5A-4348-BDF0-03523FE4DEB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileAndStreamTest", "FileStreamTest\FileAndStreamTest.csproj", "{AC361FB1-63C0-421C-BA6E-9F6022AE5D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +111,14 @@ Global
 		{709C78D6-0B8F-4ED7-B02A-20E62A600A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709C78D6-0B8F-4ED7-B02A-20E62A600A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709C78D6-0B8F-4ED7-B02A-20E62A600A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968108B2-4F5A-4348-BDF0-03523FE4DEB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968108B2-4F5A-4348-BDF0-03523FE4DEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968108B2-4F5A-4348-BDF0-03523FE4DEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968108B2-4F5A-4348-BDF0-03523FE4DEB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC361FB1-63C0-421C-BA6E-9F6022AE5D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC361FB1-63C0-421C-BA6E-9F6022AE5D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC361FB1-63C0-421C-BA6E-9F6022AE5D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC361FB1-63C0-421C-BA6E-9F6022AE5D87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5BC0EA1-D501-4D1F-9E24-1C9EA1AB40F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5BC0EA1-D501-4D1F-9E24-1C9EA1AB40F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5BC0EA1-D501-4D1F-9E24-1C9EA1AB40F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
