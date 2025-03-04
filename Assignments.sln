@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryOptimization", "Memor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagerTests", "InventoryTests\InventoryManagerTests.csproj", "{3D07E351-2440-4AD8-8C31-2A12F884D287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackerTest", "ExpenseTrackerTest\ExpenseTrackerTest.csproj", "{99BA4221-7B69-4DE4-BD17-3743BB13467D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{3D07E351-2440-4AD8-8C31-2A12F884D287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D07E351-2440-4AD8-8C31-2A12F884D287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D07E351-2440-4AD8-8C31-2A12F884D287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99BA4221-7B69-4DE4-BD17-3743BB13467D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99BA4221-7B69-4DE4-BD17-3743BB13467D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99BA4221-7B69-4DE4-BD17-3743BB13467D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99BA4221-7B69-4DE4-BD17-3743BB13467D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
