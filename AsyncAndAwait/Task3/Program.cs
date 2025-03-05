@@ -7,7 +7,8 @@ namespace Task3
         static void Main(string[] args)
         {
             int[] array = { 1, 2, 3, 4, 5, 6 };
-            int val1 = 0, val2 = 0, val3 = 0;
+            int val1, val2 , val3 ;
+            val1 = val2 = val3 = default;
             Thread thread1 = new Thread(() => { val1 = AverageOfArray(array); });
             Thread thread2 = new Thread(() => { val2 = FirstElement(array); });
             Thread thread3 = new Thread(() => { val3 = SumOfElement(array); });

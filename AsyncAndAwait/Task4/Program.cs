@@ -18,6 +18,7 @@ namespace Task4
                 Console.WriteLine("Starting CPU-bound operation...");
                 Task.Delay(2000);
                 Console.WriteLine("CPU-bound operation completed.");
+
                 return random.Next(100); 
             });
         }
