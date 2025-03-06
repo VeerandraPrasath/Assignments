@@ -14,6 +14,7 @@
 
         private static async Task<string> GetDataFromURL(string uri)
         {
+            Console.WriteLine("Downloading data...");
             string responseBody = await client.GetStringAsync(uri);
 
             return responseBody;

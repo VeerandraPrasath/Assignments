@@ -57,6 +57,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileAndStreamTest", "FileStreamTest\FileAndStreamTest.csproj", "{AC361FB1-63C0-421C-BA6E-9F6022AE5D87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AsyncAndAwait", "AsyncAndAwait", "{39C43407-CA0B-4A32-AB89-352834CCEF18}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1", "AsyncAndAwait\Task1\Task1.csproj", "{F238DE49-4410-4360-986F-A8CB60904D7A}"
 EndProject

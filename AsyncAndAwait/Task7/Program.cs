@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Task7
+﻿namespace Task7
 {
     internal class Program
     {
@@ -8,7 +6,7 @@ namespace Task7
         {
             try
             {
-                 VoidMethod();
+                VoidMethod();
             }
             catch (Exception ex)
             {
@@ -17,7 +15,7 @@ namespace Task7
 
             try
             {
-               await TaskMethod();
+                await TaskMethod();
             }
             catch (Exception ex)
             {
@@ -26,7 +24,7 @@ namespace Task7
 
             Console.WriteLine("End of Main");
         }
-        
+
         private static async void VoidMethod()
         {
             throw new NotImplementedException("Error thrown by VoidMethod");
