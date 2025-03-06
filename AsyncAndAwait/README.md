@@ -4,18 +4,29 @@
 ### Task 1
 In this task, Used the 'async' and 'await' keywords to make the code working asynchronously.Also used 'HttpClient' class to get the data from the URl and display it on the console.
 
+![18_task1](https://github.com/user-attachments/assets/652299d4-aee2-4292-a20c-9cca7bfb89d0)
+
 ## Task2
 In this task,Used the TPL(Task Parallel Library) for iterating over the array asynchronously and display the square of the data on the console.
+
+![18Task2_1](https://github.com/user-attachments/assets/2a74a2fa-6578-4481-94dd-d761ada75809)
+
+![18Task2_2](https://github.com/user-attachments/assets/b282df79-c786-4f58-8b9e-78962facd547)
+
 
 ## Task3
 Created separate thread classes for individual methods to run all the methods parallelly and display the results of the methods after all the execution of methods.
 
+![18task3](https://github.com/user-attachments/assets/bb0f6301-ce6d-4060-aa74-5d8b987d2856)
+
 ## Task4
 Created multiple async methods to achieve the multi-layered Async and Await operations .Each method gives the result which was used as an input of another and process it.
 
+![18_task4](https://github.com/user-attachments/assets/2101da18-e427-4e3e-9d75-f33556cecd58)
+
 ## Task5
 The given starter code has no dead lock situvation occured.So ,I have created a dead lock  code by own and it is given below<br><br>
-```  
+```csharp
     public class StarterCode
     {
         AutoResetEvent event1 = new AutoResetEvent(false);
@@ -91,8 +102,18 @@ The dead lock can be resolve by releasing the event at some time,So that the thr
 ```
 In the above code, I have created a timer object and started the timer in the method1. After 3 seconds, the timer will be elapsed and the event1 will be released. So, the thread1 will complete the method1 and release the object. Then the thread2 can enter the method2 and complete the execution. So, the deadlock situation is resolved by using the timer.
 
+![18task5](https://github.com/user-attachments/assets/4f3e9272-e966-45a4-ae31-13a92fcd9fdd)
+
 ### Task 6
 In this task,Understand the difference between the "ConfigureAwait(true)" and "ConfigureAwait(false)" in the async and await operations .The ConfigureAwait(true) will continue on the captured context and ConfigureAwait(false) will not continue on the captured context.Also used "Thread.CurrentThread.ManagedThreadId" to get the thread id of the current thread.
 
+![18Task6](https://github.com/user-attachments/assets/e799d9f5-d08e-4c7b-8a1a-b36c92aaea53)
+
+
 ### Task 7
 In this task,Understand the pros and cons of returning the task and void.These methods throw an exception.During this time ,the method which return task will handle the exception but the method with void can't.This was used and understood  in this task.
+
+![18_task71](https://github.com/user-attachments/assets/11bbc68c-f60d-411c-9d39-6171911af654)
+
+![18_task_72](https://github.com/user-attachments/assets/1ae98db4-1ab7-4a94-96ed-c46c07001770)
+
